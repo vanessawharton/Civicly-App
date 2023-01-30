@@ -8,9 +8,9 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import Nav from '../User/NavMenu/Nav';
+import Nav from '../User/NavMenu/NavMenu';
 import Footer from '../User/Footer/Footer';
-
+import Header from '../User/Header/Header';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import LandingPage from '../User/LandingPage/LandingPage';
@@ -31,6 +31,8 @@ function App() {
   return (
     <Router>
       <div>
+        <Header />
+        <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -60,8 +62,8 @@ function App() {
           >
             {user.id ?
               // If the user is already logged in, 
-              // redirect to the /user page
-              <Redirect to="/user" />
+              // redirect to the /home page
+              <Redirect to="/home" />
               :
               // Otherwise, show the login page
               <LoginPage />
