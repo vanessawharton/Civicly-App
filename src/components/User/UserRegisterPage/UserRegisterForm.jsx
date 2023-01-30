@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [zipCode, setZipCode] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -15,11 +21,23 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        zipCode: zipCode,
       },
     });
   }; // end registerUser
 
   return (
+    <div>
+    <Container
+      sx={{
+        mb: 27
+      }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
     <form className="formPanel" onSubmit={registerUser}>
       <h2>Register User</h2>
       {errors.registrationMessage && (
@@ -52,9 +70,25 @@ function RegisterForm() {
         </label>
       </div>
       <div>
+        <label htmlFor="zipCode">
+          Zip Code:
+          <input
+            type="zipCode"
+            name="zipCode"
+            value={zipCode}
+            required
+            onChange={(event) => setZipCode(event.target.value)}
+          />
+        </label>
+      </div>
+      <div>
         <input className="btn" type="submit" name="submit" value="Register" />
       </div>
     </form>
+    </Box>
+        <Link onClick={() => {history.push('/login');}}>Log the heck in, why don't ya?</Link>
+      </Container>
+    </div>
   );
 }
 
