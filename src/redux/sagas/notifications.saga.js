@@ -32,8 +32,6 @@ function* editNotifications() {
     }
 }
 
-
-
 // Notifications DELETE
 function* deleteNotifications() {
     try {
