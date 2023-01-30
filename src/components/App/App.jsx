@@ -92,7 +92,6 @@ function App() {
               path="/home"
             >
               <LandingPage />
-<<<<<<< feature-theme-vanessa
             </Route>
 
             <ProtectedRoute
@@ -152,80 +151,6 @@ function App() {
         </div>
       </Router>
     </ThemeProvider>
-=======
-            }
-          </Route>
-
-          <Route
-            exact path="/admindashboard"
-          >
-            <AdminDashboardPage />
-          </Route>
-
-          <Route
-            exact path="/adminlogin"
-          >
-            <AdminLoginPage />
-          </Route>
-
-          <ProtectedRoute
-            exact path="/reportdetail/:id"
-          >
-            <ReportDetailView />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact path="/addreport"
-          >
-            <CreateReportPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact path="/reportmap"
-          >
-            <MapViewPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact path="/topcitizens"
-          >
-            <TopCitizensPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact path="/login"
-          >
-            <UserLoginPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact path="/profile"
-          >
-            <UserProfilePage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact path="/register"
-          >
-            <UserRegisterPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact path="/myreports"
-          >
-            <UserReportsPage />
-          </ProtectedRoute>
-
-
-          {/* If none of the other routes matched, we will show a 404. */}
-          <Route>
-            <h1>404</h1>
-          </Route>
-        </Switch>
-        {/* <Footer /> */}
-      </div>
-    </Router>
->>>>>>> main
   );
 }
 
