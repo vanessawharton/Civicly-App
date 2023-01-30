@@ -6,7 +6,7 @@ function* fetchTicket() {
     try {
         const response = yield axios.get('/api/ticket');
 
-        yield put({ type: 'SET_USER', payload: response.data });
+        yield put({ type: 'SET_TICKET', payload: response.data });
     } catch (error) {
         console.log('Ticket GET request failed', error);
     }
@@ -17,7 +17,6 @@ function* fetchTicket() {
 
 function* ticketSaga() {
     yield takeLatest('FETCH_TICKET', fetchTicket);
-
 }
 
 export default ticketSaga;
