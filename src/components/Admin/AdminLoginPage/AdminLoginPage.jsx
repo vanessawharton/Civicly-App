@@ -1,13 +1,11 @@
-import AdminLoginForm from "./AdminLoginForm"
-
+import AdminLoginForm from "../AdminLoginForm/AdminLoginForm"
+import Header from "../AdminHeader/AdminHeader"
 
 export default function AdminLoginPage() {
     return (
         <>
-            //Civicly logo goes here
-            <h1 className="admin-login">Admin Log In </h1>
+            <Header />
             <AdminLoginForm />
-            <h3>Are we still thinking we want the 'forgot password' link here?</h3>
         </>
         
     )
