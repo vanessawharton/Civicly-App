@@ -40,3 +40,46 @@ CREATE TABLE "Notifications" (
     "notification_status" TEXT
 );
 
+
+-- This populates the subcategories 
+    -- the category column is an enum stored as an int. They key is as follows:
+        -- 0 == Accessibility
+        -- 1 == Animal Control
+        -- 2 == Biking
+        -- 3 == Garbage and Recycling
+        -- 4 == Graffiti
+        -- 5 == Health and Environmental
+        -- 6 == Parking
+        -- 7 == Property
+        -- 8 == Sidewalks and Streets
+
+INSERT INTO Subcategories ( "name", "category")
+VALUES 
+    ('Public Transit Issues', 0),
+    ('Sidewalk/Curb Issues', 0),
+    ('Animal Complaint - Livability', 1),
+    ('Animal Complaint - Public Health', 1),
+    ('Deceased Animal Pick Up', 1),
+    ('Abandoned / Illegally Parked Bicycle / Scooter', 2),
+    ('Bike Lane Issue', 2),
+    ('Bike Trail Safety - Parks', 2),
+    ('Illegal Dumping', 3),
+    ('Litter / Overflow', 3),
+    ('Graffiti', 4),
+    ('Air Pollution Complaint', 5),
+    ('Commercial Food Safety/Sanitation Complaint', 5),
+    ('Emergency Pollution Complaint', 5),
+    ('Env Mgmt Callback Request', 5),
+    ('Food Safety Callback', 5),
+    ('Land Pollution Complaint', 5),
+    ('Lead Inquiry', 5),
+    ('Noise Pollution Complaint', 5),
+    ('Pollution Control Annual Registration - PCAR', 5),
+    ('Syringe Litter Concern Pilot Project', 5),
+    ('Urgent Pollution Complaint', 5),
+    ('Water Pollution Complaint', 5),
+    ('Abandoned Vehicle', 6),
+    ('Alley Blocked', 6),
+    ('Bike Lane Blocked', 6),
+    ('Bridge / bridge Approach', 6),
+    
