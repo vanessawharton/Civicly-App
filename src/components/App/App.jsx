@@ -141,11 +141,11 @@ function App() {
             <LoginPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
+          <Route
             exact path="/reportmap"
           >
             <MapViewPage />
-          </ProtectedRoute>
+          </Route>
 
           <ProtectedRoute
             exact path="/registerpage"
