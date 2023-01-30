@@ -74,7 +74,7 @@ function App() {
             exact
             path="/register"
           >
-              <UserRegisterPage />
+            <UserRegisterPage />
           </Route>
 
           <Route
@@ -90,6 +90,85 @@ function App() {
               <LandingPage />
             }
           </Route>
+
+          <ProtectedRoute
+            exact path="/admindashboard"
+          >
+            <AdminDashboardPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/adminloginpage"
+          >
+            <AdminLoginPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/reportdetail/:id"
+          >
+            <ReportDetailView />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/addreport"
+          >
+            <CreateReportPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/landingpage"
+          >
+            <LandingPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/loginpage"
+          >
+            <LoginPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/reportmap"
+          >
+            <MapViewPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/registerpage"
+          >
+            <RegisterPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/topcitizens"
+          >
+            <TopCitizensPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/userloginpage"
+          >
+            <UserLoginPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/profile"
+          >
+            <UserProfilePage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/userregisterpage"
+          >
+            <UserRegisterPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact path="/userreportspage"
+          >
+            <UserReportsPage />
+          </ProtectedRoute>
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
