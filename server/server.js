@@ -10,6 +10,9 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const ticketRouter = require('./routes/ticket.router');
+const notificationsRouter = require('./routes/notifications.router');
+const adminRouter = require('./routes/admin.router');
+const subcategoryRouter = require('./routes/subcategory.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -17,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Passport Session Configuration //
 app.use(sessionMiddleware);
-
+git
 // start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
@@ -25,6 +28,9 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/ticket', ticketRouter);
+app.use('/api/notifications', notificationsRouter);
+app.use('/api/admin', adminRouter);
+app.use('/api/subcategory', subcategoryRouter);
 
 // Serve static files
 app.use(express.static('build'));
