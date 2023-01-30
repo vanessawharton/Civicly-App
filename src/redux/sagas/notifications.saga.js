@@ -2,6 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 
+// Notifications GET 
 function* fetchNotifications() {
     try {
         const response = yield axios.get('/api/notifications');
@@ -12,6 +13,7 @@ function* fetchNotifications() {
     }
 }
 
+// Notifications POST
 function* postNotifications() {
     try {
         yield axios.post('/api/user/notifications', action.payload);
@@ -21,7 +23,25 @@ function* postNotifications() {
     }
 }
 
+// Notifications PUT
+function* editNotifications() {
+    try {
+        
+    } catch (error) {
+        console.log('Notifications PUT request failed', error);
+    }
+}
 
+
+
+// Notifications DELETE
+function* deleteNotifications() {
+    try {
+        
+    } catch (error) {
+        console.log('Notifications DELETE request failed', error);
+    }
+}
 
 
 function* notificationsSaga() {
