@@ -60,7 +60,7 @@ export default function AdminLoginForm() {
                 {/* <input className="btn" type="submit" name="submit" value="Log In" /> */}
                 <Button style={{
                     color: "#FFFFFF",
-                    backgroundColor: "#6B6BB2"
+                    backgroundColor: "#50C878"
                 }}
                     className="btn" type="submit" name="submit" value="Log In"
                 >

@@ -103,17 +103,17 @@ function App() {
             }
           </Route>
 
-          <ProtectedRoute
+          <Route
             exact path="/admindashboard"
           >
             <AdminDashboardPage />
-          </ProtectedRoute>
+          </Route>
 
-          <ProtectedRoute
-            exact path="/adminloginpage"
+          <Route
+            exact path="/adminlogin"
           >
             <AdminLoginPage />
-          </ProtectedRoute>
+          </Route>
 
           <ProtectedRoute
             exact path="/reportdetail/:id"
