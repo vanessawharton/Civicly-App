@@ -113,7 +113,7 @@ export default function NavMenu() {
                     value="profile" 
                     icon={
                         <AccountBoxIcon 
-                        fontsize="large"
+                        fontSize="large"
                         sx={{
                             color: '#191C24',
                             fontSize: 50,
