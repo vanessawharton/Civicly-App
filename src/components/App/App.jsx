@@ -92,68 +92,7 @@ function App() {
               path="/home"
             >
               <LandingPage />
-<<<<<<< feature-theme-vanessa
-            </Route>
-
-            <ProtectedRoute
-              exact path="/admindashboard"
-            >
-              <AdminDashboardPage />
-            </ProtectedRoute>
-
-            <ProtectedRoute
-              exact path="/adminloginpage"
-            >
-              <AdminLoginPage />
-            </ProtectedRoute>
-
-            <ProtectedRoute
-              exact path="/reportdetail/:id"
-            >
-              <ReportDetailView />
-            </ProtectedRoute>
-
-            <ProtectedRoute
-              exact path="/addreport"
-            >
-              <CreateReportPage />
-            </ProtectedRoute>
-
-            <ProtectedRoute
-              exact path="/reportmap"
-            >
-              <MapViewPage />
-            </ProtectedRoute>
-
-            <ProtectedRoute
-              exact path="/topcitizens"
-            >
-              <TopCitizensPage />
-            </ProtectedRoute>
-
-            <ProtectedRoute
-              exact path="/profile"
-            >
-              <UserProfilePage />
-            </ProtectedRoute>
-
-            <ProtectedRoute
-              exact path="/myreports"
-            >
-              <UserReportsPage />
-            </ProtectedRoute>
-
-
-            {/* If none of the other routes matched, we will show a 404. */}
-            <Route>
-              <h1>404</h1>
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    </ThemeProvider>
-=======
-            }
+            
           </Route>
 
           <Route
@@ -225,8 +164,7 @@ function App() {
         {/* <Footer /> */}
       </div>
     </Router>
->>>>>>> main
-  );
+    </ThemeProvider>
+    );
 }
-
 export default App;
