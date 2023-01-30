@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import ticketSaga from './ticket.saga';
 import notificationsSaga from './notifications.saga';
 import adminSaga from './admin.saga';
+import subcategoriesSaga from './subcategories.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     ticketSaga(),
     notificationsSaga(),
     adminSaga(),
+    subcategoriesSaga()
   ]);
 }
