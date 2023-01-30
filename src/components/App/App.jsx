@@ -14,16 +14,14 @@ import Header from '../User/Header/Header';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import LandingPage from '../User/LandingPage/LandingPage';
-import LoginPage from '../User/LoginPage/LoginPage';
+import UserLoginPage from '../User/UserLoginPage/UserLoginPage';
 import UserRegisterPage from '../User/UserRegisterPage/UserRegisterPage';
 import AdminDashboardPage from '../Admin/AdminDashboardPage/AdminDashboardPage';
 import AdminLoginPage from '../Admin/AdminLoginPage/AdminLoginPage';
 import ReportDetailView from '../Admin/ReportDetailView/ReportDetailView';
 import CreateReportPage from '../User/CreateReportPage/CreateReportPage';
 import MapViewPage from '../User/MapViewPage/MapViewPage';
-import RegisterPage from '../User/RegisterPage/RegisterPage';
 import TopCitizensPage from '../User/TopCitizensPage/TopCitizensPage';
-import UserLoginPage from '../User/LoginPage/LoginPage';
 import UserProfilePage from '../User/UserProfilePage/UserProfilePage';
 import UserReportsPage from '../User/UserReportsPage/UserReportsPage';
 
@@ -80,7 +78,7 @@ function App() {
               <Redirect to="/home" />
               :
               // Otherwise, show the login page
-              <LoginPage />
+              <UserLoginPage />
             }
           </Route>
 
@@ -97,8 +95,8 @@ function App() {
           >
             {user.id ?
               // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
+              // redirect them to the /home page
+              <Redirect to="/home" />
               :
               // Otherwise, show the Landing page
               <LandingPage />
@@ -130,27 +128,9 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            exact path="/landingpage"
-          >
-            <LandingPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact path="/loginpage"
-          >
-            <LoginPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
             exact path="/reportmap"
           >
             <MapViewPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact path="/registerpage"
-          >
-            <RegisterPage />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -160,7 +140,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            exact path="/userloginpage"
+            exact path="/login"
           >
             <UserLoginPage />
           </ProtectedRoute>
@@ -172,13 +152,13 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            exact path="/userregisterpage"
+            exact path="/register"
           >
             <UserRegisterPage />
           </ProtectedRoute>
 
           <ProtectedRoute
-            exact path="/userreportspage"
+            exact path="/myreports"
           >
             <UserReportsPage />
           </ProtectedRoute>
