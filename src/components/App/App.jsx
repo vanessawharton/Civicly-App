@@ -16,6 +16,20 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import LandingPage from '../User/LandingPage/LandingPage';
 import LoginPage from '../User/LoginPage/LoginPage';
 import UserRegisterPage from '../User/UserRegisterPage/UserRegisterPage';
+import AdminDashboardPage from '../Admin/AdminDashboardPage/AdminDashboardPage';
+import AdminLoginPage from '../Admin/AdminLoginPage/AdminLoginPage';
+import ReportDetailView from '../Admin/ReportDetailView/ReportDetailView';
+import CreateReportPage from '../User/CreateReportPage/CreateReportPage';
+import MapViewPage from '../User/MapViewPage/MapViewPage';
+import RegisterPage from '../User/RegisterPage/RegisterPage';
+import TopCitizensPage from '../User/TopCitizensPage/TopCitizensPage';
+import UserLoginPage from '../User/LoginPage/LoginPage';
+import UserProfilePage from '../User/UserProfilePage/UserProfilePage';
+import UserReportsPage from '../User/UserReportsPage/UserReportsPage';
+
+
+
+
 
 import './App.css';
 
