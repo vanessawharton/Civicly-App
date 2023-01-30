@@ -45,6 +45,3 @@ export default function ReportDetailView() {
                 </Grid>
             </Grid>
         </>
-
-    )
-}

@@ -20,8 +20,8 @@ function RegisterForm() {
       type: 'REGISTER',
       payload: {
         username: username,
-        password: password,
-        zipCode: zipCode,
+        password: password
+        // zipCode: zipCode,
       },
     });
   }; // end registerUser
@@ -69,7 +69,7 @@ function RegisterForm() {
           />
         </label>
       </div>
-      <div>
+      {/* <div>
         <label htmlFor="zipCode">
           Zip Code:
           <input
@@ -80,7 +80,7 @@ function RegisterForm() {
             onChange={(event) => setZipCode(event.target.value)}
           />
         </label>
-      </div>
+      </div> */}
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />
       </div>
