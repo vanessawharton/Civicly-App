@@ -44,6 +44,10 @@ export default function CreateReportPage() {
     setActiveStep(0);
   };
 
+  const handleSubmit = () => {
+    console.log('this will submit the ticket');
+  }
+
   const getStepContent = index => {
     switch (index) {
         case 0:
@@ -52,11 +56,11 @@ export default function CreateReportPage() {
             )
         case 1:
             return (
-                <div>step {activeStep}</div>
+                <Typography>Placeholder for category selection</Typography>
             )
         case 2:
             return (
-                <div>step {activeStep}</div>
+                <Typography>Placeholder for Submit form</Typography>
             )
     
     }
@@ -64,7 +68,7 @@ export default function CreateReportPage() {
 
   return (
     <CssBaseline>
-    <Box sx={{ maxWidth: 10000  }}>
+    <Box sx={{ maxWidth: 400, ml: 1 }}>
       <Typography variant='h5'>Create New Report</Typography>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
@@ -105,7 +109,12 @@ export default function CreateReportPage() {
       </Stepper>
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Typography>Submit Report!</Typography>
+          <Button
+            variant='contained'
+            onClick={handleSubmit}
+            sx={{ mt:1, mr:1 }}
+            >Submit!</Button>
           <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
             Reset
           </Button>
