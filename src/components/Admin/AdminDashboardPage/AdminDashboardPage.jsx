@@ -1,11 +1,37 @@
 import Header from "../AdminHeader/AdminHeader"
 import AdminDataTable from "../AdminDataTable/AdminDataTable";
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import useReduxStore from '../../hooks/useReduxStore';
 import { Grid } from "@mui/material"
+import { useHistory, useParams } from 'react-router-dom';
 import { Button, InputLabel, FormControl, NativeSelect } from '@mui/material';
+
 import './AdminDashboardPage.css';
 
 
 export default function AdminDashBoardPage() {
+
+    const { id } = useParams();
+    const history = useHistory();
+    const store = useReduxStore();
+    const dispatch = useDispatch();
+
+    //just a placeholder dispatch here, we can change if it makes more sense
+    //grabs all reports from store/reducer(however we end up hooking things up)
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        dispatch({type: 'FETCH_ALL_REPORTS'})
+    }, []);
+
+    //placeholder onClick function to capture details of report and
+    //navigate to details view
+    const reportDetails = (report) => {
+        console.log('clicked on a report', report.id);
+
+        history.push('/reportdetailview/' + report.id)
+    }
+
     return (
         <>
             <div className="body">
