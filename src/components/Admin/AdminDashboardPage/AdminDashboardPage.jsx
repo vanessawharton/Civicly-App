@@ -1,11 +1,52 @@
 import Header from "../AdminHeader/AdminHeader"
 import AdminDataTable from "../AdminDataTable/AdminDataTable";
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+// import useReduxStore from '../../hooks/useReduxStore';
 import { Grid } from "@mui/material"
+import { useHistory, useParams } from 'react-router-dom';
 import { Button, InputLabel, FormControl, NativeSelect } from '@mui/material';
+
 import './AdminDashboardPage.css';
 
 
 export default function AdminDashBoardPage() {
+
+    const { id } = useParams();
+    const history = useHistory();
+    // const store = useReduxStore();
+    const dispatch = useDispatch();
+
+    //just a placeholder dispatch here, we can change if it makes more sense
+    //grabs all reports from store/reducer(however we end up hooking things up)
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        dispatch({type: 'FETCH_ALL_REPORTS'})
+    }, []);
+
+    //placeholder onClick function to capture details of report and
+    //navigate to details view
+    const reportDetails = (report) => {
+        console.log('clicked on a report', report.id);
+
+        history.push('/reportdetailview/' + report.id)
+    }
+
+    const handleNeedsReview = () => {
+        console.log('needs review button clicked');
+        //what do we want this button to do?
+    }
+
+    const handleReportSearch =() => {
+        console.log('report search button clicked');
+        //what do we want this to do?
+    }
+
+    const handleReporting = () => {
+        console.log('reporting button clicked');
+        //what does this button do?
+    }
+
     return (
         <>
             <div className="body">
@@ -19,8 +60,9 @@ export default function AdminDashBoardPage() {
                         justify="center"
                         alignItems="center">
                         <Button style={{color: "black", backgroundColor: "#bcf5bc"}}
-                        variant="contained">
-                            Needs Review
+                        variant="contained"
+                        onClick={handleNeedsReview}
+                        >Needs Review
                         </Button>
                     </Grid>
                     <Grid item xs={2} sm={3} md={3}
@@ -29,8 +71,9 @@ export default function AdminDashBoardPage() {
                         justify="center"
                         alignItems="center">
                         <Button style={{color: "black", backgroundColor: "#ea80fc"}} 
-                            variant="contained">
-                            Report Search
+                            variant="contained"
+                            onClick={handleReportSearch}
+                            >Report Search
                         </Button>
                     </Grid>
                     <Grid item xs={2} sm={3} md={3}
@@ -39,8 +82,9 @@ export default function AdminDashBoardPage() {
                         justify="center"
                         alignItems="center">
                         <Button style={{color: "black", backgroundColor: "#ffa07a"}}
-                            variant="contained">
-                            Reporting
+                            variant="contained"
+                            onClick={handleReporting}
+                            >Reporting
                         </Button>
                     </Grid>
                     <Grid>

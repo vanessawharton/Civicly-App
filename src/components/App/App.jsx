@@ -95,19 +95,19 @@ function App() {
             </Route>
 
             <ProtectedRoute
-              exact path="/admindashboard"
+              exact path="/admin/dashboard"
             >
               <AdminDashboardPage />
             </ProtectedRoute>
 
             <ProtectedRoute
-              exact path="/adminloginpage"
+              exact path="/admin/login"
             >
               <AdminLoginPage />
             </ProtectedRoute>
 
             <ProtectedRoute
-              exact path="/reportdetail/:id"
+              exact path="/admin/reportdetail/:id"
             >
               <ReportDetailView />
             </ProtectedRoute>
