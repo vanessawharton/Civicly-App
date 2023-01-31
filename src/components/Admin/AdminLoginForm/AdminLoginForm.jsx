@@ -20,6 +20,7 @@ export default function AdminLoginForm() {
                     password: password,
                 },
             });
+            //add a history.push here, or handle routing in the app.js file
         } else {
             dispatch({ type: 'LOGIN_INPUT_ERROR' });
         }

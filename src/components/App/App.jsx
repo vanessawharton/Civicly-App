@@ -94,23 +94,23 @@ function App() {
               <LandingPage />
             </Route>
 
-            <ProtectedRoute
+            <Route
               exact path="/admindashboard"
             >
               <AdminDashboardPage />
-            </ProtectedRoute>
+            </Route>
 
-            <ProtectedRoute
+            <Route
               exact path="/adminloginpage"
             >
               <AdminLoginPage />
-            </ProtectedRoute>
+            </Route>
 
-            <ProtectedRoute
-              exact path="/reportdetail/:id"
+            <Route
+              exact path="/reportdetail"
             >
               <ReportDetailView />
-            </ProtectedRoute>
+            </Route>
 
             <ProtectedRoute
               exact path="/addreport"

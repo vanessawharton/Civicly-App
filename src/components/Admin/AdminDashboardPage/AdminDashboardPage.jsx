@@ -32,6 +32,21 @@ export default function AdminDashBoardPage() {
         history.push('/reportdetailview/' + report.id)
     }
 
+    const handleNeedsReview = () => {
+        console.log('needs review button clicked');
+        //what do we want this button to do?
+    }
+
+    const handleReportSearch =() => {
+        console.log('report search button clicked');
+        //what do we want this to do?
+    }
+
+    const handleReporting = () => {
+        console.log('reporting button clicked');
+        //what does this button do?
+    }
+
     return (
         <>
             <div className="body">
@@ -45,8 +60,9 @@ export default function AdminDashBoardPage() {
                         justify="center"
                         alignItems="center">
                         <Button style={{color: "black", backgroundColor: "#bcf5bc"}}
-                        variant="contained">
-                            Needs Review
+                        variant="contained"
+                        onClick={handleNeedsReview}
+                        >Needs Review
                         </Button>
                     </Grid>
                     <Grid item xs={2} sm={3} md={3}
@@ -55,8 +71,9 @@ export default function AdminDashBoardPage() {
                         justify="center"
                         alignItems="center">
                         <Button style={{color: "black", backgroundColor: "#ea80fc"}} 
-                            variant="contained">
-                            Report Search
+                            variant="contained"
+                            onClick={handleReportSearch}
+                            >Report Search
                         </Button>
                     </Grid>
                     <Grid item xs={2} sm={3} md={3}
@@ -65,8 +82,9 @@ export default function AdminDashBoardPage() {
                         justify="center"
                         alignItems="center">
                         <Button style={{color: "black", backgroundColor: "#ffa07a"}}
-                            variant="contained">
-                            Reporting
+                            variant="contained"
+                            onClick={handleReporting}
+                            >Reporting
                         </Button>
                     </Grid>
                     <Grid>
