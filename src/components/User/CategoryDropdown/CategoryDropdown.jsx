@@ -3,7 +3,6 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 export default function CategoryDropdown({categories}) {
-    console.log(categories);
   return (
     <Autocomplete
       disablePortal
