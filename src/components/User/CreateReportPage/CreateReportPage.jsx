@@ -9,7 +9,16 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { CssBaseline } from '@mui/material';
 
+
 import NewReportLocation from '../NewReportLocation/NewReportLocation';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+
+
+
+
+
 
 const steps = [
     {
@@ -30,11 +39,21 @@ const steps = [
 
 
 export default function CreateReportPage() {
-    const [activeStep, setActiveStep] = React.useState(0);
+  const dispatch = useDispatch();  
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const categories = useSelector(store => store.subcategories)
+
+  React.useEffect(() => {
+    dispatch({type: "FETCH_SUBCATEGORIES"})
+  }, [])
+
+
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -48,23 +67,24 @@ export default function CreateReportPage() {
         console.log('this will submit the ticket');
     }
 
-    const getStepContent = index => {
-        switch (index) {
-            case 0:
-                return (
-                    <NewReportLocation />
-                )
-            case 1:
-                return (
-                    <Typography>Placeholder for category selection</Typography>
-                )
-            case 2:
-                return (
-                    <Typography>Placeholder for Submit form</Typography>
-                )
-
-        }
+  const getStepContent = index => {
+    switch (index) {
+        case 0:
+            return (
+                <NewReportLocation/>
+            )
+        case 1:
+            return (
+                <CategoryDropdown
+                    categories={categories}/>
+            )
+        case 2:
+            return (
+                <Typography>Placeholder for Submit form</Typography>
+            )
+    
     }
+}  
 
     return (
         <CssBaseline>

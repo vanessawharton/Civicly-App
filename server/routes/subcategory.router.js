@@ -9,7 +9,16 @@ const {
  * GET subcategory route
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
-
+    const queryText = `
+    SELECT * FROM "Subcategories"
+    `;
+    pool
+      .query(queryText)
+      .then(result => res.send(result.rows))
+      .catch(err => {
+        console.log('Error making get request for chores', err);
+        res.sendStatus(500);
+      })
 
 });
 
