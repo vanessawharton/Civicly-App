@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { fontFamily, fontSize } from '@mui/system';
 
 
 
@@ -39,6 +40,15 @@ export default function UserProfilePage() {
                     sx={{ width: 200, height: 200 }}
                     />
                 </Stack>
+            </Box>
+            <Box sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 'bold',
+                fontSize: 'h5.fontSize'
+            }}>
+                username
             </Box>
         </>
     )
