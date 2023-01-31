@@ -13,6 +13,7 @@ import { CssBaseline } from '@mui/material';
 import NewReportLocation from '../NewReportLocation/NewReportLocation';
 import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 
@@ -42,11 +43,13 @@ export default function CreateReportPage() {
 
   const [activeStep, setActiveStep] = React.useState(0);
 
-  const [categories, setCategories] = React.useState([]);
+  const categories = useSelector(store => store.subcategories)
 
   React.useEffect(() => {
     dispatch({type: "FETCH_SUBCATEGORIES"})
   }, [])
+
+  React.useEffect(()=> {}, [])
 
 
   const handleNext = () => {
