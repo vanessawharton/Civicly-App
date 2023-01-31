@@ -44,10 +44,10 @@ export default function ReportDetailView() {
         //
         <>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }}
-            display="flex"
-            justifyContent="center"
-            justify="center"
-            alignItems="center">
+                display="flex"
+                justifyContent="center"
+                justify="center"
+                alignItems="center">
                 <Grid item sx={12}>
                     <Button variant="contained"
                         align="center"
@@ -55,88 +55,40 @@ export default function ReportDetailView() {
                     >Back to all Reports
                     </Button>
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     Report Number : <TextField label={reportNumber} />
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     Status: <TextField label={status} />
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     Category: <TextField label={category} />
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     Subcategory: <TextField label={subcategory} />
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     Location: <TextField label={location} />
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     Submitted by: <TextField label={submittedBy} />
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     Date Submitted: <TextField label={date} />
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     Submission note: <TextField label={note} />
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     License Plate Information: <TextField label={license} />
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     Last Status Update: <TextField label={lastStatusUpdate} />
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     Internal Comments: <TextField label={internalComments} />
                 </Grid>
-                <Grid item sx={12}
-                display="flex"
-                justifyContent="center"
-                justify="center"
-                alignItems="center">
+                <Grid item sx={12}>
                     {/* <img className="report-image"/> */}
                     {/* once image upload/download is figured out this can be updated */}
                 </Grid>
