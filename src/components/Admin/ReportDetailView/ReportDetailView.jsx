@@ -2,7 +2,7 @@ import { Grid } from "@mui/material"
 import { TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import useReduxStore from '../../hooks/useReduxStore';
+// import useReduxStore from '../../hooks/useReduxStore';
 import { useHistory, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
 
@@ -10,7 +10,7 @@ export default function ReportDetailView() {
 
     const { id } = useParams();
     const history = useHistory();
-    const store = useReduxStore();
+    // const store = useReduxStore();
     const dispatch = useDispatch();
     console.log("details item id:", id);
 

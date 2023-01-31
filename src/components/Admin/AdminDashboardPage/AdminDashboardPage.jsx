@@ -2,7 +2,7 @@ import Header from "../AdminHeader/AdminHeader"
 import AdminDataTable from "../AdminDataTable/AdminDataTable";
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import useReduxStore from '../../hooks/useReduxStore';
+// import useReduxStore from '../../hooks/useReduxStore';
 import { Grid } from "@mui/material"
 import { useHistory, useParams } from 'react-router-dom';
 import { Button, InputLabel, FormControl, NativeSelect } from '@mui/material';
@@ -14,7 +14,7 @@ export default function AdminDashBoardPage() {
 
     const { id } = useParams();
     const history = useHistory();
-    const store = useReduxStore();
+    // const store = useReduxStore();
     const dispatch = useDispatch();
 
     //just a placeholder dispatch here, we can change if it makes more sense
