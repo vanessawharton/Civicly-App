@@ -35,7 +35,7 @@ export default function AdminDashBoardPage() {
     //grabs all reports from store/reducer(however we end up hooking things up)
     useEffect(() => {
         window.scrollTo(0, 0)
-        dispatch({ type: 'FETCH_ALL_REPORTS' })
+        dispatch({ type: 'FETCH_ALL_TICKETS' })
     }, []);
 
     //placeholder onClick function to capture details of report and

@@ -42,7 +42,7 @@ function* deleteTicket() {
 
 function* fetchAllTickets() {
     try{
-        const response = yield axios.get('/api/admin/ticket')
+        const response = yield axios.get('/api/alltickets')
 
         yield put({ type: 'SET_ALL_TICKETS', payload: response.data });
     }
