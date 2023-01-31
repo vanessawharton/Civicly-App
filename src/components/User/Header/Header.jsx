@@ -16,23 +16,26 @@ export default function Header() {
                 <Toolbar
                     sx={{
                         display: 'flex',
-                        justifyContent: 'center'
+                        justifyContent: 'flex-end',
+                        alignItems: 'center',
                     }}>
                     <img 
                         src={Logo}
                         style={{ 
                             maxHeight: 40,
-                            margin: 5
+                            mt: 5,
+                            mb: 5,
                             }} 
                     />
                     <IconButton
                         size="large"
                         edge="end"
+                        position= "fixed"
                         color="inherit"
                         aria-label="notifications-bell"
-                        sx={{ mr: 3,
-                            ml: 5,
+                        sx={{ 
                             mt: 1,
+                            ml: 6,
                             color: '#FFBC00' }}
                     >
                         <CircleNotificationsIcon />
