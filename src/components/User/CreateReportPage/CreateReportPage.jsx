@@ -68,7 +68,7 @@ export default function CreateReportPage() {
 
   return (
     <CssBaseline>
-    <Box sx={{ maxWidth: 400, ml: 1 }}>
+    <Box sx={{ maxWidth: 1000, ml: 1 }}>
       <Typography variant='h5'>Create New Report</Typography>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
@@ -90,14 +90,14 @@ export default function CreateReportPage() {
                   <Button
                     variant="contained"
                     onClick={handleNext}
-                    sx={{ mt: 1, mr: 1 }}
+                    sx={{ mt: 2, mr: 1 }}
                   >
                     {index === steps.length - 1 ? 'Finish' : 'Continue'}
                   </Button>
                   <Button
                     disabled={index === 0}
                     onClick={handleBack}
-                    sx={{ mt: 1, mr: 1 }}
+                    sx={{ mt: 2, mr: 1 }}
                   >
                     Back
                   </Button>
@@ -115,7 +115,7 @@ export default function CreateReportPage() {
             onClick={handleSubmit}
             sx={{ mt:1, mr:1 }}
             >Submit!</Button>
-          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+          <Button onClick={handleReset} sx={{ mt: 2, mr: 2 }}>
             Reset
           </Button>
         </Paper>

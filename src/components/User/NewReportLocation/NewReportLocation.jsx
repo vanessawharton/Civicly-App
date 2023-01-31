@@ -56,6 +56,11 @@ function Map (props) {
       console.log(newCenter?.lat(), newCenter?.lng());
     }
   };
+    const defaultMapOptions = {
+    fullscreenControl: false,
+    mapTypeControl: false,
+    streetViewControl: false,
+  };
 
     return (
         <>
@@ -66,6 +71,7 @@ function Map (props) {
             onCenterChanged = {handleCenterChanged}
             mapContainerClassName="new-report-map-container"
             clickableIcons= {false}
+            options={defaultMapOptions}
         >
         </GoogleMap>
         <img className="marker" src={marker} alt="map center marker" 
