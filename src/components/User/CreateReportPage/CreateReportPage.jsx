@@ -7,6 +7,9 @@ import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import { CssBaseline } from '@mui/material';
+
+import NewReportLocation from '../NewReportLocation/NewReportLocation';
 
 const steps = [
   {
@@ -41,10 +44,27 @@ export default function CreateReportPage() {
     setActiveStep(0);
   };
 
-
+  const getStepContent = index => {
+    switch (index) {
+        case 0:
+            return (
+                <NewReportLocation/>
+            )
+        case 1:
+            return (
+                <div>step {activeStep}</div>
+            )
+        case 2:
+            return (
+                <div>step {activeStep}</div>
+            )
+    
+    }
+}  
 
   return (
-    <Box sx={{ maxWidth: 400 }}>
+    <CssBaseline>
+    <Box sx={{ maxWidth: 10000  }}>
       <Typography variant='h5'>Create New Report</Typography>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
@@ -61,6 +81,7 @@ export default function CreateReportPage() {
             <StepContent>
               <Typography>{step.description}</Typography>
               <Box sx={{ mb: 2 }}>
+                {getStepContent(index)}
                 <div>
                   <Button
                     variant="contained"
@@ -91,5 +112,6 @@ export default function CreateReportPage() {
         </Paper>
       )}
     </Box>
+    </CssBaseline>
   );
 }
