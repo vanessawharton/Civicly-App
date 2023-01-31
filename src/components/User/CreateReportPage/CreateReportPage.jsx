@@ -14,6 +14,7 @@ import NewReportLocation from '../NewReportLocation/NewReportLocation';
 import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import IssueFormView from '../IssueFormView/IssueFormView';
 
 
 
@@ -80,7 +81,7 @@ export default function CreateReportPage() {
             )
         case 2:
             return (
-                <Typography>Placeholder for Submit form</Typography>
+                <IssueFormView/>
             )
     
     }
