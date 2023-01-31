@@ -92,79 +92,66 @@ function App() {
               path="/home"
             >
               <LandingPage />
-            
-          </Route>
+            </Route>
 
-          <Route
-            exact path="/admindashboard"
-          >
-            <AdminDashboardPage />
-          </Route>
+            <ProtectedRoute
+              exact path="/admindashboard"
+            >
+              <AdminDashboardPage />
+            </ProtectedRoute>
 
-          <Route
-            exact path="/adminlogin"
-          >
-            <AdminLoginPage />
-          </Route>
+            <ProtectedRoute
+              exact path="/adminloginpage"
+            >
+              <AdminLoginPage />
+            </ProtectedRoute>
 
-          <ProtectedRoute
-            exact path="/reportdetail/:id"
-          >
-            <ReportDetailView />
-          </ProtectedRoute>
+            <ProtectedRoute
+              exact path="/reportdetail/:id"
+            >
+              <ReportDetailView />
+            </ProtectedRoute>
 
-          <ProtectedRoute
-            exact path="/addreport"
-          >
-            <CreateReportPage />
-          </ProtectedRoute>
+            <ProtectedRoute
+              exact path="/addreport"
+            >
+              <CreateReportPage />
+            </ProtectedRoute>
 
-          <ProtectedRoute
-            exact path="/reportmap"
-          >
-            <MapViewPage />
-          </ProtectedRoute>
+            <ProtectedRoute
+              exact path="/reportmap"
+            >
+              <MapViewPage />
+            </ProtectedRoute>
 
-          <ProtectedRoute
-            exact path="/topcitizens"
-          >
-            <TopCitizensPage />
-          </ProtectedRoute>
+            <ProtectedRoute
+              exact path="/topcitizens"
+            >
+              <TopCitizensPage />
+            </ProtectedRoute>
 
-          <ProtectedRoute
-            exact path="/login"
-          >
-            <UserLoginPage />
-          </ProtectedRoute>
+            <ProtectedRoute
+              exact path="/profile"
+            >
+              <UserProfilePage />
+            </ProtectedRoute>
 
-          <ProtectedRoute
-            exact path="/profile"
-          >
-            <UserProfilePage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact path="/register"
-          >
-            <UserRegisterPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact path="/myreports"
-          >
-            <UserReportsPage />
-          </ProtectedRoute>
+            <ProtectedRoute
+              exact path="/myreports"
+            >
+              <UserReportsPage />
+            </ProtectedRoute>
 
 
-          {/* If none of the other routes matched, we will show a 404. */}
-          <Route>
-            <h1>404</h1>
-          </Route>
-        </Switch>
-        {/* <Footer /> */}
-      </div>
-    </Router>
+            {/* If none of the other routes matched, we will show a 404. */}
+            <Route>
+              <h1>404</h1>
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </ThemeProvider>
-    );
+  );
 }
+
 export default App;
