@@ -9,7 +9,15 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { CssBaseline } from '@mui/material';
 
+
 import NewReportLocation from '../NewReportLocation/NewReportLocation';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
+import { useDispatch } from 'react-redux';
+
+
+
+
+
 
 const steps = [
   {
@@ -30,7 +38,16 @@ const steps = [
 
 
 export default function CreateReportPage() {
+  const dispatch = useDispatch();  
+
   const [activeStep, setActiveStep] = React.useState(0);
+
+  const [categories, setCategories] = React.useState([]);
+
+  React.useEffect(() => {
+    dispatch({type: "FETCH_SUBCATEGORIES"})
+  }, [])
+
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -56,7 +73,8 @@ export default function CreateReportPage() {
             )
         case 1:
             return (
-                <Typography>Placeholder for category selection</Typography>
+                <CategoryDropdown
+                    categories={categories}/>
             )
         case 2:
             return (
