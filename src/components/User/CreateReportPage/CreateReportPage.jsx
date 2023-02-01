@@ -89,7 +89,7 @@ export default function CreateReportPage() {
 
     return (
         <CssBaseline>
-            <Box sx={{ maxWidth: 1000, ml: 1 }}>
+            <Box sx={{ maxWidth: 1000, ml: "7%" }}>
                 <Typography variant='h5'>Create New Report</Typography>
                 <Stepper activeStep={activeStep} orientation="vertical">
                     {steps.map((step, index) => (
