@@ -17,7 +17,7 @@ CREATE TABLE "Subcategories" (
 
 
 CREATE TABLE "Ticket" (
-    "id" BIGINT PRIMARY KEY,
+    "id" SERIAL PRIMARY KEY,
     "image_url" TEXT,
     "description" TEXT,
     "status" TEXT,
@@ -119,7 +119,14 @@ VALUES
     ('Traffic Light Trouble / Outage', 8),
     ('Traffic Sign Repair', 8);
 
-
+INSERT INTO "Ticket" ("image_url", "description", "status", "upvotes", "category", "user_id", "anonymous", "subcategory_id", "latitude", "longitude")
+VALUES 
+	('https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Pothole.jpg/1200px-Pothole.jpg',
+	 'this is the description', 'open', 1, 8, 1, 'true', 57, 44.9778, -93.2650),
+	 ('https://cdn.britannica.com/93/171293-050-D99BEDB2/Graffiti-Berlin-Wall.jpg',
+	 'this is the description', 'open', 1, 4, 1, 'true', 11, 44.9878, -93.2750),
+	 ('https://media.bizj.us/view/img/11283236/img4402*1200xx4032-2265-0-17.jpg',
+	 'this is the description', 'open', 2, 6, 1, 'true', 24, 44.9678, -93.2550);
 
 
     
