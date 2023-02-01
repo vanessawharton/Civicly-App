@@ -6,8 +6,10 @@ CREATE TABLE "User" (
     "password" VARCHAR (255) NOT NULL,
     "isAdmin" BOOLEAN DEFAULT 'false',
     "image_url" TEXT,
-    "upvotes" INT
+    "upvotes" INT,
+    "zip" INT,
 );
+
 
 CREATE TABLE "Subcategories" (
     "id" SERIAL PRIMARY KEY,
