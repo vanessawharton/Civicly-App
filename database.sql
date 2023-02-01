@@ -7,7 +7,7 @@ CREATE TABLE "User" (
     "isAdmin" BOOLEAN DEFAULT 'false',
     "image_url" TEXT,
     "upvotes" INT,
-    "zipcode" INT,
+    "zipcode" INT
 );
 
 
@@ -55,7 +55,7 @@ CREATE TABLE "Notifications" (
         -- 7 == Property
         -- 8 == Sidewalks and Streets
 
-INSERT INTO Subcategories ( "name", "category")
+INSERT INTO "Subcategories" ( "name", "category")
 VALUES 
     ('Public Transit Issues', 0),
     ('Sidewalk/Curb Issues', 0),
@@ -121,6 +121,9 @@ VALUES
     ('Traffic Light Trouble / Outage', 8),
     ('Traffic Sign Repair', 8);
 
+
+-- You will need to create an account in the user id = 1 in order to run
+-- the following query
 INSERT INTO "Ticket" ("image_url", "description", "status", "upvotes", "category", "user_id", "anonymous", "subcategory_id", "latitude", "longitude")
 VALUES 
 	('https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Pothole.jpg/1200px-Pothole.jpg',
