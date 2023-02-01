@@ -60,8 +60,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <div>
-          <Header disabled={user.id ? false : true} />
-          <Nav disabled={user.id ? false: true} />
+          <Header disabled={user.id > 1 ? false : true} />
+          <Nav disabled={user.id > 1 ? false: true} />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -94,20 +94,20 @@ function App() {
               <LandingPage />
             </Route>
 
-            <ProtectedRoute
+            <Route
               exact path="/admin/dashboard"
             >
               <AdminDashboardPage />
-            </ProtectedRoute>
+            </Route>
 
-            <ProtectedRoute
+            <Route
               exact path="/admin/login"
             >
               <AdminLoginPage />
-            </ProtectedRoute>
+            </Route>
 
             <ProtectedRoute
-              exact path="/admin/reportdetail/:id"
+              exact path="/admin/reportdetail"
             >
               <ReportDetailView />
             </ProtectedRoute>

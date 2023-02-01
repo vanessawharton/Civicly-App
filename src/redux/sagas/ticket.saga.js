@@ -40,12 +40,22 @@ function* deleteTicket() {
     }
 }
 
+function* fetchAllTickets() {
+    try{
+        const response = yield axios.get('/api/alltickets')
 
+        yield put({ type: 'SET_ALL_TICKETS', payload: response.data });
+    }
+    catch(error){
+        console.log('error in ticket.saga FETCH_ALL_TICKETS', error);
+    }
+}
 
 
 function* ticketSaga() {
     yield takeLatest('FETCH_TICKET', fetchTicket);
     yield takeLatest('POST_TICKET', postTicket);
+    yield takeLatest('FETCH_ALL_TICKETS', fetchAllTickets);
 }
 
 export default ticketSaga;
