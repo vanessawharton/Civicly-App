@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 // ~~~ WORK IN PROGRESS ~~~
@@ -16,9 +18,16 @@ import IconButton from '@mui/material/IconButton';
 // will need to be changed once My Reports page is finished
 
 export default function UserProfilePage() {
+    //pull in redux here to use user information to display on the DOM
+    const history = useHistory();
     const dispatch = useDispatch();
     
     
+    // useEffect(() => {
+    //     window.scrollTo(0, 0)
+    //     dispatch({type: 'FETCH_USER'}, [])
+    // })
+
     return (
         <>
             <Box sx={{
@@ -71,7 +80,7 @@ export default function UserProfilePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                }}>Home City: St. Paul, MN
+                }}>Home City: 
             </Box><br></br>
             <Box component="span" sx={{ 
                 display: 'flex',
