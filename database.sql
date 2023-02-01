@@ -7,7 +7,7 @@ CREATE TABLE "User" (
     "isAdmin" BOOLEAN DEFAULT 'false',
     "image_url" TEXT,
     "upvotes" INT,
-    "zip" INT,
+    "zipcode" INT,
 );
 
 
