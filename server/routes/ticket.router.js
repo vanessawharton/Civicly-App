@@ -40,7 +40,7 @@ router.delete('/', rejectUnauthenticated, (req, res) => {
 //Admin get all tickets route
 router.get('/alltickets', rejectUnauthenticated, (req, res) => {
 
-    // const queryText = insert sql statement here
+     const queryText = `SELECT * FROM "Ticket"`
 
     pool.query(queryText)
     .then((results) => {

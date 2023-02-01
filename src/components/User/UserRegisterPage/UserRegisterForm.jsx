@@ -8,7 +8,7 @@ import Link from '@mui/material/Link';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [zipCode, setZipCode] = useState('');
+  const [zipcode, setZipcode] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,8 +20,8 @@ function RegisterForm() {
       type: 'REGISTER',
       payload: {
         username: username,
-        password: password
-        // zipCode: zipCode,
+        password: password,
+        zipcode: zipcode
       },
     });
   }; // end registerUser
@@ -69,18 +69,18 @@ function RegisterForm() {
           />
         </label>
       </div>
-      {/* <div>
+      <div>
         <label htmlFor="zipCode">
           Zip Code:
           <input
-            type="zipCode"
-            name="zipCode"
-            value={zipCode}
+            type="zipcode"
+            name="zipcode"
+            value={zipcode}
             required
-            onChange={(event) => setZipCode(event.target.value)}
+            onChange={(event) => setZipcode(event.target.value)}
           />
         </label>
-      </div> */}
+      </div>
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />
       </div>

@@ -9,6 +9,7 @@ import { Button, InputLabel, FormControl, NativeSelect } from '@mui/material';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 
 import './AdminDashboardPage.css';
+import { useSelector } from "react-redux";
 
 
 export default function AdminDashBoardPage() {
@@ -30,6 +31,8 @@ export default function AdminDashBoardPage() {
     const [internalComments, setInternalComments] = useState();
     const [image, setImage] = useState();
     const [open, setOpen] = useState(true);
+
+    const tickets = useSelector((store) => store.ticket);
 
     //just a placeholder dispatch here, we can change if it makes more sense
     //grabs all reports from store/reducer(however we end up hooking things up)
@@ -74,9 +77,13 @@ export default function AdminDashBoardPage() {
         //need to add either a sweetalert or another mui dialog for confirmation
     }
 
+    console.log(tickets);
+
     return (
         <>
+        
             <div className="body">
+                
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }}
                     display="flex"
                     justifyContent="center"
