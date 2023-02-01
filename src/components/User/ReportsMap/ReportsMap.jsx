@@ -1,6 +1,7 @@
 import { GoogleMap, MarkerF, LoadScript, InfoWindowF } from "@react-google-maps/api";
 
 import React, { useEffect, useState } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 import './ReportsMap.css'
 
@@ -11,11 +12,16 @@ function ReportsMap(){
   const [longitude, setLongitude] = useState(-98.5795);
   const [focus, setFocus] = useState(5);
 
-  
+  const dispatch = useDispatch();
   
 useEffect (() => {
+  dispatch({type: 'FETCH_TICKET'});
   userPosition()
 }, [])
+
+const tickets = useSelector(store => store.ticket)
+
+console.log(tickets);
 
 const userPosition = () => {
   navigator.geolocation.getCurrentPosition(position => {
@@ -38,7 +44,7 @@ const userPosition = () => {
     const handleActiveMarker = (marker) => {
       setLatitude(marker.latitude);
       setLongitude(marker.longitude);
-      console.log(marker.latitude, longitude, latitude)
+      //console.log(marker.latitude, longitude, latitude)
       
       if (marker.id === activeMarker) {
         return;
@@ -55,10 +61,10 @@ const userPosition = () => {
         mapContainerClassName="map-container"
         onClick={() => setActiveMarker(null)}
       >
-      {reports.map(location => {
+      {tickets.map(location => {
         return (
           <div key ={location.id}>
-            <MarkerF onLoad={onLoad} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} title={"Whoa"} options={{icon: `http://maps.google.com/mapfiles/ms/icons/${location.color}-dot.png`}}>
+            <MarkerF onLoad={onLoad} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} options={{icon: `http://maps.google.com/mapfiles/ms/icons/blue-dot.png`}}>
             {activeMarker === location.id ? (
             <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
               <div className="infoWindow">
@@ -73,8 +79,8 @@ const userPosition = () => {
       })}
       
       </GoogleMap>
-      </LoadScript>
-    )
+      </LoadScript>)
+
 
 }
 
