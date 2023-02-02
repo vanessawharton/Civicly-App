@@ -42,8 +42,8 @@ const userPosition = () => {
     const [activeMarker, setActiveMarker] = useState(null);
 
     const handleActiveMarker = (marker) => {
-      setLatitude(marker.latitude);
-      setLongitude(marker.longitude);
+      setLatitude(+marker.latitude);
+      setLongitude(+marker.longitude);
       //console.log(marker.latitude, longitude, latitude)
       
       if (marker.id === activeMarker) {
@@ -62,14 +62,47 @@ const userPosition = () => {
         onClick={() => setActiveMarker(null)}
       >
       {tickets.map(location => {
+        let color;
+        
+        switch(location.category) {
+          case '8':
+            color='blue'
+            break;
+          case '7':
+            color='yellow'
+            break;
+          case '6':
+            color='brown'
+            break;
+          case '5':
+            color='purple'
+            break;
+          case '4':
+            color='red'
+            break;
+          case '3':
+            color='orange'
+            break;
+          case '2':
+            color='green'
+            break;
+          case '1':
+            color='gray'
+            break;
+          case '0':
+            color='black'
+            break;
+          default:
+            console.log('Broken')
+        }
         return (
           <div key ={location.id}>
-            <MarkerF onLoad={onLoad} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} options={{icon: `http://maps.google.com/mapfiles/ms/icons/blue-dot.png`}}>
+            <MarkerF onLoad={onLoad} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} options={{icon: `https://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_${color}.png`}}>
             {activeMarker === location.id ? (
             <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
               <div className="infoWindow">
                 <div className="infoWindow-heading">{location.description}</div>
-                <img className="infoWindow-image" src={location.image}/>
+                <img className="infoWindow-image" src={location.image_url}/>
               </div>
             </InfoWindowF>
           ) : null}
