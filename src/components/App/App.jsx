@@ -24,6 +24,7 @@ import MapViewPage from '../User/MapViewPage/MapViewPage';
 import TopCitizensPage from '../User/TopCitizensPage/TopCitizensPage';
 import UserProfilePage from '../User/UserProfilePage/UserProfilePage';
 import UserReportsPage from '../User/UserReportsPage/UserReportsPage';
+import CategoryView from '../User/CategoryView/CategoryView';
 
 import './App.css';
 
@@ -92,6 +93,13 @@ function App() {
               path="/home"
             >
               <LandingPage />
+            </Route>
+
+            <Route
+              exact
+              path="/category"
+            >
+              <CategoryView />
             </Route>
 
             <Route
