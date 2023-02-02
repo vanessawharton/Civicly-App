@@ -1,121 +1,193 @@
 
-# Prime Solo Project Starting Repo
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+  
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+![REPO SIZE]
 
-## Use the Template for This Repository (Don't Clone)
+  
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account. Make the project `PUBLIC`!
+![TOP_LANGUAGE]
+
+  
+
+![FORKS]
+
+# Civicly
+
+_Duration: Two Week Sprint_
+
+  
+
+  ## Summary
+
+Communication between citizens and local governments is important but can be cumbersome. Reciprocal communication is even non-existent at times, which leads to a breakdown of the relationship between citizens and their local government.
+
+Civicly is a reporting app where citizens can report non-emergency issues they find in their municipality. Things like potholes, graffiti, loose animals, and many others can be more easily reported by citizens and handled by their city. Citizens can report a geo-tagged location, violation/issue, attach a photo, and include comments to inform the municipality. An admin/city worker can look at the reports and dispatch appropriate resources and communicate back to citizens who requested help. A huge win for everyone!
+
+This workable prototype is mobile first for citizens, desktop for admins. 
+
+This project was a team effort -  built in its entirety over the course of two weeks as a part of [Prime Digital Academy](www.primeacademy.io).
+
+## Approach:
+
+With this project being a much larger workload than previous projects in our experience, and the added layer of client involvement-- planning was integral to results. Before starting development, we spent a week scoping the project to connect with our client to clarify their needs and establish a timeline. 
+
+##### Wireframe / User Flow Prototype:
+  
+Through the sprint, our team met with the Client on multiple occasions to provide updates, and clarify questions. In order to remain on schedule, our group utilized a Trello board to visualize tasks that were in-progress, waiting to be reviewed, or completed. This helped clarify which pieces of the puzzle still needed clarification and streamlined the team's workflow.
+
+As a representation of the planning spent on this project - we have included the scope document. This process involved spending time considering user flow, component structure, and design potential for the application. This experience also involved setting a timeline for certain features and was an interesting venture into estimating development time for a small team of developers.
+
+[Scope Document with Wireframes](https://docs.google.com/document/d/1KP1pOUiBFMbrFIzqj-Oz6PArrrHwvRoKoHIDeLrmhUo/edit#heading=h.lhguc6hte2r4)
+
+  
+
+If you would like to see a draft of the database structure created during scoping - we have included the relevant ERD. This shows how the tables interact with one another and gives context to functions within the program.
+
+  
+
+[Entity-Relationship Diagram](https://app.dbdesigner.net/designer/schema/0-civicly)
+
+  
+
+  
+
+## Getting Started:
+
+  
+
+  
+
+### Prerequisites
+
+  
+
+- React.js *(built on version 17.0.2)*
+
+  
+
+- Keys for Google Map API's
+
+  
+
+- DotEnv file 
 
 
-## Prerequisites
 
-Before you get started, make sure you have the following software installed on your computer:
+-  [Node.js](https://nodejs.org/en/)
 
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+  
 
-## Create database and table
+- Axios
 
-Create a new database called `prime_app` and create a `user` table:
+  
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
+- Redux
+
+  
+
+- Redux-Saga
+
+  
+
+- [Material.UI](https://mui.com)
+
+  
+
+- Express
+
+  
+
+- Body-Parser
+
+  
+
+- 'PG'
+
+  
+
+- Database Manager (we utilized [Postico 2](https://eggerapps.at/postico2/))
+
+  
+
+  
+
+### Installation
+Using your package manager - install the dependencies
+
+```
+$ ~ npm install
+```
+In your database manager - create a database named `civicly` use the provided database.sql file to create the necessary tables for this project. 
+*(We have included optional dummy data for testing purposes)*
+
+Populate dotEnv file with:
+
+> SERVER_SESSION_SECRET= 'string'
+> REACT_APP_GOOGLE_MAPS_API_KEY= 'string'
+
+With your database set up - start the server.
+```
+$ ~ npm run server
 ```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+With the server running - open another terminal window and start your client.
 
-## Development Setup Instructions
+Navigate to http://localhost:3000 if the run client script doesn't automatically open the application.
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+```
+$ ~ npm run client
+```
 
-## Debugging
+Since the app is not client facing at this time - there is no registration page. You will have to add an account through a `SQL INSERT` in your database manager.
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+## Built With:
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+* [React.js](https://reactjs.org/docs/getting-started.html)
+* [Node.js](https://nodejs.org/en/docs/)
+* [Material-UI](https://mui.com) - components and styling
+* [React-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) - Drag and Drop functionality for mobile view
+* [SweetAlert 2](https://sweetalert2.github.io/) - Visual feedback for users
+* [Passport](https://www.passportjs.org) - Secure Login & Account Management
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+*For a full list of dependencies - see the Package.json*
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+## Screen Shots
 
-## Testing Routes with Postman
+  ![]
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
+## Usage
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
+  This application is meant to serve as a proof of concept for Civicly's development.
 
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
+### Desktop *(Admin)*
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+ 1. **Log In** - when logging in on a desktop using admin level credentials users will be brought to a desktop 'Dashboard'
+ 2. **Dashboard** - 
+ 3. **Report Detail** -
 
-## Production Build
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
+### Mobile *(Citizen)*
 
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
+ 1. **Landing Page** -  
+ 2. **Log In/Register** - users can log in on a mobile device to access the mobile features. 
+ 3. **Report Map View** - 
+ 4. **Add New Report** -  
+ 5. **Top Citizens** -  
+ 6. **Citizen Profile** - 
 
-## Lay of the Land
+## Developer Notes
 
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
+#### Mapping location
+  
 
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
+## Authors & Acknowledgement
 
-Directory Structure:
+Thanks to [Firebase](https://firebase.google.com/) whose API supplied image upload capabilities for multiple parts of this application.
 
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
+Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped us make this application a reality.
 
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
+Special thanks to the services that made the start of our Map display development possible:
 
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+ - [Radar](https://radar.com) - for Geo Coding
+ - [MapTiler](https://www.maptiler.com) 
+ - [Pigeon Maps](https://pigeon-maps.js.org) - React Maps

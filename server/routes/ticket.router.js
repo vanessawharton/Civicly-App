@@ -47,4 +47,19 @@ router.delete('/', rejectUnauthenticated, (req, res) => {
 
 });
 
+//Admin get all tickets route
+router.get('/alltickets', rejectUnauthenticated, (req, res) => {
+
+     const queryText = `SELECT * FROM "Ticket"`
+
+    pool.query(queryText)
+    .then((results) => {
+        res.send(results.rows)
+    })   
+    .catch((error) => {
+        console.log('Error getting all tickets', error);
+        res.sendStatus(500);
+    })
+});
+
 module.exports = router;

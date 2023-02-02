@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   HashRouter as Router,
   Redirect,
@@ -60,8 +60,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <div>
-          <Header />
-          <Nav />
+          <Header disabled={user.id > 1 ? false : true} />
+          <Nav disabled={user.id > 1 ? false: true} />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -94,20 +94,20 @@ function App() {
               <LandingPage />
             </Route>
 
-            <ProtectedRoute
-              exact path="/admindashboard"
+            <Route
+              exact path="/admin/dashboard"
             >
               <AdminDashboardPage />
-            </ProtectedRoute>
+            </Route>
 
-            <ProtectedRoute
-              exact path="/adminloginpage"
+            <Route
+              exact path="/admin/login"
             >
               <AdminLoginPage />
-            </ProtectedRoute>
+            </Route>
 
             <ProtectedRoute
-              exact path="/reportdetail/:id"
+              exact path="/admin/reportdetail"
             >
               <ReportDetailView />
             </ProtectedRoute>

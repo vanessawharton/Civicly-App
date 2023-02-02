@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { Button } from '@mui/material';
+import { Button, TextField, Box } from '@mui/material';
 
 export default function AdminLoginForm() {
     const [username, setUsername] = useState('');
@@ -20,53 +20,60 @@ export default function AdminLoginForm() {
                     password: password,
                 },
             });
+            //add a history.push here, or handle routing in the app.js file
         } else {
             dispatch({ type: 'LOGIN_INPUT_ERROR' });
         }
     }; // end login
     return (
-        <form className="formPanel" onSubmit={login}>
-            <h2>Login</h2>
-            {errors.loginMessage && (
-                <h3 className="alert" role="alert">
-                    {errors.loginMessage}
-                </h3>
-            )}
-            <div>
-                <label htmlFor="username">
-                    Username:
-                    <input
-                        type="text"
-                        name="username"
-                        required
-                        value={username}
-                        onChange={(event) => setUsername(event.target.value)}
-                    />
-                </label>
-            </div>
-            <div>
-                <label htmlFor="password">
-                    Password:
-                    <input
-                        type="password"
-                        name="password"
-                        required
-                        value={password}
-                        onChange={(event) => setPassword(event.target.value)}
-                    />
-                </label>
-            </div>
-            <div>
-                {/* <input className="btn" type="submit" name="submit" value="Log In" /> */}
-                <Button style={{
-                    color: "#FFFFFF",
-                    backgroundColor: "#50C878"
-                }}
-                    className="btn" type="submit" name="submit" value="Log In"
-                >
-                    Log In
-                </Button>
-            </div>
-        </form>
+            <form
+                className="formPanel" onSubmit={login}>
+                <h2>Civicly Admin Login</h2>
+                {errors.loginMessage && (
+                    <h3 className="alert" role="alert">
+                        {errors.loginMessage}
+                    </h3>
+                )}
+                <div style={{ justifyContent: "center", alignItems: "center" }}>
+                    <label htmlFor="username">
+                        <TextField
+                            variant="standard"
+                            type="text"
+                            label="username"
+                            name="username"
+                            required
+                            value={username}
+                            onChange={(event) => setUsername(event.target.value)}
+                        />
+                    </label>
+                </div>
+                <br />
+                <div>
+                    <label htmlFor="password">
+
+                        <TextField
+                            variant="standard"
+                            label="password"
+                            type="password"
+                            name="password"
+                            required
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
+                    </label>
+                </div>
+                <br />
+                <div>
+                    {/* <input className="btn" type="submit" name="submit" value="Log In" /> */}
+                    <Button style={{
+                        color: "#FFFFFF",
+                        backgroundColor: "#50C878"
+                    }}
+                        className="btn" type="submit" name="submit" value="Log In"
+                    >
+                        Log In
+                    </Button>
+                </div>
+            </form>
     );
 }
