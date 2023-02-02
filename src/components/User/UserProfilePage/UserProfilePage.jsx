@@ -7,31 +7,38 @@ import Typography from '@mui/material/Typography';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
+
 
 // ~~~ WORK IN PROGRESS ~~~
 
-// Styled somewhat but needs a lot of work still
-// Also My Reports href is ready for button push
-// Need to work on align edit icon to middle as well as further right
-// Center Citizen
-// Research best way to pass data to typography
-// Refactor and indent
+// Styled somewhat
+// My Reports button href is currently directed at TopCitizens, 
+// will need to be changed once My Reports page is finished
 
 export default function UserProfilePage() {
+    //pull in redux here to use user information to display on the DOM
+    const history = useHistory();
     const dispatch = useDispatch();
     
     
+    // useEffect(() => {
+    //     window.scrollTo(0, 0)
+    //     dispatch({type: 'FETCH_USER'}, [])
+    // })
+
     return (
         <>
             <Box sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
+                display: 'grid',
             }}>
-                <Typography variant="h4" gutterBottom>
+                <center>
+                <Typography sx={{ gridRow: '1', justifySelf: 'center'}} variant="h4" gutterBottom>
                     Citizen Profile
                 </Typography>
-                    <IconButton color="black" size="medium" aria-label="edit profile" component="label">
+                </center>
+                    <IconButton sx={{ gridRow: '1', justifySelf: 'right' }} color="black" size="medium" aria-label="edit profile" component="label">
                         <EditOutlinedIcon fontSize="large"/>
                     </IconButton>
             </Box><br></br>
@@ -73,25 +80,25 @@ export default function UserProfilePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                }}>Home City: St. Paul, MN
+                }}>Home City: 
             </Box><br></br>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 }}>
-            <Button sx={{ width: 130, padding: 1, margin: 1 }} color="secondary" href="/topcitizens#/topcitizens" variant="contained">
-                My Reports
-            </Button>
+                <Button sx={{ width: 130, padding: 1, margin: 1 }} color="secondary" href="/topcitizens#/topcitizens" variant="contained">
+                    My Reports
+                </Button>
             </Box>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 }}>
-            <Button  sx={{ width: 130, padding: 1, margin: 1 }} color="primary" href="/" variant="contained" onClick={() => dispatch({ type: 'LOGOUT' })}>
-                Log Out
-            </Button>
+                <Button  sx={{ width: 130, padding: 1, margin: 1 }} color="primary" href="/" variant="contained" onClick={() => dispatch({ type: 'LOGOUT' })}>
+                    Log Out
+                </Button>
             </Box>
         </>
     )

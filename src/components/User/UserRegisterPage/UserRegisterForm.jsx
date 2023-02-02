@@ -8,7 +8,7 @@ import Link from '@mui/material/Link';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [zipCode, setZipCode] = useState('');
+  const [zipcode, setZipcode] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,73 +20,74 @@ function RegisterForm() {
       type: 'REGISTER',
       payload: {
         username: username,
-        password: password
-        // zipCode: zipCode,
+        password: password,
+        zipcode: zipcode
       },
     });
+    history.push('/profile')
   }; // end registerUser
 
   return (
     <div>
-    <Container
-      sx={{
-        mb: 27
-      }}>
-      <Box
+      <Container
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
+          mb: 27
         }}>
-    <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
-      {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
-          {errors.registrationMessage}
-        </h3>
-      )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      {/* <div>
-        <label htmlFor="zipCode">
-          Zip Code:
-          <input
-            type="zipCode"
-            name="zipCode"
-            value={zipCode}
-            required
-            onChange={(event) => setZipCode(event.target.value)}
-          />
-        </label>
-      </div> */}
-      <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
-      </div>
-    </form>
-    </Box>
-        <Link onClick={() => {history.push('/login');}}>Log the heck in, why don't ya?</Link>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+          <form className="formPanel" onSubmit={registerUser}>
+            <h2>Register User</h2>
+            {errors.registrationMessage && (
+              <h3 className="alert" role="alert">
+                {errors.registrationMessage}
+              </h3>
+            )}
+            <div>
+              <label htmlFor="username">
+                Username:
+                <input
+                  type="text"
+                  name="username"
+                  value={username}
+                  required
+                  onChange={(event) => setUsername(event.target.value)}
+                />
+              </label>
+            </div>
+            <div>
+              <label htmlFor="password">
+                Password:
+                <input
+                  type="password"
+                  name="password"
+                  value={password}
+                  required
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+              </label>
+            </div>
+            <div>
+              <label htmlFor="zipCode">
+                Zip Code:
+                <input
+                  type="zipcode"
+                  name="zipcode"
+                  value={zipcode}
+                  required
+                  onChange={(event) => setZipcode(event.target.value)}
+                />
+              </label>
+            </div>
+            <div>
+              <input className="btn" type="submit" name="submit" value="Register" />
+            </div>
+          </form>
+        </Box>
+        <Link onClick={() => { history.push('/login'); }}>Log the heck in, why don't ya?</Link>
       </Container>
     </div>
   );
