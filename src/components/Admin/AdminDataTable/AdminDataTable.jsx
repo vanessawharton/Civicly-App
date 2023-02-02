@@ -12,10 +12,12 @@ import { useEffect, useState } from 'react';
 
 export default function AdminDataTable() {
     const tickets = useSelector((store) => store.ticket);
+    const user = useSelector((store) => store.user);
     // const { id } = useParams();
     const history = useHistory();
     // const store = useReduxStore();
     const dispatch = useDispatch();
+    const [username, setUsername] = useState();
     const [id, setId] = useState(tickets.id);
     const [status, setStatus] = useState();
     const [category, setCategory] = useState();
@@ -36,7 +38,7 @@ const columns = [
     { field: 'categoryName', headerName: 'Category', width: 175 },
     { field: 'subcategory', headerName: 'Subcategory', width: 175 },
     { field: 'date', headerName: 'Date', width: 100 },
-    
+    { field: 'username', headerName: 'Citizen', width: 100 },
     { field: 'description', headerName: 'Details', width: 265 }
 ];
 
@@ -52,6 +54,7 @@ const columns = [
         setDescription(ticket.row.description);
         //setImage(row.image_url); still need to figure this out as well
         setLastStatusUpdate(ticket.row.status);
+        setUsername(user.username);
         
         setOpen(true);
     }
@@ -136,7 +139,7 @@ const columns = [
                             margin="dense"
                             id="name"
                             label="Submitted By"
-                            value={submittedBy}
+                            value={username}
                             type="text"
                             fullWidth
                             variant="standard"
