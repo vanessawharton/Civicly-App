@@ -62,42 +62,44 @@ const userPosition = () => {
         onClick={() => setActiveMarker(null)}
       >
       {tickets.map(location => {
+        
         let color;
         
         switch(location.category) {
           case '8':
-            color='blue'
+            color='http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
             break;
           case '7':
-            color='yellow'
+            color='http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
             break;
           case '6':
-            color='brown'
+            color='http://maps.google.com/mapfiles/ms/icons/pink-dot.png'
             break;
           case '5':
-            color='purple'
+            color='http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
             break;
           case '4':
-            color='red'
+            color='http://maps.google.com/mapfiles/ms/icons/red-dot.png'
             break;
           case '3':
-            color='orange'
+            color='http://maps.google.com/mapfiles/ms/icons/orange-dot.png'
             break;
           case '2':
-            color='green'
+            color='http://maps.google.com/mapfiles/ms/icons/green-dot.png'
             break;
           case '1':
-            color='gray'
+            color='http://www.google.com/mapfiles/marker_grey.png'
             break;
           case '0':
-            color='black'
+            color='http://www.google.com/mapfiles/marker_brown.png'
             break;
           default:
             console.log('Broken')
         }
         return (
           <div key ={location.id}>
-            <MarkerF onLoad={onLoad} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} options={{icon: `https://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_${color}.png`}}>
+            <MarkerF onLoad={onLoad} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} 
+            options={{icon: `${color}`}}>
             {activeMarker === location.id ? (
             <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
               <div className="infoWindow">
