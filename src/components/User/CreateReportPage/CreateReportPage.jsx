@@ -46,6 +46,8 @@ export default function CreateReportPage() {
 
   const categories = useSelector(store => store.subcategories)
 
+//   const [new]
+
   React.useEffect(() => {
     dispatch({type: "FETCH_SUBCATEGORIES"})
   }, [])
