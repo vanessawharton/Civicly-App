@@ -21,8 +21,6 @@ useEffect (() => {
 
 const tickets = useSelector(store => store.ticket)
 
-console.log(tickets);
-
 const userPosition = () => {
   navigator.geolocation.getCurrentPosition(position => {
     setLatitude(position.coords.latitude);
@@ -35,21 +33,21 @@ const userPosition = () => {
         console.log(marker)
     }
 
-    const [activeMarker, setActiveMarker] = useState(null);
+const [activeMarker, setActiveMarker] = useState(null);
 
-    const handleActiveMarker = (marker) => {
-      setLatitude(+marker.latitude);
-      setLongitude(+marker.longitude);
+const handleActiveMarker = (marker) => {
+  setLatitude(+marker.latitude);
+  setLongitude(+marker.longitude);
       
-      if (marker.id === activeMarker) {
-        return;
-      }
-      setActiveMarker(marker.id);
-    };
+  if (marker.id === activeMarker) {
+    return;
+  }
+    setActiveMarker(marker.id);
+};
 
     return (
-      <LoadScript
-      googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+      // <LoadScript
+      // googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
       <GoogleMap 
         zoom={focus} 
         center={{lat: latitude, lng: longitude}}
@@ -107,9 +105,9 @@ const userPosition = () => {
           </div>
         )
       })}
-      
       </GoogleMap>
-      </LoadScript>)
+      //</LoadScript>
+      )
 
 
 }
