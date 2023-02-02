@@ -60,31 +60,31 @@ const handleActiveMarker = (marker) => {
         
         switch(location.category) {
           case '8':
-            color='http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+            color='/images/blue-dot.png'
             break;
           case '7':
-            color='http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
+            color='/images/purple-dot.png'
             break;
           case '6':
-            color='http://maps.google.com/mapfiles/ms/icons/pink-dot.png'
+            color='/images/pink-dot.png'
             break;
           case '5':
-            color='http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+            color='/images/yellow-dot.png'
             break;
           case '4':
-            color='http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+            color='/images/red-dot.png'
             break;
           case '3':
-            color='http://maps.google.com/mapfiles/ms/icons/orange-dot.png'
+            color='/images/orange-dot.png'
             break;
           case '2':
-            color='http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+            color='/images/green-dot.png'
             break;
           case '1':
-            color='http://www.google.com/mapfiles/marker_grey.png'
+            color='/images/marker_grey.png'
             break;
           case '0':
-            color='http://www.google.com/mapfiles/marker_brown.png'
+            color='/images/marker_brown.png'
             break;
           default:
             console.log('Broken')
