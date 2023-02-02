@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { LoadScript } from "@react-google-maps/api";
+
 import {
   HashRouter as Router,
   Redirect,
@@ -57,6 +59,8 @@ function App() {
   });
 
   return (
+    <LoadScript
+     googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
     <ThemeProvider theme={theme}>
       <Router>
         <div>
@@ -151,6 +155,7 @@ function App() {
         </div>
       </Router>
     </ThemeProvider>
+    </LoadScript>
   );
 }
 
