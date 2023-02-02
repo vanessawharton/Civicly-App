@@ -13,7 +13,7 @@ export default function AdminDataTable() {
 //onClick to see report details page
 const columns = [
     { field: 'id', headerName: 'Report #', width: 70 },
-    { field: 'category', headerName: 'Category', width: 100 },
+    { field: 'categoryName', headerName: 'Category', width: 100 },
     { field: 'subcategory', headerName: 'Subcategory', width: 140 },
     { field: 'date', headerName: 'Date', width: 100 },
     { field: 'status', headerName: 'Status', width: 100 },
