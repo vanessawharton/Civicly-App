@@ -53,7 +53,9 @@ function Map (props) {
     const handleCenterChanged = () => {
     if (mapref) {
       const newCenter = mapref.getCenter();
-      console.log(newCenter?.lat(), newCenter?.lng());
+      const bounds = mapref.getBounds();
+      //console.log(newCenter?.lat(), newCenter?.lng());
+      console.log(bounds.Ya.hi)
     }
   };
     const defaultMapOptions = {
