@@ -31,10 +31,6 @@ const userPosition = () => {
   });
 }
 
-    const reports = [{id: 1, latitude: 45.0560, longitude: -92.8088, description: "this is the description", color: "blue", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Pothole.jpg/1200px-Pothole.jpg"},
-    {id: 2, latitude: 45.0560, longitude: -92.7088, description: "this is the description", color: "pink", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Pothole.jpg/1200px-Pothole.jpg"},
-    {id: 3, latitude: 45.0560, longitude: -92.6588, description: "this is the description", color: "yellow", image: "https://firebasestorage.googleapis.com/v0/b/civicly-fa2bf.appspot.com/o/files%2F31CFB041-DAC8-4619-B480-4B7D4EB173B4.jpeg?alt=media&token=87b6b1eb-7fa0-4fe8-b8ce-ecffd9bae442"}]
-
     const onLoad = marker => {
         console.log(marker)
     }
@@ -44,7 +40,6 @@ const userPosition = () => {
     const handleActiveMarker = (marker) => {
       setLatitude(+marker.latitude);
       setLongitude(+marker.longitude);
-      //console.log(marker.latitude, longitude, latitude)
       
       if (marker.id === activeMarker) {
         return;
