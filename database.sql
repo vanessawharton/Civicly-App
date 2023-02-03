@@ -134,4 +134,9 @@ VALUES
 	 'this is the description', 'open', 2, 6, 1, 'true', 24, 44.9678, -93.2550);
 
 
+-- Notifications Dummy Data!
 
+INSERT INTO "Notifications" ("user_id", "ticket_id", "comments", "timestamp", "notification_status")
+VALUES (1, 1, 'This was the huge pothole', '2021-01-14 13:10:25-07', 'open'), 
+        (1, 2, 'Spray paint on the Berlin Wall', '2023-01-22 19:10:25-07', 'closed'), 
+        (1, 3, 'Some guy did not shovel', '2023-01-04 19:10:25-07', 'closed'); 

@@ -21,7 +21,7 @@ function UserRegisterPage() {
                 '& > *': { m: 1, },
         }}>
             <center>
-            <UserRegisterForm />
+                <UserRegisterForm />
             </center>
         </Box>
     </div>
