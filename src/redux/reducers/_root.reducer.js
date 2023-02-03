@@ -5,6 +5,7 @@ import ticket from './ticket.reducer';
 import subcategories from './subcategories.reducer'
 import upvotes from './upvotes.reducer'
 import ticketCount from './ticketCount.reducer'
+import inboundsMarkers from './inboundsmarkers';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   ticket,
   subcategories,
   upvotes,
-  ticketCount
+  ticketCount,
+  inboundsMarkers
 });
 
 export default rootReducer;
