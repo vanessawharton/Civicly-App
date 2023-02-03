@@ -51,11 +51,35 @@ function* fetchAllTickets() {
     }
 }
 
+function* fetchUserTicketUpvotes(action) {
+    try{
+        const response = yield axios.get('/api/ticket/upvotes/'+ action.payload)
+        // console.log('upvote saga data: ', response.data[0].sum);
+        yield put({ type: 'SET_TICKET_UPVOTES', payload: response.data[0].sum });
+    }
+    catch(error){
+        console.log('error in ticket.saga SET_TICKET_UPVOTES', error);
+    }
+}
+
+function* fetchUserTicketCount(action) {
+    try{
+        const response = yield axios.get('/api/ticket/ticketcount/'+ action.payload)
+        // console.log('ticket count saga data: ', response.data[0].count);
+        yield put({ type: 'SET_TICKET_COUNT', payload: response.data[0].count });
+    }
+    catch(error){
+        console.log('error in ticket.saga SET_TICKET_COUNT', error);
+    }
+}
+
 
 function* ticketSaga() {
     yield takeLatest('FETCH_TICKET', fetchTicket);
     yield takeLatest('POST_TICKET', postTicket);
     yield takeLatest('FETCH_ALL_TICKETS', fetchAllTickets);
+    yield takeLatest('FETCH_USER_UPVOTES', fetchUserTicketUpvotes);
+    yield takeLatest('FETCH_TICKET_COUNT', fetchUserTicketCount);
 }
 
 export default ticketSaga;
