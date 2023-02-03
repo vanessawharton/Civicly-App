@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { LoadScript } from "@react-google-maps/api";
+
 import {
   HashRouter as Router,
   Redirect,
@@ -18,7 +20,6 @@ import UserLoginPage from '../User/UserLoginPage/UserLoginPage';
 import UserRegisterPage from '../User/UserRegisterPage/UserRegisterPage';
 import AdminDashboardPage from '../Admin/AdminDashboardPage/AdminDashboardPage';
 import AdminLoginPage from '../Admin/AdminLoginPage/AdminLoginPage';
-import ReportDetailView from '../Admin/ReportDetailView/ReportDetailView';
 import CreateReportPage from '../User/CreateReportPage/CreateReportPage';
 import MapViewPage from '../User/MapViewPage/MapViewPage';
 import TopCitizensPage from '../User/TopCitizensPage/TopCitizensPage';
@@ -57,6 +58,8 @@ function App() {
   });
 
   return (
+    <LoadScript
+     googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
     <ThemeProvider theme={theme}>
       <Router>
         <div>
@@ -107,12 +110,6 @@ function App() {
             </Route>
 
             <ProtectedRoute
-              exact path="/admin/reportdetail"
-            >
-              <ReportDetailView />
-            </ProtectedRoute>
-
-            <ProtectedRoute
               exact path="/addreport"
             >
               <CreateReportPage />
@@ -151,6 +148,7 @@ function App() {
         </div>
       </Router>
     </ThemeProvider>
+    </LoadScript>
   );
 }
 

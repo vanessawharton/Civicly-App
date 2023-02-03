@@ -9,8 +9,18 @@ const {
  * GET ticket route
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
+    const query = `SELECT * FROM
+    "Ticket";`;
 
-
+    pool.query(query)
+        .then(result => {
+            console.log('GET IT!!', result.rows)
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log('ERROR: Get all tickets', err);
+            res.sendStatus(500)
+        })
 });
 
 /**
@@ -40,16 +50,47 @@ router.delete('/', rejectUnauthenticated, (req, res) => {
 //Admin get all tickets route
 router.get('/alltickets', rejectUnauthenticated, (req, res) => {
 
-     const queryText = `SELECT * FROM "Ticket"`
+    const queryText = `SELECT "Ticket".*, "Subcategories"."name" AS "subcategory"
+            FROM "Ticket"
+            JOIN "Subcategories"
+            ON "Subcategories"."id" = "Ticket"."subcategory_id"
+            JOIN "User" 
+            ON "User"."id" = "Ticket"."user_id";`; 
 
     pool.query(queryText)
-    .then((results) => {
-        res.send(results.rows)
-    })   
-    .catch((error) => {
-        console.log('Error getting all tickets', error);
-        res.sendStatus(500);
-    })
+        .then(result => {
+            const tickets = result.rows
+            const returnTickets = tickets.map(element => {
+                console.log(element.category);
+                switch (element.category) {
+                    case '0':
+                        return { ...element, categoryName: 'Accessibility' }
+                    case '1':
+                        return { ...element, categoryName: 'Animal Control' }
+                    case '2':
+                        return { ...element, categoryName: 'Biking' }
+                    case '3':
+                        return { ...element, categoryName: 'Garbage and Recycling' }
+                    case '4':
+                        return { ...element, categoryName: 'Graffiti' }
+                    case '5':
+                        return { ...element, categoryName: 'Health and Environmental' }
+                    case '6':
+                        return { ...element, categoryName: 'Parking' }
+                    case '7':
+                        return { ...element, categoryName: 'Property' }
+                    case '8':
+                        return { ...element, categoryName: 'Sidewalks and Streets' }
+                    default:
+                        return { ...element };
+                }
+                
+            });
+            console.log(returnTickets);
+            res.send(returnTickets);
+        }).catch((error) => {
+            console.log('Error getting all tickets', error);
+            res.sendStatus(500);
+        });
 });
-
 module.exports = router;
