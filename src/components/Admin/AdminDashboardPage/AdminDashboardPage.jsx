@@ -37,7 +37,7 @@ export default function AdminDashBoardPage() {
     //just a placeholder dispatch here, we can change if it makes more sense
     //grabs all reports from store/reducer(however we end up hooking things up)
     useEffect(() => {
-        window.scrollTo(0, 0)
+        // window.scrollTo(0, 0)
         dispatch({ type: 'FETCH_ALL_TICKETS' })
     }, []);
 
@@ -77,7 +77,7 @@ export default function AdminDashBoardPage() {
         //need to add either a sweetalert or another mui dialog for confirmation
     }
 
-    console.log(tickets);
+    // console.log(tickets);
 
     return (
         <>

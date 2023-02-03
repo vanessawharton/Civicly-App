@@ -23,7 +23,7 @@ export default function AdminDataTable() {
     const [category, setCategory] = useState();
     const [subcategory, setSubcategory] = useState();
     const [location, setLocation] = useState();
-    const [submittedBy, setSubmittedBy] = useState();
+    // const [submittedBy, setSubmittedBy] = useState();
     const [date, setDate] = useState();
     const [description, setDescription] = useState();
     const [license, setLicense] = useState();
@@ -31,16 +31,16 @@ export default function AdminDataTable() {
     const [internalComments, setInternalComments] = useState();
     const [image, setImage] = useState();
     const [open, setOpen] = useState(false);
-    
-const columns = [
-    { field: 'id', headerName: 'Report #', width: 70 },
-    { field: 'status', headerName: 'Status', width: 100 },
-    { field: 'categoryName', headerName: 'Category', width: 175 },
-    { field: 'subcategory', headerName: 'Subcategory', width: 175 },
-    { field: 'date', headerName: 'Date', width: 100 },
-    { field: 'username', headerName: 'Citizen', width: 100 },
-    { field: 'description', headerName: 'Details', width: 265 }
-];
+
+    const columns = [
+        { field: 'id', headerName: 'Report #', width: 70 },
+        { field: 'status', headerName: 'Status', width: 100 },
+        { field: 'categoryName', headerName: 'Category', width: 175 },
+        { field: 'subcategory', headerName: 'Subcategory', width: 175 },
+        { field: 'date', headerName: 'Date', width: 100 },
+        { field: 'username', headerName: 'Citizen', width: 100 },
+        { field: 'description', headerName: 'Details', width: 265 }
+    ];
 
     const handleDetails = (ticket) => {
         console.log('report clicked', ticket);
@@ -55,7 +55,7 @@ const columns = [
         //setImage(row.image_url); still need to figure this out as well
         setLastStatusUpdate(ticket.row.status);
         setUsername(user.username);
-        
+
         setOpen(true);
     }
 
@@ -63,13 +63,17 @@ const columns = [
         setOpen(false);
     }
 
-    const confirmClose = () => {
-        console.log('confirm close report button clicked');
+    const handleUpdateStatus = () => {
+        console.log('UpdateStatus button clicked');
         //need to add either a sweetalert or another mui dialog for confirmation
     }
 
-    //This component will need to be updated with a .map to display DB information
-    //on all tickets
+    const handleSeeMap = () => {
+        console.log('see map button clicked');
+        //this is where we would handle showing the map view based
+        //on the geolocation of submitted ticket
+    }
+
     return (
         <div style={{ height: 400, width: '100%' }}>
             <DataGrid sx={{ m: 2 }}
@@ -79,52 +83,60 @@ const columns = [
                 rowsPerPageOptions={[5]}
             />
             <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>Report Details</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            Below you will find the details for this report
-                        </DialogContentText>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Report Number"
-                            value={id}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Status"
-                            value={status}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Category"
-                            value={category}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Subcategory"
-                            value={subcategory}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
+                <DialogTitle>Report Details</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Below you will find the details for this report
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Report Number"
+                        value={id}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    /><br /><br />
+                    <Button variant="contained"
+                        onClick={handleSeeMap}
+                    >See Map Location
+                    </Button>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Last Status Update"
+                        value={lastStatusUpdate}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    /><br /><br />
+                    <Button style={{ backgroundColor: "#bf0000" }}
+                        variant="contained"
+                        onClick={handleUpdateStatus}
+                    >Update Status</Button><br />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Category"
+                        value={category}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Subcategory"
+                        value={subcategory}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    {/* <TextField
                             autoFocus
                             margin="dense"
                             id="name"
@@ -133,72 +145,65 @@ const columns = [
                             type="text"
                             fullWidth
                             variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Submitted By"
-                            value={username}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Date"
-                            value={date}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Notes"
-                            value={description}
-                            type="text"
-                            fullWidth
-                            multiline
-                            maxRows={10}
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Last Status Update"
-                            value={lastStatusUpdate}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Internal Comments"
-                            value={internalComments}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        {/* <img>need to include user image here</img> */}
-                    </DialogContent>
-                    <DialogActions>
-                        <Button style={{ backgroundColor: "#5A5A5A" }}
-                            variant="contained"
-                            onClick={handleClose}
-                        >Back To Dashboard</Button>
-                        <Button style={{ backgroundColor: "#bf0000" }}
-                            variant="contained"
-                            onClick={confirmClose}
-                        >Update Status</Button>
-                    </DialogActions>
-                </Dialog>
+                            
+                        /> */}
+                    
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Submitted By"
+                        value={username}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Date"
+                        value={date}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Notes"
+                        value={description}
+                        type="text"
+                        fullWidth
+                        multiline
+                        maxRows={10}
+                        variant="standard"
+                    />
+
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Internal Comments"
+                        value={internalComments}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    {/* <img>need to include user image here</img> */}
+                </DialogContent>
+                <DialogActions>
+                    <Button style={{ backgroundColor: "#5A5A5A" }}
+                        variant="contained"
+                        onClick={handleClose}
+                    >Back To Dashboard</Button>
+                    <Button style={{ backgroundColor: "#bf0000" }}
+                        variant="contained"
+                        onClick={handleUpdateStatus}
+                    >Update Status</Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 }
