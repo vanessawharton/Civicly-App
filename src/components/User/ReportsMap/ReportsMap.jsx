@@ -7,72 +7,87 @@ import {useDispatch, useSelector} from 'react-redux';
 import './ReportsMap.css'
 
 
+
 function ReportsMap(){
   
   const [latitude, setLatitude] = useState(39.8283);
   const [longitude, setLongitude] = useState(-98.5795);
   const [focus, setFocus] = useState(5);
   const [activeMarker, setActiveMarker] = useState(null);
-
+  
   
   const dispatch = useDispatch();
+
+  const tickets = useSelector(store => store.ticket)
+
   
-useEffect (() => {
-  dispatch({type: 'FETCH_TICKET'});
-  userPosition()
-}, [])
+  useEffect (() => {
+    dispatch({type: 'FETCH_TICKET'});
+    userPosition()
+  }, [])
 
-const tickets = useSelector(store => store.ticket)
+  useEffect (() => {
+    console.log(carouselMarkers, 'carouselMarkers');
+  })
 
-const userPosition = () => {
-  navigator.geolocation.getCurrentPosition(position => {
-    setLatitude(position.coords.latitude);
-    setLongitude(position.coords.longitude);
-    setFocus(10);
-  });
-};
 
-const onLoad = marker => {
-    console.log(marker)
-};
+  const userPosition = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+      setFocus(10);
+    });
+  };
 
-const [mapref, setMapRef] = useState(null);
+  const onLoad = marker => {
+      console.log(marker)
+  };
 
-const handleMapLoad = map => {
-  setMapRef(map);
-  
-  console.log(map);
-};
+  const [mapref, setMapRef] = useState(null);
 
-const handleCenterChanged = () => {
-  inboundsMarkers=[];
-  if (mapref) {
-    const bounds = mapref.getBounds();
-    console.log(bounds?.Ya.hi, bounds?.Ya.lo, bounds?.Ma.hi, bounds?.Ma.lo);
-    console.log('break')
-    tickets.filter(ticket => {
-      if(ticket.latitude < bounds?.Ya.hi && ticket.latitude > bounds?.Ya.lo && ticket.longitude < bounds?.Ma.hi && ticket.longitude > bounds?.Ma.lo){
-        console.log(ticket)
-        
-      }
-    })
-  }
-};
+  const handleMapLoad = map => {
+    setMapRef(map);
+    
+    console.log(map);
+  };
 
-const handleActiveMarker = (marker) => {
-  setLatitude(+marker.latitude);
-  setLongitude(+marker.longitude);
+  const carouselMarkers = useSelector(store => store.inboundsMarkers)
+
+
+  const handleCenterChanged = () => {
+    
+    if (mapref) {
+      const bounds = mapref.getBounds();
+      const center = mapref.getCenter();
+      setLatitude(center.lat());
+      setLongitude(center.lng());
+      const showTickets = tickets.filter(ticket => {
+      return(
+        ticket.latitude < bounds?.Ya.hi && ticket.latitude > bounds?.Ya.lo
+         && ticket.longitude < bounds?.Ma.hi && ticket.longitude > bounds?.Ma.lo
+        )
+    }
+          
+      )
+      dispatch({type: 'SET_INBOUNDSMARKERS', payload: showTickets});
       
-  if (marker.id === activeMarker) {
-    return;
-  }
-    setActiveMarker(marker.id);
-};
+    }
+  };
+
+  const handleActiveMarker = (marker) => {
+    setLatitude(+marker.latitude);
+    setLongitude(+marker.longitude);
+        
+    if (marker.id === activeMarker) {
+      return;
+    }
+      setActiveMarker(marker.id);
+  };
 
     return (
-      // <LoadScript
-      // googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+     
       <GoogleMap 
+        onZoomChanged = {handleCenterChanged}
         onDragEnd = {handleCenterChanged}
         onLoad={handleMapLoad}
         zoom={focus} 
@@ -146,7 +161,7 @@ const handleActiveMarker = (marker) => {
         )
       })}
       </GoogleMap>
-      //</LoadScript>
+      
       )
 }
 
