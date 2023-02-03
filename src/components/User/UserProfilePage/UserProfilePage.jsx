@@ -9,8 +9,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
-
-
+import { useSelector } from "react-redux";
 // ~~~ WORK IN PROGRESS ~~~
 
 // Styled somewhat
@@ -21,13 +20,17 @@ export default function UserProfilePage() {
     //pull in redux here to use user information to display on the DOM
     const history = useHistory();
     const dispatch = useDispatch();
-    
-    
-    // useEffect(() => {
-    //     window.scrollTo(0, 0)
-    //     dispatch({type: 'FETCH_USER'}, [])
-    // })
 
+    const users = useSelector((store) => store.user);
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        dispatch({ type: 'FETCH_ALL_TICKETS' })
+    }, []);
+
+
+    console.log('whats in tickets', users.username);
     return (
         <>
             <Box sx={{
@@ -62,7 +65,7 @@ export default function UserProfilePage() {
                 fontWeight: 'bold',
                 fontSize: 'h5.fontSize'
             }}>
-                username
+                {users.username}
             </Box><br></br><br></br>
             <Box component="span" sx={{ 
                 display: 'flex',
@@ -87,7 +90,7 @@ export default function UserProfilePage() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 }}>
-                <Button sx={{ width: 130, padding: 1, margin: 1 }} color="secondary" href="/topcitizens#/topcitizens" variant="contained">
+                <Button sx={{ width: 130, padding: 1, margin: 1 }} color="secondary" onClick={() => history.push('/myreports')} variant="contained">
                     My Reports
                 </Button>
             </Box>
