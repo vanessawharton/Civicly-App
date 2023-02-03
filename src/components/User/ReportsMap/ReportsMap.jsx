@@ -44,11 +44,18 @@ const handleMapLoad = map => {
   console.log(map);
 };
 
-
 const handleCenterChanged = () => {
+  inboundsMarkers=[];
   if (mapref) {
     const bounds = mapref.getBounds();
     console.log(bounds?.Ya.hi, bounds?.Ya.lo, bounds?.Ma.hi, bounds?.Ma.lo);
+    console.log('break')
+    tickets.filter(ticket => {
+      if(ticket.latitude < bounds?.Ya.hi && ticket.latitude > bounds?.Ya.lo && ticket.longitude < bounds?.Ma.hi && ticket.longitude > bounds?.Ma.lo){
+        console.log(ticket)
+        
+      }
+    })
   }
 };
 
@@ -66,7 +73,7 @@ const handleActiveMarker = (marker) => {
       // <LoadScript
       // googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
       <GoogleMap 
-        onCenterChanged = {handleCenterChanged}
+        onDragEnd = {handleCenterChanged}
         onLoad={handleMapLoad}
         zoom={focus} 
         center={{lat: latitude, lng: longitude}}
