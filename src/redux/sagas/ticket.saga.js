@@ -51,11 +51,26 @@ function* fetchAllTickets() {
     }
 }
 
+function* updateTicketStatus(action) {
+    console.log(action.payload);
+    try {
+        yield axios.put('/api/ticket/statusupdate', action.payload);
+        const response = yield put({type: 'FETCH_ALL_TICKETS'})
+
+        yield put({ type: 'SET_ALL_TICKETS', payload: response.data});
+
+    }
+    catch(error) {
+        console.log('Error in ticket saga UPDATE_TICKET_STATUS', error);
+    }
+}
+
 
 function* ticketSaga() {
     yield takeLatest('FETCH_TICKET', fetchTicket);
     yield takeLatest('POST_TICKET', postTicket);
     yield takeLatest('FETCH_ALL_TICKETS', fetchAllTickets);
+    yield takeLatest('UPDATE_TICKET_STATUS', updateTicketStatus)
 }
 
 export default ticketSaga;

@@ -2,7 +2,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useSelector } from "react-redux";
 import { Grid, TextField } from "@mui/material"
 import { useHistory, useParams } from 'react-router-dom';
-import { Button, InputLabel, FormControl, NativeSelect, Link } from '@mui/material';
+import { Button, InputLabel, Select, MenuItem, FormControl, NativeSelect, Link } from '@mui/material';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -31,6 +31,22 @@ export default function AdminDataTable() {
     const [internalComments, setInternalComments] = useState('');
     const [image, setImage] = useState('');
     const [open, setOpen] = useState(false);
+    const [statusOpen, setStatusOpen] = useState(false);
+
+    const ticketDetails = {
+        id:id,
+        image: image,
+        description: description,
+        status: status,
+        date: date,
+        category: category,
+        subcategory: subcategory,
+        username: username
+    }
+
+    useEffect(() => {
+        
+    }, [ticketDetails])
 
     const columns = [
         { field: 'id', headerName: 'Report #', width: 70 },
@@ -38,7 +54,7 @@ export default function AdminDataTable() {
         { field: 'categoryName', headerName: 'Category', width: 175 },
         { field: 'subcategory', headerName: 'Subcategory', width: 175 },
         { field: 'date', headerName: 'Date', width: 100 },
-        { field: 'username', headerName: 'Citizen', width: 100 },
+        // { field: 'username', headerName: 'Citizen', width: 100 },
         { field: 'description', headerName: 'Details', width: 265 }
     ];
 
@@ -65,7 +81,16 @@ export default function AdminDataTable() {
 
     const handleUpdateStatus = () => {
         console.log('UpdateStatus button clicked');
-        //need to add either a sweetalert or another mui dialog for confirmation
+        setStatusOpen(true);
+    }
+
+    const handleStatusClose = () => {
+        //dispatch 'UPDATE_TICKET_STATUS' with the new status to DB
+        //or handle in the onChange of the status Select component below
+        //this is where we handle sending notification too?
+        dispatch({ type: 'UPDATE_TICKET_STATUS', payload: ticketDetails })
+        setStatusOpen(false);
+        setOpen(false);
     }
 
     const handleSeeMap = () => {
@@ -85,9 +110,6 @@ export default function AdminDataTable() {
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Report Details</DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
-                        Below you will find the details for this report
-                    </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -136,18 +158,6 @@ export default function AdminDataTable() {
                         fullWidth
                         variant="standard"
                     />
-                    {/* <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Location"
-                            value={location}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            
-                        /> */}
-                    
                     <TextField
                         autoFocus
                         margin="dense"
@@ -202,6 +212,43 @@ export default function AdminDataTable() {
                         variant="contained"
                         onClick={handleUpdateStatus}
                     >Update Status</Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog
+                open={statusOpen}
+                onClose={handleStatusClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    Update Status of This Report?
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Changing the status of this report will send a notification to the citizen
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <FormControl fullWidth>
+                        <Select labelId="status-update"
+                            id="status-update"
+                            value={status}
+                            label="Update Status"
+                            onChange={(e) => {
+                                console.log('Status updated to: ', e.target.value)
+                                setStatus(e.target.value)
+                                // dispatch({ type: 'UPDATE_TICKET_STATUS', payload: e.target.value })
+                            }}
+                        >
+                            <InputLabel id="Status Update">Update Status</InputLabel>
+                            <MenuItem value="Accepted">Accepted</MenuItem>
+                            <MenuItem value="Dispatched">Dispatched</MenuItem>
+                            <MenuItem value="Closed">Closed</MenuItem>
+                        </Select>
+                        <Button variant="contained"
+                            onClick={handleStatusClose}
+                        >Send Status Update</Button>
+                    </FormControl>
                 </DialogActions>
             </Dialog>
         </div>
