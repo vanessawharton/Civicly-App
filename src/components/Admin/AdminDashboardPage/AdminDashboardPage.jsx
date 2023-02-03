@@ -30,7 +30,7 @@ export default function AdminDashBoardPage() {
     const [lastStatusUpdate, setLastStatusUpdate] = useState();
     const [internalComments, setInternalComments] = useState();
     const [image, setImage] = useState();
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
     const tickets = useSelector((store) => store.ticket);
 

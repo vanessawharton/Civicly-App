@@ -53,7 +53,9 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT "Ticket".*, "Subcategories"."name" AS "subcategory"
             FROM "Ticket"
             JOIN "Subcategories"
-            ON "Subcategories"."id" = "Ticket"."subcategory_id";`; 
+            ON "Subcategories"."id" = "Ticket"."subcategory_id"
+            JOIN "User" 
+            ON "User"."id" = "Ticket"."user_id";`; 
 
     pool.query(queryText)
         .then(result => {

@@ -20,7 +20,6 @@ import UserLoginPage from '../User/UserLoginPage/UserLoginPage';
 import UserRegisterPage from '../User/UserRegisterPage/UserRegisterPage';
 import AdminDashboardPage from '../Admin/AdminDashboardPage/AdminDashboardPage';
 import AdminLoginPage from '../Admin/AdminLoginPage/AdminLoginPage';
-import ReportDetailView from '../Admin/ReportDetailView/ReportDetailView';
 import CreateReportPage from '../User/CreateReportPage/CreateReportPage';
 import MapViewPage from '../User/MapViewPage/MapViewPage';
 import TopCitizensPage from '../User/TopCitizensPage/TopCitizensPage';
@@ -109,12 +108,6 @@ function App() {
             >
               <AdminLoginPage />
             </Route>
-
-            <ProtectedRoute
-              exact path="/admin/reportdetail"
-            >
-              <ReportDetailView />
-            </ProtectedRoute>
 
             <ProtectedRoute
               exact path="/addreport"
