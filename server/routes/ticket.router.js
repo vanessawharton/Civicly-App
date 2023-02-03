@@ -53,7 +53,9 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT "Ticket".*, "Subcategories"."name" AS "subcategory"
             FROM "Ticket"
             JOIN "Subcategories"
-            ON "Subcategories"."id" = "Ticket"."subcategory_id";`; 
+            ON "Subcategories"."id" = "Ticket"."subcategory_id"
+            JOIN "User" 
+            ON "User"."id" = "Ticket"."user_id";`; 
 
     pool.query(queryText)
         .then(result => {
@@ -90,5 +92,23 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
             console.log('Error getting all tickets', error);
             res.sendStatus(500);
         });
+});
+
+router.put('/statusupdate', rejectUnauthenticated, (req, res) => {
+    console.log('in ticket.router PUT', req.body.status);
+
+    let queryParams = [req.body.status, req.body.id]
+
+    let queryText = `
+        UPDATE "Ticket"
+        SET "status" = $1
+        WHERE "id" = $2;`;
+
+    pool.query(queryText, queryParams)
+        .then((results) => res.sendStatus(200))
+        .catch(err => {
+            res.sendStatus(500)
+            console.log(err);
+        })
 });
 module.exports = router;

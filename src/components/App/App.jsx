@@ -11,21 +11,20 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
-import Nav from '../User/NavMenu/NavMenu';
-import Header from '../User/Header/Header';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import LandingPage from '../User/LandingPage/LandingPage';
+import HomePage from '../User/HomePage/HomePage';
 import UserLoginPage from '../User/UserLoginPage/UserLoginPage';
 import UserRegisterPage from '../User/UserRegisterPage/UserRegisterPage';
 import AdminDashboardPage from '../Admin/AdminDashboardPage/AdminDashboardPage';
 import AdminLoginPage from '../Admin/AdminLoginPage/AdminLoginPage';
-import ReportDetailView from '../Admin/ReportDetailView/ReportDetailView';
 import CreateReportPage from '../User/CreateReportPage/CreateReportPage';
 import MapViewPage from '../User/MapViewPage/MapViewPage';
 import TopCitizensPage from '../User/TopCitizensPage/TopCitizensPage';
 import UserProfilePage from '../User/UserProfilePage/UserProfilePage';
 import UserReportsPage from '../User/UserReportsPage/UserReportsPage';
+import CategoryView from '../User/CategoryView/CategoryView';
 
 import './App.css';
 
@@ -60,15 +59,27 @@ function App() {
 
   return (
     <LoadScript
-     googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+      googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
     <ThemeProvider theme={theme}>
       <Router>
         <div>
-          <Header disabled={user.id > 1 ? false : true} />
-          <Nav disabled={user.id > 1 ? false: true} />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
+
+            <Route
+              exact
+              path="/home"
+            >
+              {user.id ?
+                // If the user is already logged in, 
+                // redirect to the /home page
+                <HomePage />
+                :
+                // Otherwise, show the login page
+                <LandingPage />
+              }
+            </Route>
 
             <Route
               exact
@@ -88,14 +99,14 @@ function App() {
               exact
               path="/register"
             >
-              <UserRegisterPage />
-            </Route>
-
-            <Route
-              exact
-              path="/home"
-            >
-              <LandingPage />
+              {user.id ?
+                // If the user is already logged in, 
+                // redirect to the /home page
+                <Redirect to="/home" />
+                :
+                // Otherwise, show the login page
+                <UserRegisterPage />
+              }
             </Route>
 
             <Route
@@ -109,12 +120,6 @@ function App() {
             >
               <AdminLoginPage />
             </Route>
-
-            <ProtectedRoute
-              exact path="/admin/reportdetail"
-            >
-              <ReportDetailView />
-            </ProtectedRoute>
 
             <ProtectedRoute
               exact path="/addreport"
