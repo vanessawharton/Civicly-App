@@ -17,6 +17,7 @@ export default function AdminDataTable() {
     const history = useHistory();
     // const store = useReduxStore();
     const dispatch = useDispatch();
+
     const [username, setUsername] = useState('');
     const [id, setId] = useState(tickets.id);
     const [status, setStatus] = useState('');
@@ -216,7 +217,7 @@ export default function AdminDataTable() {
             </Dialog>
             <Dialog
                 open={statusOpen}
-                onClose={handleStatusClose}
+                // onClose={handleStatusClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >

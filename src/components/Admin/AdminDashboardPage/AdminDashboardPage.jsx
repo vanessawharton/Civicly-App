@@ -23,7 +23,7 @@ export default function AdminDashBoardPage() {
     const [category, setCategory] = useState();
     const [subcategory, setSubcategory] = useState();
     const [location, setLocation] = useState();
-    const [submittedBy, setSubmitteBy] = useState();
+    const [submittedBy, setSubmittedBy] = useState();
     const [date, setDate] = useState();
     const [notes, setNotes] = useState();
     const [license, setLicense] = useState();

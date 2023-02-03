@@ -55,10 +55,7 @@ function* updateTicketStatus(action) {
     console.log(action.payload);
     try {
         yield axios.put('/api/ticket/statusupdate', action.payload);
-        const response = yield put({type: 'FETCH_ALL_TICKETS'})
-
-        yield put({ type: 'SET_ALL_TICKETS', payload: response.data});
-
+        yield put({type: 'FETCH_ALL_TICKETS'})
     }
     catch(error) {
         console.log('Error in ticket saga UPDATE_TICKET_STATUS', error);
