@@ -87,7 +87,7 @@ function RegisterForm() {
             </div>
           </form>
         </Box>
-        <Link onClick={() => { history.push('/login'); }}>Log the heck in, why don't ya?</Link>
+        <Link onClick={() => { history.push('/login'); }}>Log in</Link>
       </Container>
     </div>
   );

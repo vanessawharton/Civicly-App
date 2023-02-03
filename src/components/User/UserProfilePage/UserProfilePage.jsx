@@ -9,6 +9,8 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
+import Nav from '../NavMenu/NavMenu';
+import Header from '../Header/Header';
 import { useSelector } from "react-redux";
 // ~~~ WORK IN PROGRESS ~~~
 
@@ -33,6 +35,7 @@ export default function UserProfilePage() {
     console.log('whats in tickets', users.username);
     return (
         <>
+            <Header />
             <Box sx={{
                 display: 'grid',
             }}>
@@ -54,7 +57,7 @@ export default function UserProfilePage() {
                     <Avatar
                     alt="Profile Image"
                     src=""
-                    sx={{ width: 200, height: 200 }}
+                    sx={{ width: 150, height: 150 }}
                     />
                 </Stack>
             </Box>
@@ -63,7 +66,7 @@ export default function UserProfilePage() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontWeight: 'bold',
-                fontSize: 'h5.fontSize'
+                fontSize: 'h6.fontSize'
             }}>
                 {users.username}
             </Box><br></br><br></br>
@@ -103,6 +106,7 @@ export default function UserProfilePage() {
                     Log Out
                 </Button>
             </Box>
+            <Nav />
         </>
     )
 }
