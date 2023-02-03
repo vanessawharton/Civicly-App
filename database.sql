@@ -134,4 +134,4 @@ VALUES
 	 'this is the description', 'open', 2, 6, 1, 'true', 24, 44.9678, -93.2550);
 
 
-    
+
