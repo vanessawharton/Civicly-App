@@ -2,7 +2,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useSelector } from "react-redux";
 import { Grid, TextField } from "@mui/material"
 import { useHistory, useParams } from 'react-router-dom';
-import { Button, InputLabel, FormControl, NativeSelect, Link } from '@mui/material';
+import { Button, InputLabel, Select, MenuItem, FormControl, NativeSelect, Link } from '@mui/material';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -17,30 +17,47 @@ export default function AdminDataTable() {
     const history = useHistory();
     // const store = useReduxStore();
     const dispatch = useDispatch();
-    const [username, setUsername] = useState();
+
+    const [username, setUsername] = useState('');
     const [id, setId] = useState(tickets.id);
-    const [status, setStatus] = useState();
-    const [category, setCategory] = useState();
-    const [subcategory, setSubcategory] = useState();
-    const [location, setLocation] = useState();
-    const [submittedBy, setSubmittedBy] = useState();
-    const [date, setDate] = useState();
-    const [description, setDescription] = useState();
-    const [license, setLicense] = useState();
-    const [lastStatusUpdate, setLastStatusUpdate] = useState();
-    const [internalComments, setInternalComments] = useState();
-    const [image, setImage] = useState();
+    const [status, setStatus] = useState('');
+    const [category, setCategory] = useState('');
+    const [subcategory, setSubcategory] = useState('');
+    const [location, setLocation] = useState('');
+    // const [submittedBy, setSubmittedBy] = useState();
+    const [date, setDate] = useState('');
+    const [description, setDescription] = useState('');
+    const [license, setLicense] = useState('');
+    const [lastStatusUpdate, setLastStatusUpdate] = useState('');
+    const [internalComments, setInternalComments] = useState('');
+    const [image, setImage] = useState('');
     const [open, setOpen] = useState(false);
-    
-const columns = [
-    { field: 'id', headerName: 'Report #', width: 70 },
-    { field: 'status', headerName: 'Status', width: 100 },
-    { field: 'categoryName', headerName: 'Category', width: 175 },
-    { field: 'subcategory', headerName: 'Subcategory', width: 175 },
-    { field: 'date', headerName: 'Date', width: 100 },
-    { field: 'username', headerName: 'Citizen', width: 100 },
-    { field: 'description', headerName: 'Details', width: 265 }
-];
+    const [statusOpen, setStatusOpen] = useState(false);
+
+    const ticketDetails = {
+        id:id,
+        image: image,
+        description: description,
+        status: status,
+        date: date,
+        category: category,
+        subcategory: subcategory,
+        username: username
+    }
+
+    useEffect(() => {
+        
+    }, [ticketDetails])
+
+    const columns = [
+        { field: 'id', headerName: 'Report #', width: 70 },
+        { field: 'status', headerName: 'Status', width: 100 },
+        { field: 'categoryName', headerName: 'Category', width: 175 },
+        { field: 'subcategory', headerName: 'Subcategory', width: 175 },
+        { field: 'date', headerName: 'Date', width: 100 },
+        // { field: 'username', headerName: 'Citizen', width: 100 },
+        { field: 'description', headerName: 'Details', width: 265 }
+    ];
 
     const handleDetails = (ticket) => {
         console.log('report clicked', ticket);
@@ -55,7 +72,7 @@ const columns = [
         //setImage(row.image_url); still need to figure this out as well
         setLastStatusUpdate(ticket.row.status);
         setUsername(user.username);
-        
+
         setOpen(true);
     }
 
@@ -63,13 +80,26 @@ const columns = [
         setOpen(false);
     }
 
-    const confirmClose = () => {
-        console.log('confirm close report button clicked');
-        //need to add either a sweetalert or another mui dialog for confirmation
+    const handleUpdateStatus = () => {
+        console.log('UpdateStatus button clicked');
+        setStatusOpen(true);
     }
 
-    //This component will need to be updated with a .map to display DB information
-    //on all tickets
+    const handleStatusClose = () => {
+        //dispatch 'UPDATE_TICKET_STATUS' with the new status to DB
+        //or handle in the onChange of the status Select component below
+        //this is where we handle sending notification too?
+        dispatch({ type: 'UPDATE_TICKET_STATUS', payload: ticketDetails })
+        setStatusOpen(false);
+        setOpen(false);
+    }
+
+    const handleSeeMap = () => {
+        console.log('see map button clicked');
+        //this is where we would handle showing the map view based
+        //on the geolocation of submitted ticket
+    }
+
     return (
         <div style={{ height: 400, width: '100%' }}>
             <DataGrid sx={{ m: 2 }}
@@ -79,126 +109,149 @@ const columns = [
                 rowsPerPageOptions={[5]}
             />
             <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>Report Details</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            Below you will find the details for this report
-                        </DialogContentText>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Report Number"
-                            value={id}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Status"
+                <DialogTitle>Report Details</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Report Number"
+                        value={id}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    /><br /><br />
+                    <Button variant="contained"
+                        onClick={handleSeeMap}
+                    >See Map Location
+                    </Button>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Last Status Update"
+                        value={lastStatusUpdate}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    /><br /><br />
+                    <Button style={{ backgroundColor: "#bf0000" }}
+                        variant="contained"
+                        onClick={handleUpdateStatus}
+                    >Update Status</Button><br />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Category"
+                        value={category}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Subcategory"
+                        value={subcategory}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Submitted By"
+                        value={username}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Date"
+                        value={date}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Notes"
+                        value={description}
+                        type="text"
+                        fullWidth
+                        multiline
+                        maxRows={10}
+                        variant="standard"
+                    />
+
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Internal Comments"
+                        value={internalComments}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                    />
+                    {/* <img>need to include user image here</img> */}
+                </DialogContent>
+                <DialogActions>
+                    <Button style={{ backgroundColor: "#5A5A5A" }}
+                        variant="contained"
+                        onClick={handleClose}
+                    >Back To Dashboard</Button>
+                    <Button style={{ backgroundColor: "#bf0000" }}
+                        variant="contained"
+                        onClick={handleUpdateStatus}
+                    >Update Status</Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog
+                open={statusOpen}
+                // onClose={handleStatusClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    Update Status of This Report?
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Changing the status of this report will send a notification to the citizen
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <FormControl fullWidth>
+                        <Select labelId="status-update"
+                            id="status-update"
                             value={status}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Category"
-                            value={category}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Subcategory"
-                            value={subcategory}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Location"
-                            value={location}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Submitted By"
-                            value={username}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Date"
-                            value={date}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Notes"
-                            value={description}
-                            type="text"
-                            fullWidth
-                            multiline
-                            maxRows={10}
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Last Status Update"
-                            value={lastStatusUpdate}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Internal Comments"
-                            value={internalComments}
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                        />
-                        {/* <img>need to include user image here</img> */}
-                    </DialogContent>
-                    <DialogActions>
-                        <Button style={{ backgroundColor: "#5A5A5A" }}
-                            variant="contained"
-                            onClick={handleClose}
-                        >Back To Dashboard</Button>
-                        <Button style={{ backgroundColor: "#bf0000" }}
-                            variant="contained"
-                            onClick={confirmClose}
-                        >Update Status</Button>
-                    </DialogActions>
-                </Dialog>
+                            label="Update Status"
+                            onChange={(e) => {
+                                console.log('Status updated to: ', e.target.value)
+                                setStatus(e.target.value)
+                                // dispatch({ type: 'UPDATE_TICKET_STATUS', payload: e.target.value })
+                            }}
+                        >
+                            <InputLabel id="Status Update">Update Status</InputLabel>
+                            <MenuItem value="Accepted">Accepted</MenuItem>
+                            <MenuItem value="Dispatched">Dispatched</MenuItem>
+                            <MenuItem value="Closed">Closed</MenuItem>
+                        </Select>
+                        <Button variant="contained"
+                            onClick={handleStatusClose}
+                        >Send Status Update</Button>
+                    </FormControl>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 }
