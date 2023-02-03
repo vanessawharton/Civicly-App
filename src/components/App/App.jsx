@@ -96,13 +96,6 @@ function App() {
             </Route>
 
             <Route
-              exact
-              path="/category"
-            >
-              <CategoryView />
-            </Route>
-
-            <Route
               exact path="/admin/dashboard"
             >
               <AdminDashboardPage />
