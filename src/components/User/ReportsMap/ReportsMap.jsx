@@ -61,13 +61,13 @@ function ReportsMap(){
         ticket.latitude < bounds?.Ya.hi && ticket.latitude > bounds?.Ya.lo
          && ticket.longitude < bounds?.Ma.hi && ticket.longitude > bounds?.Ma.lo
         )
-    }
+      }
           
       )
       dispatch({type: 'SET_INBOUNDSMARKERS', payload: showTickets});
       
-    }
-  };
+      }
+    };
 
   const handleActiveMarker = (marker) => {
     setLatitude(+marker.latitude);
