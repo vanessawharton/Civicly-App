@@ -26,11 +26,6 @@ function ReportsMap(){
     userPosition()
   }, [])
 
-  useEffect (() => {
-    console.log(carouselMarkers, 'carouselMarkers');
-  })
-
-
   const userPosition = () => {
     navigator.geolocation.getCurrentPosition(position => {
       setLatitude(position.coords.latitude);
