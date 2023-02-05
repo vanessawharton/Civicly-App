@@ -3,25 +3,26 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { ListItem, ListItemText, Switch } from '@mui/material';
+import { ListItem, ListItemText, Switch, Button } from '@mui/material';
+import UploadForm from '../UploadForm/UploadForm';
 
 
 
-export default function IssueFormView() {
-    const [anon, setAnon] = React.useState(false)
+export default function IssueFormView({ newReport, setNewReport, anon, setAnon, description, setDescription, category, setCategory, subcategoryId, setSubcategoryId }) {
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-        username: data.get('username'),
-        password: data.get('password'),
-        nickname: data.get('nickName'),
-        });
-    };
+
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     setNewReport({...newReport, anonymous: anon })
+    //     console.log('in handle submit');
+    // };
+
     const handleToggle = () => {
         setAnon(!anon)
     }
+
+
+
 
     return(
         <Container component="main" maxWidth="xs">
@@ -35,13 +36,13 @@ export default function IssueFormView() {
               name="report"
               autoFocus
             />
-            <TextField
+            {/* <TextField
               margin="normal"
               fullWidth
               id="license-plate-number"
               label="License Plate Number"
               name="license-plate-number"
-            />
+            /> */}
             <TextField
               margin="normal"
               fullWidth
@@ -49,6 +50,7 @@ export default function IssueFormView() {
               label="Additional Note"
               type="additional-note"
               id="additional-note"
+              multiline={true}
             />
             <ListItem
                 key={'anon-switch'}
@@ -64,6 +66,10 @@ export default function IssueFormView() {
                 >
                 <ListItemText primary={`Submit Anonymously`} />
             </ListItem>
+            <UploadForm
+                newReport={newReport}
+                setNewReport={setNewReport}/>
+
 
           </Box>
       </Container>

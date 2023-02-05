@@ -46,7 +46,26 @@ export default function CreateReportPage() {
 
   const categories = useSelector(store => store.subcategories)
 
-//   const [new]
+  const [newReport, setNewReport] = React.useState({
+    imageUrl: '',
+    description: '',
+    category: '',
+    anonymous: false,
+    subcategory_id: null,
+    latitude: '',
+    longitude: '',
+  })
+
+  // state variables to handle form inputs before packaging to send off
+  const [anon, setAnon] = React.useState(newReport.anonymous)
+  const [description, setDescription] = React.useState('');
+  const [category, setCategory] = React.useState('');
+  const [subcategoryId, setSubcatecoryId] = React.useState('');
+  
+
+  React.useEffect(() => {
+    console.log(newReport);
+  }, [newReport])
 
   React.useEffect(() => {
     dispatch({type: "FETCH_SUBCATEGORIES"})
@@ -74,16 +93,32 @@ export default function CreateReportPage() {
     switch (index) {
         case 0:
             return (
-                <NewReportLocation/>
+                <NewReportLocation
+                    newReport={newReport}
+                    setNewReport={setNewReport}/>
             )
         case 1:
             return (
                 <CategoryDropdown
-                    categories={categories}/>
+                    categories={categories}
+                    newReport={newReport}
+                    setNewReport={setNewReport}/>
             )
         case 2:
             return (
-                <IssueFormView/>
+                <IssueFormView
+                    newReport={newReport}
+                    setNewReport={setNewReport}
+                    anon={anon}
+                    setAnon={setAnon}
+                    description={description}
+                    setDescription={setDescription}
+                    category={category}
+                    setCategory={setCategory}
+                    subcategoryId={subcategoryId}
+                    setSubcatecoryId={setSubcatecoryId}
+                    />
+
             )
     
     }
