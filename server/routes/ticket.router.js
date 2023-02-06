@@ -93,8 +93,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 /**
  * PUT ticket route 
  */
-router.put('/', rejectUnauthenticated, (req, res) => {
-
+router.put('/upvote', rejectUnauthenticated, (req, res) => {
+    console.log('upvote router', req.body.id)
 
 });
 

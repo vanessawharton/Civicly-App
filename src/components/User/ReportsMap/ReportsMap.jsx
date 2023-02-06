@@ -3,8 +3,11 @@ import Button from '@mui/material/Button';
 import ReportCarousel from "../ReportsCarousel/ReportsCarousel";
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
 
 import './ReportsMap.css'
+import { fontWeight } from "@mui/system";
 
 
 
@@ -55,10 +58,10 @@ function ReportsMap(){
       setLongitude(center.lng());
       const showTickets = tickets.filter(ticket => {
       return(
-        ticket.latitude < bounds.Ya.hi && 
-        ticket.latitude > bounds.Ya.lo && 
-        ticket.longitude < bounds.Ma.hi && 
-        ticket.longitude > bounds.Ma.lo
+        ticket.latitude < bounds?.Ya.hi && 
+        ticket.latitude > bounds?.Ya.lo && 
+        ticket.longitude < bounds?.Ma.hi && 
+        ticket.longitude > bounds?.Ma.lo
         )
       }
           
@@ -77,12 +80,17 @@ function ReportsMap(){
       setActiveMarker(marker.id);
   };
 
+  const handleUpVote =(location) => {
+    console.log('upvote!!', location.id)
+    dispatch({type: 'UPVOTE', payload: {id: location.id}})
+  } 
+
     return (
-     <div>
+     <>
       <GoogleMap 
         onZoomChanged = {handleCenterChanged}
         onDragEnd = {handleCenterChanged}
-        //onCenterChanged = {handleCenterChanged}
+        onCenterChanged = {handleCenterChanged}
         onLoad={handleMapLoad}
         zoom={focus} 
         center={{lat: latitude, lng: longitude}}
@@ -122,32 +130,35 @@ function ReportsMap(){
             color='/images/marker_brown.png'
             break;
           default:
-            console.log('Broken')
+            color='/images/red-dot.png'
         }
         return (
-          <div key ={location.id}>
-            <MarkerF onLoad={onLoad} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} 
+       
+            <MarkerF key ={location.id} onLoad={onLoad} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} 
             options={{icon: `${color}`}}>
             {activeMarker === location.id ? (
             <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
-              <div className="infoWindow">
+              <CardContent className="infoWindow">
                 <div className="textContainer">
-                  {/* <div className="infoWindow-heading">{categoryName}</div> */}
-                  <div className="textContainer">Reported: {location.date}</div>
-                  <div className="textContainer">Status: {location.status}</div>
-                  <Button>upvote</Button>
+                  <Typography sx={{fontSize: 10, fontWeight: 700}}>{location.category}</Typography>
+                  <Typography sx={{fontSize: 10}}>Reported: {location.date}</Typography>
+                  <Typography sx={{fontSize: 10}}>Status: {location.status}</Typography>
+                  <Typography>
+                    {location.upvotes}
+                  <Button sx={{fontSize: 10}} onClick={() => handleUpVote(location)}>upvote</Button>
+                  </Typography>
                 </div>
                 <img className="infoWindow-image" src={location.image_url}/>
-              </div>
+              </CardContent>
             </InfoWindowF>
           ) : null}
             </MarkerF>
-          </div>
+          
         )
       })}
       </GoogleMap>
       <ReportCarousel handleActiveMarker={handleActiveMarker} />
-      </div>
+      </>
       )
 }
 
