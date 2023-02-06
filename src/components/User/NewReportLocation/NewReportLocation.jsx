@@ -5,7 +5,7 @@ import './NewReportMap.css'
 import { useEffect } from "react";
 import marker from './target-svgrepo-com.svg'
 
-export default function NewReportLocation() {
+export default function NewReportLocation({newReport, setNewReport}) {
     // const { isLoaded } = useLoadScript({googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY})
 
     // the initial lat and lng are set so that the map will load near by first, then the location can be used to load... it may be causing a bug...
@@ -38,7 +38,8 @@ export default function NewReportLocation() {
                 center = {center} 
                 setCenter = {setCenter}
                 sx={{zIndex:'2'}}
-            />
+                newReport={newReport}
+                setNewReport={setNewReport}/>
         </>
     )
 }
@@ -53,7 +54,8 @@ function Map (props) {
     const handleCenterChanged = () => {
     if (mapref) {
       const newCenter = mapref.getCenter();
-      console.log(newCenter?.lat(), newCenter?.lng());
+    //   console.log(newCenter?.lat(), newCenter?.lng());
+      props.setNewReport({...props.newReport, latitude: newCenter?.lat(), longitude: newCenter?.lng()})
     }
   };
     const defaultMapOptions = {

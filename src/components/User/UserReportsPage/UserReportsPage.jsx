@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Header from '../Header/Header';
+import Nav from '../NavMenu/NavMenu';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
@@ -33,7 +35,8 @@ console.log('whats in tickets: ', tickets);
 
 
     return (
-        <>
+        <> 
+            <Header/>
             <IconButton sx={{marginTop: 3}} aria-label="back" size="large" onClick={() => history.push('/profile')}>
                 <ArrowBackIosNewIcon />
             </IconButton>
@@ -62,7 +65,7 @@ console.log('whats in tickets: ', tickets);
                     <ArrowBackIosNewIcon/> Back
                     </IconButton>
             </nav>
-            
+            <Nav/>
         </>
     )
 }

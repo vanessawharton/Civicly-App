@@ -23,11 +23,70 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         })
 });
 
+// GET a total count of upvotes column specific to user_id
+router.get('/upvotes/:id', rejectUnauthenticated, (req, res) => {
+    const query = `SELECT SUM ("upvotes")
+    FROM "Ticket"
+    WHERE "user_id" = $1;`;
+    pool.query(query, [req.user.id])
+        .then(result => {
+            // console.log('MY SUUUUMM!!', result.rows)
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log('ERROR: Get all upvotes by user_id', err);
+            res.sendStatus(500)
+        })
+});
+
+router.get('/ticketcount/:id', rejectUnauthenticated, (req, res) => {
+    const query = `SELECT COUNT ("upvotes")
+    FROM "Ticket"
+    WHERE "user_id" = $1;`;
+    pool.query(query, [req.user.id])
+        .then(result => {
+            // console.log('MY COUNTTTT!!', result.rows)
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log('ERROR: Get all upvotes by user_id', err);
+            res.sendStatus(500)
+        })
+});
+
+
+
 /**
  * POST ticket route
+ * {imageUrl: '',
+    description: '',
+    category: '',
+    category_id: '',
+    anonymous: false,
+    subcategory_id: null,
+    latitude: '',
+    longitude: '',}
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
+    const queryValues = [req.body.imageUrl,
+                         req.body.description, 
+                         req.body.category,
+                         req.user.id,
+                         req.body.anonymous,
+                         req.body.subcategory_id,
+                         req.body.latitude,
+                         req.body.longitude]
+    const query = `INSERT INTO "Ticket" ("image_url", "description", "category", "user_id", "anonymous", "subcategory_id", "latitude", "longitude")
+                   VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ;`;
 
+    pool.query(query, queryValues)
+        .then(result => {
+            res.sendStatus(200);
+        })
+        .catch(err => {
+            console.log('ERROR: Could not Add ticket', err);
+            res.sendStatus(500)
+        })
 
 });
 

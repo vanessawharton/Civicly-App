@@ -3,6 +3,8 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import ticket from './ticket.reducer';
 import subcategories from './subcategories.reducer'
+import upvotes from './upvotes.reducer'
+import ticketCount from './ticketCount.reducer'
 import inboundsMarkers from './inboundsmarkers';
 
 // rootReducer is the primary reducer for our entire project
@@ -16,7 +18,9 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   ticket,
   subcategories,
-  inboundsMarkers,
+  upvotes,
+  ticketCount,
+  inboundsMarkers
 });
 
 export default rootReducer;
