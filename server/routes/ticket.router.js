@@ -104,7 +104,23 @@ router.put('/upvote', rejectUnauthenticated, (req, res) => {
         res.sendStatus(200);
     })
     .catch((error) => {
-        console.log('Error PUTing', error);
+        console.log('Error PUTing upvote', error);
+        res.sendStatus(500);
+    })             
+});
+
+router.put('/downvote', rejectUnauthenticated, (req, res) => {
+    console.log('downvote router', req.body.location.upvotes-1)
+    const query = `UPDATE "Ticket"
+    SET "upvotes" = $1
+    WHERE "id" = $2`;
+    pool.query(query, [req.body.location.upvotes-1, req.body.location.id])
+    .then(() => {
+        console.log('listing updated!');
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        console.log('Error PUTing downvote', error);
         res.sendStatus(500);
     })             
 });

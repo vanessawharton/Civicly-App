@@ -95,6 +95,17 @@ function* upvoteTicket(action) {
     }
 }
 
+function* downvoteTicket(action) {
+    console.log('downvoteTicket', action.payload)
+    try{
+        yield axios.put('/api/ticket/downvote', action.payload);
+        yield put({ type: 'FETCH_TICKET' });
+    }
+    catch(error) {
+        console.log('Error in ticket saga DOWNVOTE', error);
+    }
+}
+
 
 function* ticketSaga() {
     yield takeLatest('FETCH_TICKET', fetchTicket);
@@ -102,8 +113,9 @@ function* ticketSaga() {
     yield takeLatest('FETCH_ALL_TICKETS', fetchAllTickets);
     yield takeLatest('FETCH_USER_UPVOTES', fetchUserTicketUpvotes);
     yield takeLatest('FETCH_TICKET_COUNT', fetchUserTicketCount);
-    yield takeLatest('UPDATE_TICKET_STATUS', updateTicketStatus)
-    yield takeLatest('UPVOTE', upvoteTicket)
+    yield takeLatest('UPDATE_TICKET_STATUS', updateTicketStatus);
+    yield takeLatest('UPVOTE', upvoteTicket);
+    yield takeLatest('DOWNVOTE', downvoteTicket);
 }
 
 export default ticketSaga;

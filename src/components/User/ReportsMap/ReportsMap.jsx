@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import { Box } from "@mui/system";
 import './ReportsMap.css'
-import { fontWeight } from "@mui/system";
+import ToggleButton from '@mui/material/ToggleButton';
 
 
 
@@ -77,10 +77,25 @@ function ReportsMap(){
       setActiveMarker(marker.id);
   };
 
+  const [selected, setSelected] = useState(false);
+
   const handleUpVote =(location) => {
-      dispatch({type: 'UPVOTE', payload: {location: location}}) 
+    
+    setSelected(!selected)
+    
+    if(selected == false){
+      dispatch({type: 'UPVOTE', payload: {location: location}})
+    }
+    else if (selected == true){
+      dispatch({type: 'DOWNVOTE', payload: {location: location}})
+    } 
   } 
 
+  const onCloseClick = () => {
+    setActiveMarker(null)
+    setSelected(!selected)
+  }
+ 
     return (
      <>
       <GoogleMap 
@@ -133,14 +148,15 @@ function ReportsMap(){
             <MarkerF key ={location.id} onLoad={onLoad} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} 
             options={{icon: `${color}`}}>
             {activeMarker === location.id ? (
-            <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
+            // <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
+              <InfoWindowF onCloseClick={onCloseClick}>
               <CardContent className="infoWindow">
                 <div className="textContainer">
                   <Typography sx={{fontSize: 10, fontWeight: 700}}>{location.category}</Typography>
                   <Typography sx={{fontSize: 10}}>Reported: {location.date}</Typography>
                   <Typography sx={{fontSize: 10}}>Status: {location.status}</Typography>
                   <Box sx={{ display: 'flex' , flexDirection: 'row'}}>
-                    <Button sx={{fontSize: 10}} onClick={() => handleUpVote(location)}>upvote</Button>
+                    <ToggleButton selected={selected} sx={{fontSize: 10}} onClick={() => handleUpVote(location)}>upvote</ToggleButton>
                     {location.upvotes}
                   </Box>
                 </div>
