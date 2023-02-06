@@ -30,15 +30,10 @@ export default function UserProfilePage() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_ALL_TICKETS' })
-    }, []);
-
-    useEffect(() => {
         dispatch({ type: 'FETCH_TICKET_COUNT' })
-    }, []);
-
-    useEffect(() => {
         dispatch({ type: 'FETCH_USER_UPVOTES' })
     }, []);
+    
 
     console.log('whats in ticket count: ', ticketCount);
     console.log('what in upvote sum: ', upvoteCount);
