@@ -24,15 +24,25 @@ export default function UserProfilePage() {
     const dispatch = useDispatch();
 
     const users = useSelector((store) => store.user);
+    const ticketCount = useSelector((store) => store.ticketCount);
+    const upvoteCount = useSelector((store) => store.upvotes);
 
 
     useEffect(() => {
-        window.scrollTo(0, 0)
         dispatch({ type: 'FETCH_ALL_TICKETS' })
     }, []);
 
+    useEffect(() => {
+        dispatch({ type: 'FETCH_TICKET_COUNT' })
+    }, []);
 
-    console.log('whats in tickets', users.username);
+    useEffect(() => {
+        dispatch({ type: 'FETCH_USER_UPVOTES' })
+    }, []);
+
+    console.log('whats in ticket count: ', ticketCount);
+    console.log('what in upvote sum: ', upvoteCount);
+
     return (
         <>
             <Header />
@@ -74,13 +84,13 @@ export default function UserProfilePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                }}>Reports Submitted: 00
+                }}>Reports Submitted: {ticketCount}
             </Box><br></br>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                }}>Upvotes: 00
+                }}>Upvotes: {upvoteCount}
             </Box><br></br><br></br><br></br>
             <Box component="span" sx={{ 
                 display: 'flex',

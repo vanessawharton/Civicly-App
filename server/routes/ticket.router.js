@@ -23,6 +23,39 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         })
 });
 
+// GET a total count of upvotes column specific to user_id
+router.get('/upvotes/:id', rejectUnauthenticated, (req, res) => {
+    const query = `SELECT SUM ("upvotes")
+    FROM "Ticket"
+    WHERE "user_id" = $1;`;
+    pool.query(query, [req.user.id])
+        .then(result => {
+            // console.log('MY SUUUUMM!!', result.rows)
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log('ERROR: Get all upvotes by user_id', err);
+            res.sendStatus(500)
+        })
+});
+
+router.get('/ticketcount/:id', rejectUnauthenticated, (req, res) => {
+    const query = `SELECT COUNT ("upvotes")
+    FROM "Ticket"
+    WHERE "user_id" = $1;`;
+    pool.query(query, [req.user.id])
+        .then(result => {
+            // console.log('MY COUNTTTT!!', result.rows)
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log('ERROR: Get all upvotes by user_id', err);
+            res.sendStatus(500)
+        })
+});
+
+
+
 /**
  * POST ticket route
  */
