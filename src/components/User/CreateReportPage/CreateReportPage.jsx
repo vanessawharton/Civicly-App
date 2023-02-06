@@ -125,6 +125,7 @@ export default function CreateReportPage() {
 
     return (
         <CssBaseline>
+            <Header/>
             <Box sx={{ maxWidth: 1000, ml: "7%" }}>
                 <Typography variant='h5'>Create New Report</Typography>
                 <Stepper activeStep={activeStep} orientation="vertical">
@@ -177,6 +178,7 @@ export default function CreateReportPage() {
                     </Paper>
                 )}
             </Box>
+            <Nav/>
         </CssBaseline>
     );
 }
