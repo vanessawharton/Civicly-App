@@ -88,6 +88,7 @@ function* upvoteTicket(action) {
     console.log('upvoteTicket', action.payload)
     try{
         yield axios.put('/api/ticket/upvote', action.payload);
+        yield put({ type: 'FETCH_TICKET' });
     }
     catch(error) {
         console.log('Error in ticket saga UPVOTE', error);

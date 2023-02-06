@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
-
+import { Box } from "@mui/system";
 import './ReportsMap.css'
 import { fontWeight } from "@mui/system";
 
@@ -17,6 +17,7 @@ function ReportsMap(){
   const [longitude, setLongitude] = useState(-98.5795);
   const [focus, setFocus] = useState(5);
   const [activeMarker, setActiveMarker] = useState(null);
+  const [mapref, setMapRef] = useState(null);
   
   
   const dispatch = useDispatch();
@@ -41,13 +42,9 @@ function ReportsMap(){
       console.log(marker)
   };
 
-  const [mapref, setMapRef] = useState(null);
-
   const handleMapLoad = map => {
     setMapRef(map);
   };
-
-
 
   const handleCenterChanged = () => {
     
@@ -81,8 +78,7 @@ function ReportsMap(){
   };
 
   const handleUpVote =(location) => {
-    console.log('upvote!!', location.id)
-    dispatch({type: 'UPVOTE', payload: {id: location.id}})
+      dispatch({type: 'UPVOTE', payload: {location: location}}) 
   } 
 
     return (
@@ -143,10 +139,10 @@ function ReportsMap(){
                   <Typography sx={{fontSize: 10, fontWeight: 700}}>{location.category}</Typography>
                   <Typography sx={{fontSize: 10}}>Reported: {location.date}</Typography>
                   <Typography sx={{fontSize: 10}}>Status: {location.status}</Typography>
-                  <Typography>
+                  <Box sx={{ display: 'flex' , flexDirection: 'row'}}>
+                    <Button sx={{fontSize: 10}} onClick={() => handleUpVote(location)}>upvote</Button>
                     {location.upvotes}
-                  <Button sx={{fontSize: 10}} onClick={() => handleUpVote(location)}>upvote</Button>
-                  </Typography>
+                  </Box>
                 </div>
                 <img className="infoWindow-image" src={location.image_url}/>
               </CardContent>

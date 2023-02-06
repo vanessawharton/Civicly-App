@@ -94,8 +94,19 @@ router.post('/', rejectUnauthenticated, (req, res) => {
  * PUT ticket route 
  */
 router.put('/upvote', rejectUnauthenticated, (req, res) => {
-    console.log('upvote router', req.body.id)
-
+    console.log('upvote router', req.body.location.upvotes+1)
+    const query = `UPDATE "Ticket"
+    SET "upvotes" = $1
+    WHERE "id" = $2`;
+    pool.query(query, [req.body.location.upvotes+1, req.body.location.id])
+    .then(() => {
+        console.log('listing updated!');
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        console.log('Error PUTing', error);
+        res.sendStatus(500);
+    })             
 });
 
 /**
