@@ -16,10 +16,8 @@ export default function UploadForm ({ newReport, setNewReport }) {
             "JPEG",
             75,
             0,
-            (uri) => {
-                resolve(uri);
-            },
-            "blob"
+            (uri) => {resolve(uri)},
+            "file"
             );
         });
 
@@ -32,8 +30,8 @@ export default function UploadForm ({ newReport, setNewReport }) {
     const handleResize = async () => {
         try {
             const resizedFile = await resizeFile(file)
-            console.log(resizedFile)
-            handleUpload(resizedFile)
+            await console.log(resizedFile)
+            await handleUpload(resizedFile)
         } catch (error) {
             console.log(error);
 
@@ -48,6 +46,7 @@ export default function UploadForm ({ newReport, setNewReport }) {
         if (!resizedFile) {
             alert('Please select a photo to upload');
         }
+
         const storageRef = ref(storage, `/files/${resizedFile.name}`)
         const uploadTask = uploadBytesResumable(storageRef, resizedFile);
 
