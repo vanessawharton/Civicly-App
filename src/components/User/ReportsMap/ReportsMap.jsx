@@ -55,14 +55,15 @@ function ReportsMap(){
       setLongitude(center.lng());
       const showTickets = tickets.filter(ticket => {
       return(
-        ticket.latitude < bounds.Ya.hi && ticket.latitude > bounds.Ya.lo
-         && ticket.longitude < bounds.Ma.hi && ticket.longitude > bounds.Ma.lo
+        ticket.latitude < bounds.Ya.hi && 
+        ticket.latitude > bounds.Ya.lo && 
+        ticket.longitude < bounds.Ma.hi && 
+        ticket.longitude > bounds.Ma.lo
         )
       }
           
       )
       dispatch({type: 'SET_INBOUNDSMARKERS', payload: showTickets});
-      
       }
     };
 

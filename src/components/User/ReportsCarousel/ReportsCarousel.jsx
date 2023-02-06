@@ -35,8 +35,8 @@ export default function ReportCarousel({handleActiveMarker}) {
             arrows={false}
             swipeable={true}
             infinite={true}
-            //autoPlay={true}
-            //autoPlaySpeed={4000}
+            autoPlay={true}
+            autoPlaySpeed={4000}
             customTransition="all .2"
             transitionDuration={700}
             containerClass="carousel-container"
