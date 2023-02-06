@@ -81,6 +81,7 @@ function ReportsMap(){
       <GoogleMap 
         onZoomChanged = {handleCenterChanged}
         onDragEnd = {handleCenterChanged}
+        //onCenterChanged = {handleCenterChanged}
         onLoad={handleMapLoad}
         zoom={focus} 
         center={{lat: latitude, lng: longitude}}
@@ -88,45 +89,36 @@ function ReportsMap(){
         onClick={() => setActiveMarker(null)}
       >
       {tickets.map(location => {
-        let categoryName;
+
         let color;
         
         switch(location.category) {
-          case '8':
+          case 'Sidewalks and Streets':
             color='/images/blue-dot.png'
-            categoryName='Sidewalks and Streets'
             break;
-          case '7':
+          case 'Property':
             color='/images/purple-dot.png'
-            categoryName='Property'
             break;
-          case '6':
+          case 'Parking':
             color='/images/pink-dot.png'
-            categoryName='Parking'
             break;
-          case '5':
+          case 'Health and Environmental':
             color='/images/yellow-dot.png'
-            categoryName='Health and Environmental'
             break;
-          case '4':
+          case 'Graffiti':
             color='/images/red-dot.png'
-            categoryName='Graffiti'
             break;
-          case '3':
+          case 'Garbage and Recycling':
             color='/images/orange-dot.png'
-            categoryName='Garbage and Recycling'
             break;
-          case '2':
+          case 'Biking':
             color='/images/green-dot.png'
-            categoryName='Biking'
             break;
-          case '1':
+          case 'Animal Control':
             color='/images/marker_grey.png'
-            categoryName='Animal Control'
             break;
-          case '0':
+          case 'Accessibility':
             color='/images/marker_brown.png'
-            categoryName='Accessibility'
             break;
           default:
             console.log('Broken')
@@ -139,7 +131,7 @@ function ReportsMap(){
             <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
               <div className="infoWindow">
                 <div className="textContainer">
-                  <div className="infoWindow-heading">{categoryName}</div>
+                  {/* <div className="infoWindow-heading">{categoryName}</div> */}
                   <div className="textContainer">Reported: {location.date}</div>
                   <div className="textContainer">Status: {location.status}</div>
                   <Button>upvote</Button>
