@@ -87,8 +87,31 @@ router.post('/', rejectUnauthenticated, (req, res) => {
             console.log('ERROR: Could not Add ticket', err);
             res.sendStatus(500)
         })
-
 });
+
+//post route for inserting into notifications table when status is updated
+// router.post('/notifications', rejectUnauthenticated, (req, res) => {
+//     console.log('this is req.body in router.post /notifications', req.body);
+//     const queryVals = [
+//         req.body.user_id,
+//         req.body.id,
+//         req.body.description,
+//         req.body.date,
+//         req.body.status
+//     ];
+
+//     const queryText = `INSERT INTO "Notifications" ("user_id", "ticket_id", "comments", "timestamp", "notification_status")
+//         VALUES ($1, $2, $3, $4, $5) ;`;
+
+//     pool.query(queryVals, queryText)
+//         .then(result => {
+//             res.sendStatus(200);
+//         })
+//         .catch(error => {
+//             console.log('Error posting to Notifications table', error);
+//             res.sendStatus(500)
+//         })
+// });
 
 /**
  * PUT ticket route 
