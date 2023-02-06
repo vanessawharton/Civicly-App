@@ -8,7 +8,6 @@ function MapViewPage() {
     <>
       <Header />
       <ReportsMap />
-      <ReportCarousel />
       <Nav />
     </>
   )
