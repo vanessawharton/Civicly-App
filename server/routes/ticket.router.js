@@ -70,7 +70,7 @@ router.get('/ticketcount/:id', rejectUnauthenticated, (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
     const queryValues = [req.body.imageUrl,
                          req.body.description, 
-                         req.body.category,
+                         req.body.category_id,
                          req.user.id,
                          req.body.anonymous,
                          req.body.subcategory_id,
