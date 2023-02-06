@@ -152,7 +152,7 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
             res.sendStatus(500);
         });
 });
-
+// 
 router.put('/statusupdate', rejectUnauthenticated, (req, res) => {
     console.log('in ticket.router PUT', req.body.status);
 
