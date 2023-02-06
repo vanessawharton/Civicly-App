@@ -17,8 +17,26 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  * POST notifications route
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
+    console.log('this is req.body in router.post /notifications', req.body);
+    const queryVals = [
+        req.body.user_id,
+        req.body.ticket_id,
+        req.body.comments,
+        req.body.status
+    ];
+
+    const queryText = `INSERT INTO "Notifications" ("user_id", "ticket_id", "comments", "timestamp", "notification_status")
+        VALUES ($1, $2, $3, now(), $4) ;`;
 
 
+    pool.query(queryText, queryVals)
+        .then(result => {
+            res.sendStatus(200);
+        })
+        .catch(error => {
+            console.log('Error posting to Notifications table', error);
+            res.sendStatus(500)
+        })
 });
 
 /**
