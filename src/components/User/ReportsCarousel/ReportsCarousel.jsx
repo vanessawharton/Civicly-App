@@ -18,9 +18,9 @@ const responsive = {
     }
 };
 
-export default function ReportCarousel() {
+export default function ReportCarousel({handleActiveMarker}) {
 
-    const reports = useSelector((store) => store.reports);
+    const reports = useSelector((store) => store.inboundsMarkers);
     const dispatch = useDispatch();
 
     //GET all pin detail views on page load
@@ -35,25 +35,21 @@ export default function ReportCarousel() {
             arrows={false}
             swipeable={true}
             infinite={true}
-            autoPlay={true}
-            autoPlaySpeed={2000}
+            //autoPlay={true}
+            //autoPlaySpeed={4000}
             customTransition="all .2"
             transitionDuration={700}
             containerClass="carousel-container"
             itemClass="carousel-item-padding-40-px"
-        >
-            {/* <div className="pin-details">
-                {reports.map(report => (
-                        <PinDetailView key={report.id} report={report} />
-                    ))}
-            </div> */}
-            <div>Item 1</div>
-            <div>Item 2</div>
-            <div>Item 3</div>
-            <div>Item 4</div>
-            <div>Item 5</div>
-            <div>Item 6</div>
-            <div>Item 7</div>
+        >   
+        {reports.map(report => {
+            return (
+        <div key={report.id} onClick={() => handleActiveMarker(report)} >
+            <img src={report.image_url}/>
+            {report.description}
+        </div>
+            )
+})}
         </Carousel>
     );
 }

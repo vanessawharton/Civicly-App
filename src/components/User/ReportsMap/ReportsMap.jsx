@@ -1,6 +1,6 @@
 import { GoogleMap, MarkerF, LoadScript, InfoWindowF } from "@react-google-maps/api";
 import Button from '@mui/material/Button';
-
+import ReportCarousel from "../ReportsCarousel/ReportsCarousel";
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -26,11 +26,6 @@ function ReportsMap(){
     userPosition()
   }, [])
 
-  useEffect (() => {
-    console.log(carouselMarkers, 'carouselMarkers');
-  })
-
-
   const userPosition = () => {
     navigator.geolocation.getCurrentPosition(position => {
       setLatitude(position.coords.latitude);
@@ -47,11 +42,8 @@ function ReportsMap(){
 
   const handleMapLoad = map => {
     setMapRef(map);
-    
-    console.log(map);
   };
 
-  const carouselMarkers = useSelector(store => store.inboundsMarkers)
 
 
   const handleCenterChanged = () => {
@@ -63,16 +55,16 @@ function ReportsMap(){
       setLongitude(center.lng());
       const showTickets = tickets.filter(ticket => {
       return(
-        ticket.latitude < bounds?.Ya.hi && ticket.latitude > bounds?.Ya.lo
-         && ticket.longitude < bounds?.Ma.hi && ticket.longitude > bounds?.Ma.lo
+        ticket.latitude < bounds.Ya.hi && ticket.latitude > bounds.Ya.lo
+         && ticket.longitude < bounds.Ma.hi && ticket.longitude > bounds.Ma.lo
         )
-    }
+      }
           
       )
       dispatch({type: 'SET_INBOUNDSMARKERS', payload: showTickets});
       
-    }
-  };
+      }
+    };
 
   const handleActiveMarker = (marker) => {
     setLatitude(+marker.latitude);
@@ -85,7 +77,7 @@ function ReportsMap(){
   };
 
     return (
-     
+     <div>
       <GoogleMap 
         onZoomChanged = {handleCenterChanged}
         onDragEnd = {handleCenterChanged}
@@ -161,7 +153,8 @@ function ReportsMap(){
         )
       })}
       </GoogleMap>
-      
+      <ReportCarousel handleActiveMarker={handleActiveMarker} />
+      </div>
       )
 }
 
