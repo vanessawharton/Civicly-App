@@ -179,7 +179,7 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
 router.put('/statusupdate', rejectUnauthenticated, (req, res) => {
     console.log('in ticket.router PUT', req.body.status);
 
-    let queryParams = [req.body.status, req.body.id]
+    let queryParams = [req.body.status, req.body.ticket_id]
 
     let queryText = `
         UPDATE "Ticket"

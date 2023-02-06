@@ -22,12 +22,11 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         req.body.user_id,
         req.body.ticket_id,
         req.body.comments,
-        req.body.timestamp,
         req.body.status
     ];
 
     const queryText = `INSERT INTO "Notifications" ("user_id", "ticket_id", "comments", "timestamp", "notification_status")
-        VALUES ($1, $2, $3, $4, $5) ;`;
+        VALUES ($1, $2, $3, now(), $4) ;`;
 
 
     pool.query(queryText, queryVals)
