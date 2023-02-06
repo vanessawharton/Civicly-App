@@ -8,6 +8,8 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { CssBaseline } from '@mui/material';
+import Nav from '../NavMenu/NavMenu';
+import Header from '../Header/Header';
 
 
 import NewReportLocation from '../NewReportLocation/NewReportLocation';

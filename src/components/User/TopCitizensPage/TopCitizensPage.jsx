@@ -12,6 +12,8 @@ import Morgan from "./Morgan.jpg";
 import Adele from "./Adele.jpg";
 import Tom from "./Tom.jpg";
 import Keanu from "./Keanu.jpg";
+import Nav from '../NavMenu/NavMenu';
+import Header from '../Header/Header';
 
 export default function TopCitizensPage() {
 
@@ -24,6 +26,7 @@ export default function TopCitizensPage() {
 
     return (
         <>
+        <Header />
         <br/>
             <Box
                 sx={{
@@ -114,6 +117,7 @@ export default function TopCitizensPage() {
                 >
                 </CardHeader>
             </Card>
+            <Nav />
         </>
     )
 }

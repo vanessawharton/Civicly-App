@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import marker from './target-svgrepo-com.svg'
 
 export default function NewReportLocation({newReport, setNewReport}) {
-    const { isLoaded } = useLoadScript({googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY})
+    // const { isLoaded } = useLoadScript({googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY})
 
     // the initial lat and lng are set so that the map will load near by first, then the location can be used to load... it may be causing a bug...
     const [latitude, setLatitude] = useState(44.961002);
@@ -31,7 +31,7 @@ export default function NewReportLocation({newReport, setNewReport}) {
         })
     }
 
-    if (!isLoaded) return <div>Loading...</div>
+    // if (!isLoaded) return <div>Loading...</div>
     return (
         <>
             <Map
