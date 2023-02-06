@@ -5,17 +5,14 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { ListItem, ListItemText, Switch, Button } from '@mui/material';
 import UploadForm from '../UploadForm/UploadForm';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
 
 
 
-export default function IssueFormView({ newReport, setNewReport, anon, setAnon, description, setDescription, category, setCategory, subcategoryId, setSubcategoryId }) {
+
+export default function IssueFormView({ newReport, setNewReport, anon, setAnon, categories }) {
 
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     setNewReport({...newReport, anonymous: anon })
-    //     console.log('in handle submit');
-    // };
 
     const handleToggle = () => {
         setAnon(!anon)
@@ -27,8 +24,8 @@ export default function IssueFormView({ newReport, setNewReport, anon, setAnon, 
     return(
         <Container component="main" maxWidth="xs">
 
-          <Box component="form" onSubmit={handleSubmit} sx={{marginRight: 4}}>
-          <TextField
+          <Box component="form" sx={{marginRight: 4}}>
+          {/* <TextField
               margin="normal"
               fullWidth
               id="report"
@@ -36,13 +33,17 @@ export default function IssueFormView({ newReport, setNewReport, anon, setAnon, 
               name="report"
               autoFocus
             />
-            {/* <TextField
+            <TextField
               margin="normal"
               fullWidth
               id="license-plate-number"
               label="License Plate Number"
               name="license-plate-number"
             /> */}
+            <CategoryDropdown
+                categories={categories}
+                newReport={newReport}
+                setNewReport={setNewReport}/>
             <TextField
               margin="normal"
               fullWidth
@@ -51,6 +52,9 @@ export default function IssueFormView({ newReport, setNewReport, anon, setAnon, 
               type="additional-note"
               id="additional-note"
               multiline={true}
+              value={newReport.description}
+              onChange={event => setNewReport({...newReport, description: event.target.value})}
+              rows="2"
             />
             <ListItem
                 key={'anon-switch'}

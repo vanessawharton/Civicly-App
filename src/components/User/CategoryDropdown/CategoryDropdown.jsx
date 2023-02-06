@@ -4,20 +4,21 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 export default function CategoryDropdown({categories, newReport, setNewReport}) {
 
-    const handleChange = () => {
-        console.log();
-        // setNewReport({...newReport, })
-    }
+
 
   return (
     <Autocomplete
       disablePortal
       id="combo-box-demo"
+      fullWidth
       options={categories}
-      sx={{ width: '90%' }}
       getOptionLabel={option => option.name}
-      renderInput={(params) => <TextField {...params} label="Category"
-      onChange={handleChange} />}
-    />
+      renderInput={(params) => <TextField {...params} label="Category" />}
+      onChange={(e, newValue) => {
+        setNewReport({...newReport, 
+          category_id: newValue.category,
+          category: newValue.categoryName,
+          subcategory_id: newValue.id})}}
+      />
   );
 }

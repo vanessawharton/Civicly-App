@@ -24,16 +24,13 @@ import IssueFormView from '../IssueFormView/IssueFormView';
 const steps = [
     {
         label: 'Add Reported Location',
-        description: null,
     },
     {
         label: 'Choose Category',
-        description:
-            null,
+
     },
     {
         label: 'Submit Report Form',
-        description: null,
     },
 ];
 
@@ -50,6 +47,7 @@ export default function CreateReportPage() {
     imageUrl: '',
     description: '',
     category: '',
+    category_id: '',
     anonymous: false,
     subcategory_id: null,
     latitude: '',
@@ -85,8 +83,12 @@ export default function CreateReportPage() {
         setActiveStep(0);
     };
 
+    
     const handleSubmit = () => {
+        setNewReport({...newReport, 
+            anonymous: anon,})
         console.log('this will submit the ticket');
+        dispatch({type: "POST_TICKET", payload: newReport});
     }
 
   const getStepContent = index => {
@@ -111,12 +113,7 @@ export default function CreateReportPage() {
                     setNewReport={setNewReport}
                     anon={anon}
                     setAnon={setAnon}
-                    description={description}
-                    setDescription={setDescription}
-                    category={category}
-                    setCategory={setCategory}
-                    subcategoryId={subcategoryId}
-                    setSubcatecoryId={setSubcatecoryId}
+                    categories={categories}
                     />
 
             )
@@ -141,7 +138,6 @@ export default function CreateReportPage() {
                                 {step.label}
                             </StepLabel>
                             <StepContent>
-                                <Typography>{step.description}</Typography>
                                 <Box sx={{ mb: 2 }}>
                                     {getStepContent(index)}
                                     <div>

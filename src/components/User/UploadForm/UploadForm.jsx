@@ -2,7 +2,7 @@ import { useState } from "react"
 import storage from '../../../firebaseConfig';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Resizer from "react-image-file-resizer";
-import { Button } from "@mui/material";
+import { Button, Input, Typography, RaisedButton } from "@mui/material";
 
 
 export default function UploadForm ({ newReport, setNewReport }) {
@@ -76,9 +76,29 @@ export default function UploadForm ({ newReport, setNewReport }) {
 
     return (
         <>
-            <input type="file" accept="image/*" onChange={handleChange} />
-            <Button onClick={handleResize}>Upload</Button>
-            <p>{percent} % uploaded</p>
+            <Button
+                variant='contained'
+                component="label"
+                sx={{ mt: 2, mr: 1 }}
+                >
+                Choose File
+                <input 
+                    hidden
+                    type="file" 
+                    accept="image/*" 
+                    onChange={handleChange} />
+            </Button>
+            <Button 
+                onClick={handleResize} 
+                variant='contained'
+                sx={{ mt: 2, mr: 1 }}
+                >
+                Upload
+            </Button>
+            <Typography 
+                sx={{ mt: 2, mr: 1 }}>
+                    {percent} % uploaded
+            </Typography>
         </>
 
         
