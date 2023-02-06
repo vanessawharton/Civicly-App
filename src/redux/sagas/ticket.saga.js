@@ -13,9 +13,9 @@ function* fetchTicket() {
 }
 
 // Ticket POST
-function* postTicket() {
+function* postTicket(action) {
     try {
-        yield axios.post('/api/user/ticket', action.payload);
+        yield axios.post('/api/ticket', action.payload);
         yield put({ type: 'FETCH_TICKET' });
     } catch (error) {
         console.log('Ticket POST request failed', error);
