@@ -89,6 +89,12 @@ function ReportsMap(){
     setActiveMarker(null)
     setSelected(false)
   }
+
+  const defaultMapOptions = {
+    fullscreenControl: false,
+    mapTypeControl: false,
+    streetViewControl: false,
+  };
  
     return (
      <>
@@ -101,6 +107,7 @@ function ReportsMap(){
         center={{lat: latitude, lng: longitude}}
         mapContainerClassName="map-container"
         onClick={() => onCloseClick()}
+        options={defaultMapOptions}
       >
       {tickets.map(location => {
 
