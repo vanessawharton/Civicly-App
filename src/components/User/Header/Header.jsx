@@ -12,8 +12,10 @@ import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
 import ListItemText from '@mui/material/ListItemText';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
+import { useSelector } from "react-redux";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="down" ref={ref} {...props} />;
@@ -21,6 +23,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function Header() {
     const [open, setOpen] = React.useState(false);
+
+    const notifications = useSelector((store) => store.notifications);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -93,22 +97,15 @@ export default function Header() {
                                     </IconButton>
                                 </Toolbar>
                             </AppBar>
-                            <List>
-                                <ListItem>
-                                    <Button>
-                                        <ListItemText 
-                                            primary="Hey!"
-                                        />
-                                    </Button>
-                                </ListItem>
+                            <List sx={{ pt: 0 }}>
+                                {/* {notifications.map((notification) => (
+                                    <ListItem>
+                                        <ListItemButton onClick={() => handleMsgClick(notification)} key={notification} >
+                                            <ListItemText primary={notification.notification_status} secondary={notification.comments} />
+                                        </ListItemButton>
+                                    </ListItem>
+                                ))} */}
                                 <Divider />
-                                <ListItem>
-                                    <Button>
-                                        <ListItemText 
-                                            primary="Woot!"
-                                        />
-                                    </Button>
-                                </ListItem>
                             </List>
                         </Dialog>
                     </Toolbar>
