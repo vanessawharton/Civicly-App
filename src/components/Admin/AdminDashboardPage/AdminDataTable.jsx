@@ -9,11 +9,7 @@ import { useEffect, useState } from 'react';
 import ReportDetailMap from '../ReportDetailMap/ReportDetailMap';
 
 
-
-
 export default function AdminDataTable() {
-
-
 
     const tickets = useSelector((store) => store.ticket);
     const user = useSelector((store) => store.user);
@@ -91,19 +87,10 @@ export default function AdminDataTable() {
     }
 
     const handleSendStatusUpdate = () => {
-        //dispatch 'UPDATE_TICKET_STATUS' with the new status to DB
-        //or handle in the onChange of the status Select component below
-        //this is where we handle sending notification too?
         dispatch({ type: 'UPDATE_TICKET_STATUS', payload: ticketDetails })
         dispatch({ type: 'SEND_NOTIFICATION', payload: ticketDetails })
         setStatusOpen(false);
         setOpen(false);
-    }
-
-    const handleSeeMap = () => {
-        console.log('see map button clicked');
-        //this is where we would handle showing the map view based
-        //on the geolocation of submitted ticket
     }
 
     return (
@@ -122,7 +109,10 @@ export default function AdminDataTable() {
                 rowsPerPageOptions={[5]}
             />
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Report Details</DialogTitle>
+                <DialogTitle>Report Details</DialogTitle><Button edge="end" position="fixed" style={{backgroundColor: "#bf0000" }}
+                        variant="contained"
+                        onClick={handleUpdateStatus}
+                    >Update Status</Button>
                 <DialogContent>
                     <TextField
 
@@ -137,10 +127,6 @@ export default function AdminDataTable() {
                             { readOnly: true, disabled: true }
                         }
                     /><br /><br />
-                    {/* <Button variant="contained"
-                        onClick={handleSeeMap}
-                    >See Map Location
-                    </Button> */}
                     <ReportDetailMap
                         latitude={latitude}
                         longitude={longitude}/>
@@ -157,10 +143,6 @@ export default function AdminDataTable() {
                             { readOnly: true, disabled: true }
                         }
                     /><br /><br />
-                    <Button style={{ backgroundColor: "#bf0000" }}
-                        variant="contained"
-                        onClick={handleUpdateStatus}
-                    >Update Status</Button><br />
                     <TextField
 
                         margin="dense"
@@ -249,10 +231,6 @@ export default function AdminDataTable() {
                         variant="contained"
                         onClick={handleClose}
                     >Back To Dashboard</Button>
-                    {/* <Button style={{ backgroundColor: "#bf0000" }}
-                        variant="contained"
-                        onClick={handleUpdateStatus}
-                    >Update Status</Button> */}
                 </DialogActions>
             </Dialog>
             <Dialog

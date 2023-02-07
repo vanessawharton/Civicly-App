@@ -39,7 +39,8 @@ CREATE TABLE "Notifications" (
     "ticket_id" SERIAL REFERENCES "Ticket"("id"),
     "comments" TEXT,
     "timestamp" TIMESTAMP,
-    "notification_status" TEXT
+    "notification_status" TEXT,
+    "is_hidden" BOOLEAN DEFAULT FALSE
 );
 
 
