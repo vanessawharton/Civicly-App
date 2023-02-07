@@ -7,11 +7,14 @@ import Typography from '@mui/material/Typography';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import Nav from '../NavMenu/NavMenu';
 import Header from '../Header/Header';
 import { useSelector } from "react-redux";
+import UploadForm from '../UploadForm/UploadForm';
+
 // ~~~ WORK IN PROGRESS ~~~
 
 // Styled somewhat
@@ -27,16 +30,25 @@ export default function UserProfilePage() {
     const ticketCount = useSelector((store) => store.ticketCount);
     const upvoteCount = useSelector((store) => store.upvotes);
 
+    const [open, setOpen] = React.useState(false);
+
 
     useEffect(() => {
         dispatch({ type: 'FETCH_ALL_TICKETS' })
         dispatch({ type: 'FETCH_TICKET_COUNT' })
         dispatch({ type: 'FETCH_USER_UPVOTES' })
     }, []);
-    
 
-    console.log('whats in ticket count: ', ticketCount);
-    console.log('what in upvote sum: ', upvoteCount);
+// dialog for edit profile pic
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
 
     return (
         <>
@@ -50,8 +62,30 @@ export default function UserProfilePage() {
                 </Typography>
                 </center>
                     <IconButton sx={{ gridRow: '1', justifySelf: 'right' }} color="black" size="medium" aria-label="edit profile" component="label">
-                        <EditOutlinedIcon fontSize="large"/>
+                        <EditOutlinedIcon fontSize="large" onClick={handleClickOpen}/>
                     </IconButton>
+                <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle id="alert-dialog-title">
+                        {`Update Profile Image`}
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Let Google help apps determine location. This means sending anonymous
+                            location data to Google, even when no apps are running.
+                        </DialogContentText>
+                        <Stack direction="row" spacing={2}>
+                            <Avatar
+                            alt="Profile Image"
+                            src=""
+                            sx={{ width: 150, height: 150, alignSelf: 'center'}}
+                            />
+                        </Stack>
+                        <UploadForm />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose}>Save</Button>
+                    </DialogActions>
+                </Dialog>
             </Box><br></br>
             <Box sx={{
                 display: 'flex',
@@ -85,14 +119,16 @@ export default function UserProfilePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                paddingBottom: 9
                 }}>Upvotes: {upvoteCount}
-            </Box><br></br><br></br><br></br>
+            </Box>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                }}>Home City: 
-            </Box><br></br>
+                paddingBottom: 2
+                }}>Zipcode: {users.zipcode}
+            </Box>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
