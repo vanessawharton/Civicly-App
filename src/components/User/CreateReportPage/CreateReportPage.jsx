@@ -49,8 +49,8 @@ export default function CreateReportPage() {
         category_id: '',
         anonymous: false,
         subcategory_id: null,
-        latitude: '',
-        longitude: '',
+        latitude: null,
+        longitude: null,
     })
 
   // state variables to handle form inputs before packaging to send off
@@ -58,7 +58,7 @@ export default function CreateReportPage() {
   const [description, setDescription] = React.useState('');
   const [category, setCategory] = React.useState('');
   const [subcategoryId, setSubcategoryId] = React.useState('');
-  
+
 
   React.useEffect(() => {
     console.log(newReport);
@@ -102,6 +102,7 @@ export default function CreateReportPage() {
             return (
                 <CategoryView
                     category={category}
+                    setCategory={setCategory}
                     newReport={newReport}
                     setNewReport={setNewReport}/>
             )
@@ -113,6 +114,8 @@ export default function CreateReportPage() {
                     anon={anon}
                     setAnon={setAnon}
                     subcategories={subcategories}
+                    category={category}
+                    setCategory={setCategory}
                     />
 
             )
@@ -146,9 +149,9 @@ export default function CreateReportPage() {
                                         {index === steps.length - 1 ? 
                                             <div>
                                                 <Button
-                                                    onClick={handleReset}
+                                                    onClick={handleBack}
                                                     sx={{ mt: 2, mr: 1 }}
-                                                >Reset
+                                                >Back
                                                 </Button>
                                                 <Button
                                                     variant="contained"
@@ -166,6 +169,7 @@ export default function CreateReportPage() {
                                                 {index === 0 ? null : 'Back'}
                                                 </Button>
                                                 <Button
+                                                    disabled={!newReport.latitude}
                                                     variant="contained"
                                                     onClick={handleNext}
                                                     sx={{ mt: 2, mr: 1 }}
