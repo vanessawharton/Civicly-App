@@ -3,7 +3,6 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import SearchIcon from '@mui/icons-material/Search';
 import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
 
 export default function SubcategoryDropdown({subcategories, newReport, setNewReport}) {
 

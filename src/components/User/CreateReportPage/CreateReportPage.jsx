@@ -36,7 +36,7 @@ export default function CreateReportPage() {
 
     const [activeStep, setActiveStep] = React.useState(0);
 
-    const subcategory = useSelector(store => store.subcategories)
+    const subcategories = useSelector(store => store.subcategories)
 
     const [newReport, setNewReport] = React.useState({
         imageUrl: '',
@@ -107,7 +107,7 @@ export default function CreateReportPage() {
                     setNewReport={setNewReport}
                     anon={anon}
                     setAnon={setAnon}
-                    subcategoryId={subcategoryId}
+                    subcategories={subcategories}
                     />
 
             )

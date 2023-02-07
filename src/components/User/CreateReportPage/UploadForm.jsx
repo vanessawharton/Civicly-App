@@ -23,8 +23,6 @@ export default function UploadForm ({ newReport, setNewReport }) {
         });
 
 
-
-
     const [file, setFile] = useState('');
     const [percent, setPercent] = useState(0);
     

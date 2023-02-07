@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -13,9 +13,9 @@ import RemoveRoadRoundedIcon from '@mui/icons-material/RemoveRoadRounded';
 import ReportRoundedIcon from '@mui/icons-material/ReportRounded';
 
 
-export default function CategoryView() {
-    const [category, setCategory] = React.useState('');
-    const ref = React.useRef(null);
+export default function CategoryView(newReport, setNewReport) {
+    const [category, setCategory] = useState();
+    const ref = useRef(null);
 
     return (
         <Box
@@ -28,12 +28,11 @@ export default function CategoryView() {
                 container 
                 rowSpacing={1} 
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                category={category}
-                onChange={(event, newCategory) => {
-                    setCategory(newCategory);}}
-                // sx={{
-                //     "& .Mui-selected, .Mui-selected > svg": { color: 'darkblue'}
-                // }}
+                value={newReport.category}
+                onChange={event => setNewReport({...newReport, category: event.target.value})}
+                sx={{
+                    "& .Mui-selected, .Mui-selected > svg": { color: 'darkblue'}
+                }}
             >
                 <Grid 
                     item 
@@ -43,10 +42,10 @@ export default function CategoryView() {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}
+                    onClick={() => setCategory('6')}
                 >
                     <IconButton
-                        // aria-label="parking"
-                        // category='6'
+                        aria-label="parking"
                     >
                         <DirectionsCarRoundedIcon
                             sx={{
@@ -55,6 +54,7 @@ export default function CategoryView() {
                                 p: 1,
                                 fontSize: 60,
                                 borderRadius: 5,
+                                "& .MuiSvgIcon-root, .Mui-selected": {color: 'darkblue'}
                             }}
                         />
                     </IconButton> 
