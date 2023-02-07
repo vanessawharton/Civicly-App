@@ -1,5 +1,5 @@
-import Header from "../AdminHeader/AdminHeader"
-import AdminDataTable from "../AdminDataTable/AdminDataTable";
+import AdminHeader from "../AdminHeader/AdminHeader";
+import AdminDataTable from "./AdminDataTable";
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 // import useReduxStore from '../../hooks/useReduxStore';
@@ -74,7 +74,7 @@ export default function AdminDashBoardPage() {
 
     return (
         <>
-            <Header /><br/><br/>
+            <AdminHeader />
             <div className="body">
                 
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }}

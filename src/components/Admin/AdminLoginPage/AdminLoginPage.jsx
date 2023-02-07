@@ -1,4 +1,4 @@
-import AdminLoginForm from "../AdminLoginForm/AdminLoginForm"
+import AdminLoginForm from "./AdminLoginForm"
 import Header from "../AdminHeader/AdminHeader"
 
 export default function AdminLoginPage() {

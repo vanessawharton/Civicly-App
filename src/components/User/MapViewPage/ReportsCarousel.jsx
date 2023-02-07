@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector  } from 'react-redux';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import PinDetailView from '../PinDetailView/PinDetailView';
+import PinDetailView from './PinDetailView';
 
 
 const responsive = {
