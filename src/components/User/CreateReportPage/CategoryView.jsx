@@ -8,14 +8,13 @@ import DirectionsCarRoundedIcon from '@mui/icons-material/DirectionsCarRounded';
 import BikeScooterRoundedIcon from '@mui/icons-material/BikeScooterRounded';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import EnergySavingsLeafRoundedIcon from '@mui/icons-material/EnergySavingsLeafRounded';
-import FlutterDashRoundedIcon from '@mui/icons-material/FlutterDashRounded';
 import PetsRoundedIcon from '@mui/icons-material/PetsRounded';
 import RemoveRoadRoundedIcon from '@mui/icons-material/RemoveRoadRounded';
 import ReportRoundedIcon from '@mui/icons-material/ReportRounded';
 
 
 export default function CategoryView() {
-    const [value, setValue] = React.useState('');
+    const [category, setCategory] = React.useState('');
     const ref = React.useRef(null);
 
     return (
@@ -23,17 +22,18 @@ export default function CategoryView() {
             sx={{ 
                 pb: 0 
             }} 
-            ref={ref}>
+            ref={ref}
+        >
             <Grid 
                 container 
                 rowSpacing={1} 
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                value={value}
-                onChange={(event, newValue) => {
-                    setValue(newValue);}}
-                sx={{
-                    "& .Mui-selected, .Mui-selected > svg": { color: 'darkblue'}
-                }}
+                category={category}
+                onChange={(event, newCategory) => {
+                    setCategory(newCategory);}}
+                // sx={{
+                //     "& .Mui-selected, .Mui-selected > svg": { color: 'darkblue'}
+                // }}
             >
                 <Grid 
                     item 
@@ -41,12 +41,12 @@ export default function CategoryView() {
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
-                        alignItems: 'center',
+                        alignItems: 'center'
                     }}
                 >
-                    <IconButton 
-                        aria-label="parking"
-                        value="parking"
+                    <IconButton
+                        // aria-label="parking"
+                        // category='6'
                     >
                         <DirectionsCarRoundedIcon
                             sx={{
@@ -70,7 +70,7 @@ export default function CategoryView() {
                 >
                     <IconButton 
                         aria-label="street"
-                        value="street"
+                        category='8'
                     >
                         <RemoveRoadRoundedIcon
                             sx={{
@@ -94,7 +94,7 @@ export default function CategoryView() {
                 >
                     <IconButton 
                         aria-label="accessibility"
-                        value="accessibility"
+                        category= '0'
                     >
                         <AccessibilityNewIcon
                             sx={{
@@ -118,7 +118,7 @@ export default function CategoryView() {
                 >
                     <IconButton 
                         aria-label="property"
-                        value="property"
+                        category='7'
                     >
                         <MapsHomeWorkIcon                 
                             sx={{
@@ -142,7 +142,7 @@ export default function CategoryView() {
                 >
                     <IconButton 
                         aria-label="trash"
-                        value="trash"
+                        category='3'
                     >
                         <DeleteOutlineRoundedIcon
                             sx={{
@@ -166,7 +166,7 @@ export default function CategoryView() {
                 >
                     <IconButton 
                         aria-label="bike"
-                        value="bike"
+                        category='2'
                     >
                         <BikeScooterRoundedIcon
                             sx={{
@@ -190,7 +190,7 @@ export default function CategoryView() {
                 >
                     <IconButton 
                         aria-label="graffiti"
-                        value="graffiti"
+                        category='4'
                     >
                         <ReportRoundedIcon
                             sx={{
@@ -214,9 +214,9 @@ export default function CategoryView() {
                 >
                     <IconButton 
                         aria-label="animal"
-                        value="animal"
+                        category='1'
                     >
-                        <FlutterDashRoundedIcon
+                        <PetsRoundedIcon
                             sx={{
                                 backgroundColor: 'coral',
                                 color: 'black',
@@ -238,7 +238,7 @@ export default function CategoryView() {
                 >
                     <IconButton 
                         aria-label="environment"
-                        value="environment"
+                        category='5'
                     >
                         <EnergySavingsLeafRoundedIcon
                             sx={{
