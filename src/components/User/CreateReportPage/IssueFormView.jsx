@@ -11,7 +11,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
 
-export default function IssueFormView({ newReport, setNewReport, anon, setAnon, subcategories }) {
+export default function IssueFormView({ newReport, setNewReport, anon, setAnon, subcategories, category }) {
 
     const handleToggle = () => {
         setAnon(!anon)
@@ -36,7 +36,7 @@ export default function IssueFormView({ newReport, setNewReport, anon, setAnon, 
                     name="license-plate-number"
                     /> */}
                 <SubcategoryDropdown
-                    required
+                    category={category}
                     subcategories={subcategories}
                     newReport={newReport}
                     setNewReport={setNewReport}/>
