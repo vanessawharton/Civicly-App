@@ -38,10 +38,6 @@ function ReportsMap(){
     });
   };
 
-  const onLoad = marker => {
-      console.log(marker)
-  };
-
   const handleMapLoad = map => {
     setMapRef(map);
   };
@@ -70,7 +66,7 @@ function ReportsMap(){
   const handleActiveMarker = (marker) => {
     setLatitude(+marker.latitude);
     setLongitude(+marker.longitude);
-        
+    setSelected(false)    
     if (marker.id === activeMarker) {
       return;
     }
@@ -80,9 +76,7 @@ function ReportsMap(){
   const [selected, setSelected] = useState(false);
 
   const handleUpVote =(location) => {
-    
     setSelected(!selected)
-    
     if(selected == false){
       dispatch({type: 'UPVOTE', payload: {location: location}})
     }
@@ -93,7 +87,7 @@ function ReportsMap(){
 
   const onCloseClick = () => {
     setActiveMarker(null)
-    setSelected(!selected)
+    setSelected(false)
   }
  
     return (
@@ -106,7 +100,7 @@ function ReportsMap(){
         zoom={focus} 
         center={{lat: latitude, lng: longitude}}
         mapContainerClassName="map-container"
-        onClick={() => setActiveMarker(null)}
+        onClick={() => onCloseClick()}
       >
       {tickets.map(location => {
 
@@ -145,10 +139,9 @@ function ReportsMap(){
         }
         return (
        
-            <MarkerF key ={location.id} onLoad={onLoad} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} 
+            <MarkerF key ={location.id} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} 
             options={{icon: `${color}`}}>
             {activeMarker === location.id ? (
-            // <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
               <InfoWindowF onCloseClick={onCloseClick}>
               <CardContent className="infoWindow">
                 <div className="textContainer">
