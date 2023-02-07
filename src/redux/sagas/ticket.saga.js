@@ -89,7 +89,7 @@ function* upvoteTicket(action) {
     console.log('upvoteTicket', action.payload)
     try{
         yield axios.put('/api/ticket/upvote', action.payload);
-        yield put({ type: 'FETCH_TICKET' });
+        yield put({ type: 'FETCH_ALL_TICKETS' });
     }
     catch(error) {
         console.log('Error in ticket saga UPVOTE', error);
@@ -100,7 +100,7 @@ function* downvoteTicket(action) {
     console.log('downvoteTicket', action.payload)
     try{
         yield axios.put('/api/ticket/downvote', action.payload);
-        yield put({ type: 'FETCH_TICKET' });
+        yield put({ type: 'FETCH_ALL_TICKETS' });
     }
     catch(error) {
         console.log('Error in ticket saga DOWNVOTE', error);

@@ -8,20 +8,20 @@ const {
 /**
  * GET ticket route
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
-    const query = `SELECT * FROM
-    "Ticket";`;
+// router.get('/', rejectUnauthenticated, (req, res) => {
+//     const query = `SELECT * FROM
+//     "Ticket";`;
 
-    pool.query(query)
-        .then(result => {
-            console.log('GET IT!!', result.rows)
-            res.send(result.rows);
-        })
-        .catch(err => {
-            console.log('ERROR: Get all tickets', err);
-            res.sendStatus(500)
-        })
-});
+//     pool.query(query)
+//         .then(result => {
+//             console.log('GET IT!!', result.rows)
+//             res.send(result.rows);
+//         })
+//         .catch(err => {
+//             console.log('ERROR: Get all tickets', err);
+//             res.sendStatus(500)
+//         })
+// });
 
 // GET a total count of upvotes column specific to user_id
 router.get('/upvotes/:id', rejectUnauthenticated, (req, res) => {
