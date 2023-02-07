@@ -81,7 +81,7 @@ export default function AdminDashBoardPage() {
                     display="flex"
                     justifyContent="center"
                 >
-                    <Grid item xs={2} sm={3} md={3}
+                    {/* <Grid item xs={2} sm={3} md={3}
                         display="flex"
                         justifyContent="center"
                         justify="center"
@@ -113,7 +113,7 @@ export default function AdminDashBoardPage() {
                             onClick={handleReporting}
                         >Reporting
                         </Button>
-                    </Grid>
+                    </Grid> */}
                     <Grid>
                         <br />
                         <Grid item xs={12}
@@ -131,7 +131,7 @@ export default function AdminDashBoardPage() {
                         alignItems="center"
                         marginLeft={5}
                         marginRight={5}>
-                        <AdminDataTable />
+                        <AdminDataTable /><br/><br/>
                     </Grid>
                 </Grid>
                 <Dialog open={open} onClose={handleClose}>

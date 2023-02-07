@@ -45,6 +45,8 @@ export default function CreateReportPage() {
     const [newReport, setNewReport] = React.useState({
         imageUrl: '',
         description: '',
+        status: 'Submitted',
+        upvotes: 0,
         category: '',
         category_id: '',
         anonymous: false,
