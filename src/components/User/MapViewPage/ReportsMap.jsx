@@ -8,6 +8,8 @@ import CardContent from '@mui/material/CardContent';
 import { Box } from "@mui/system";
 import './ReportsMap.css'
 import ToggleButton from '@mui/material/ToggleButton';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+
 
 
 
@@ -149,8 +151,10 @@ function ReportsMap(){
                   <Typography sx={{fontSize: 10}}>Reported: {location.date}</Typography>
                   <Typography sx={{fontSize: 10}}>Status: {location.status}</Typography>
                   <Box sx={{ display: 'flex' , flexDirection: 'row'}}>
-                    <ToggleButton selected={selected} sx={{fontSize: 10}} onClick={() => handleUpVote(location)}>upvote</ToggleButton>
-                    {location.upvotes}
+                    <ThumbUpIcon selected={selected} sx={{fontSize: 40, color: 'blue'}} onClick={() => handleUpVote(location)}/>
+                    <Typography sx={{mt: 2, ml: 3}}>
+                      {location.upvotes}
+                    </Typography>
                   </Box>
                 </div>
                 <img className="infoWindow-image" src={location.image_url}/>
