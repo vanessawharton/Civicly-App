@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import Nav from '../NavMenu/NavMenu';
 import Header from '../Header/Header';
 import { useSelector } from "react-redux";
-import UploadForm from '../UploadForm/UploadForm';
+import ProfileUploadForm from './ProfileUploadForm';
 
 // ~~~ WORK IN PROGRESS ~~~
 
@@ -64,15 +64,11 @@ export default function UserProfilePage() {
                     <IconButton sx={{ gridRow: '1', justifySelf: 'right' }} color="black" size="medium" aria-label="edit profile" component="label">
                         <EditOutlinedIcon fontSize="large" onClick={handleClickOpen}/>
                     </IconButton>
-                <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle id="alert-dialog-title">
+                <Dialog sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}} open={open} onClose={handleClose}>
+                    <DialogTitle sx={{ display: 'grid', justifyContent: 'center', alignItems: 'center'}} id="alert-dialog-title">
                         {`Update Profile Image`}
                     </DialogTitle>
                     <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            Let Google help apps determine location. This means sending anonymous
-                            location data to Google, even when no apps are running.
-                        </DialogContentText>
                         <Stack direction="row" spacing={2}>
                             <Avatar
                             alt="Profile Image"
@@ -80,7 +76,7 @@ export default function UserProfilePage() {
                             sx={{ width: 150, height: 150, alignSelf: 'center'}}
                             />
                         </Stack>
-                        <UploadForm />
+                        <ProfileUploadForm />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose}>Save</Button>
