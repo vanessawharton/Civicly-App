@@ -2,7 +2,8 @@ import { useState } from "react"
 import storage from '../../../firebaseConfig';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Resizer from "react-image-file-resizer";
-import { Button, Input, Typography, RaisedButton } from "@mui/material";
+import { Button, Input, Divider, Typography, RaisedButton } from "@mui/material";
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 
 export default function UploadForm ({ newReport, setNewReport }) {
@@ -16,14 +17,10 @@ export default function UploadForm ({ newReport, setNewReport }) {
             "JPEG",
             75,
             0,
-            (uri) => {
-                resolve(uri);
-            },
-            "blob"
+            (uri) => {resolve(uri)},
+            "file"
             );
         });
-
-
 
 
     const [file, setFile] = useState('');
@@ -32,8 +29,8 @@ export default function UploadForm ({ newReport, setNewReport }) {
     const handleResize = async () => {
         try {
             const resizedFile = await resizeFile(file)
-            console.log(resizedFile)
-            handleUpload(resizedFile)
+            await console.log(resizedFile)
+            await handleUpload(resizedFile)
         } catch (error) {
             console.log(error);
 
@@ -48,6 +45,7 @@ export default function UploadForm ({ newReport, setNewReport }) {
         if (!resizedFile) {
             alert('Please select a photo to upload');
         }
+
         const storageRef = ref(storage, `/files/${resizedFile.name}`)
         const uploadTask = uploadBytesResumable(storageRef, resizedFile);
 
@@ -79,28 +77,29 @@ export default function UploadForm ({ newReport, setNewReport }) {
             <Button
                 variant='contained'
                 component="label"
-                sx={{ mt: 2, mr: 1 }}
+                sx={{ display: 'flex', mt: 2, mr: 1, backgroundColor: 'lightgray', color: 'black', borderRadius: 5}}
                 >
-                Choose File
+                    <AddAPhotoIcon sx={{ mr: 1.5 }} />
+                    Add Photo
                 <input 
                     hidden
                     type="file" 
                     accept="image/*" 
                     onChange={handleChange} />
             </Button>
+            <br />
+            <Divider />
             <Button 
                 onClick={handleResize} 
                 variant='contained'
-                sx={{ mt: 2, mr: 1 }}
+                sx={{mt: 2, mr: 1, borderRadius: 5, backgroundColor: 'lightgray', color: 'black' }}
                 >
-                Upload
+                Upload Photo
             </Button>
             <Typography 
                 sx={{ mt: 2, mr: 1 }}>
                     {percent} % uploaded
             </Typography>
         </>
-
-        
     )
 }

@@ -1,5 +1,5 @@
-import Header from "../AdminHeader/AdminHeader"
-import AdminDataTable from "../AdminDataTable/AdminDataTable";
+import AdminHeader from "../AdminHeader/AdminHeader";
+import AdminDataTable from "./AdminDataTable";
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 // import useReduxStore from '../../hooks/useReduxStore';
@@ -41,13 +41,6 @@ export default function AdminDashBoardPage() {
         dispatch({ type: 'FETCH_ALL_TICKETS' })
     }, []);
 
-    //placeholder onClick function to capture details of report and
-    //navigate to details view
-    const reportDetails = (report) => {
-        console.log('clicked on a report', report.id);
-
-        history.push('/reportdetailview/' + report.id)
-    };
 
     const handleNeedsReview = () => {
         console.log('needs review button clicked');
@@ -81,7 +74,7 @@ export default function AdminDashBoardPage() {
 
     return (
         <>
-        
+            <AdminHeader />
             <div className="body">
                 
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }}

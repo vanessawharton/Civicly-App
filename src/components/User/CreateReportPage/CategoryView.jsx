@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -8,29 +8,28 @@ import DirectionsCarRoundedIcon from '@mui/icons-material/DirectionsCarRounded';
 import BikeScooterRoundedIcon from '@mui/icons-material/BikeScooterRounded';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import EnergySavingsLeafRoundedIcon from '@mui/icons-material/EnergySavingsLeafRounded';
-import FlutterDashRoundedIcon from '@mui/icons-material/FlutterDashRounded';
 import PetsRoundedIcon from '@mui/icons-material/PetsRounded';
 import RemoveRoadRoundedIcon from '@mui/icons-material/RemoveRoadRounded';
 import ReportRoundedIcon from '@mui/icons-material/ReportRounded';
 
 
-export default function CategoryView() {
-    const [value, setValue] = React.useState('');
-    const ref = React.useRef(null);
+export default function CategoryView(newReport, setNewReport) {
+    const [category, setCategory] = useState();
+    const ref = useRef(null);
 
     return (
         <Box
             sx={{ 
                 pb: 0 
             }} 
-            ref={ref}>
+            ref={ref}
+        >
             <Grid 
                 container 
                 rowSpacing={1} 
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                value={value}
-                onChange={(event, newValue) => {
-                    setValue(newValue);}}
+                value={newReport.category}
+                onChange={event => setNewReport({...newReport, category: event.target.value})}
                 sx={{
                     "& .Mui-selected, .Mui-selected > svg": { color: 'darkblue'}
                 }}
@@ -41,12 +40,12 @@ export default function CategoryView() {
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
-                        alignItems: 'center',
+                        alignItems: 'center'
                     }}
+                    onClick={() => setCategory(6)}
                 >
-                    <IconButton 
+                    <IconButton
                         aria-label="parking"
-                        value="parking"
                     >
                         <DirectionsCarRoundedIcon
                             sx={{
@@ -55,6 +54,7 @@ export default function CategoryView() {
                                 p: 1,
                                 fontSize: 60,
                                 borderRadius: 5,
+                                "& .MuiSvgIcon-root, .Mui-selected": {color: 'darkblue'}
                             }}
                         />
                     </IconButton> 
@@ -67,10 +67,10 @@ export default function CategoryView() {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(8)}
                 >
                     <IconButton 
                         aria-label="street"
-                        value="street"
                     >
                         <RemoveRoadRoundedIcon
                             sx={{
@@ -91,10 +91,10 @@ export default function CategoryView() {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(0)}
                 >
                     <IconButton 
                         aria-label="accessibility"
-                        value="accessibility"
                     >
                         <AccessibilityNewIcon
                             sx={{
@@ -115,10 +115,10 @@ export default function CategoryView() {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(7)}
                 >
                     <IconButton 
                         aria-label="property"
-                        value="property"
                     >
                         <MapsHomeWorkIcon                 
                             sx={{
@@ -139,10 +139,10 @@ export default function CategoryView() {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(3)}
                 >
                     <IconButton 
                         aria-label="trash"
-                        value="trash"
                     >
                         <DeleteOutlineRoundedIcon
                             sx={{
@@ -163,10 +163,10 @@ export default function CategoryView() {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(2)}
                 >
                     <IconButton 
                         aria-label="bike"
-                        value="bike"
                     >
                         <BikeScooterRoundedIcon
                             sx={{
@@ -187,10 +187,10 @@ export default function CategoryView() {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(4)}
                 >
                     <IconButton 
                         aria-label="graffiti"
-                        value="graffiti"
                     >
                         <ReportRoundedIcon
                             sx={{
@@ -211,12 +211,12 @@ export default function CategoryView() {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(1)}
                 >
                     <IconButton 
                         aria-label="animal"
-                        value="animal"
                     >
-                        <FlutterDashRoundedIcon
+                        <PetsRoundedIcon
                             sx={{
                                 backgroundColor: 'coral',
                                 color: 'black',
@@ -235,10 +235,10 @@ export default function CategoryView() {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(5)}
                 >
                     <IconButton 
                         aria-label="environment"
-                        value="environment"
                     >
                         <EnergySavingsLeafRoundedIcon
                             sx={{

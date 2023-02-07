@@ -26,7 +26,7 @@ function ReportsMap(){
 
   
   useEffect (() => {
-    dispatch({type: 'FETCH_ALL_TICKETS'});
+    dispatch({type: 'FETCH_TICKET'});
     userPosition()
   }, [])
 

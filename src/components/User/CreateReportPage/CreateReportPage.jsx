@@ -7,20 +7,15 @@ import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { CssBaseline } from '@mui/material';
 import Nav from '../NavMenu/NavMenu';
 import Header from '../Header/Header';
-
-
-import NewReportLocation from '../NewReportLocation/NewReportLocation';
-import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
+import CategoryView from './CategoryView';
+import NewReportLocation from './NewReportLocation/NewReportLocation';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import IssueFormView from '../IssueFormView/IssueFormView';
-
-
-
-
+import IssueFormView from './IssueFormView';
+import { Dialog } from '@mui/material';
+import ConfirmationView from './ConfirmationView';
 
 
 const steps = [
@@ -39,28 +34,30 @@ const steps = [
 
 
 export default function CreateReportPage() {
-  const dispatch = useDispatch();  
+    const dispatch = useDispatch();  
 
-  const [activeStep, setActiveStep] = React.useState(0);
+    const [open, setOpen] = React.useState(false);
 
-  const categories = useSelector(store => store.subcategories)
+    const [activeStep, setActiveStep] = React.useState(0);
 
-  const [newReport, setNewReport] = React.useState({
-    imageUrl: '',
-    description: '',
-    category: '',
-    category_id: '',
-    anonymous: false,
-    subcategory_id: null,
-    latitude: '',
-    longitude: '',
-  })
+    const subcategories = useSelector(store => store.subcategories)
+
+    const [newReport, setNewReport] = React.useState({
+        imageUrl: '',
+        description: '',
+        category: '',
+        category_id: '',
+        anonymous: false,
+        subcategory_id: null,
+        latitude: '',
+        longitude: '',
+    })
 
   // state variables to handle form inputs before packaging to send off
   const [anon, setAnon] = React.useState(newReport.anonymous)
   const [description, setDescription] = React.useState('');
   const [category, setCategory] = React.useState('');
-  const [subcategoryId, setSubcatecoryId] = React.useState('');
+  const [subcategoryId, setSubcategoryId] = React.useState('');
   
 
   React.useEffect(() => {
@@ -70,7 +67,6 @@ export default function CreateReportPage() {
   React.useEffect(() => {
     dispatch({type: "FETCH_SUBCATEGORIES"})
   }, [])
-
 
 
   const handleNext = () => {
@@ -91,6 +87,7 @@ export default function CreateReportPage() {
             anonymous: anon,})
         console.log('this will submit the ticket');
         dispatch({type: "POST_TICKET", payload: newReport});
+        setOpen(true);
     }
 
   const getStepContent = index => {
@@ -103,8 +100,8 @@ export default function CreateReportPage() {
             )
         case 1:
             return (
-                <CategoryDropdown
-                    categories={categories}
+                <CategoryView
+                    category={category}
                     newReport={newReport}
                     setNewReport={setNewReport}/>
             )
@@ -115,7 +112,7 @@ export default function CreateReportPage() {
                     setNewReport={setNewReport}
                     anon={anon}
                     setAnon={setAnon}
-                    categories={categories}
+                    subcategories={subcategories}
                     />
 
             )
@@ -123,41 +120,80 @@ export default function CreateReportPage() {
     }
 }  
 
+
     return (
-        <CssBaseline>
+        <div>
             <Header/>
-            <Box sx={{ maxWidth: 1000, ml: "7%" }}>
-                <Typography variant='h5'>Create New Report</Typography>
+            <Box sx={{ maxWidth: 390, maxHeight: 600, ml: "7%", mr: "7%", mt: 2, textAlign: 'center' }}>
+                <Typography 
+                    variant='h5'
+                    sx={{
+                        backgroundColor: "#FFBC00",
+                    }}
+                >
+                    Create New Report
+                </Typography>
                 <Stepper activeStep={activeStep} orientation="vertical">
                     {steps.map((step, index) => (
                         <Step key={step.label}>
-                            <StepLabel
-                                optional={
-                                    index === 2 ? (
-                                        <Typography variant="caption">Last step</Typography>
-                                    ) : null
-                                }
-                            >
+                            <StepLabel>
                                 {step.label}
                             </StepLabel>
                             <StepContent>
                                 <Box sx={{ mb: 2 }}>
                                     {getStepContent(index)}
                                     <div>
+                                        {index === steps.length - 1 ? 
+                                            <div>
+                                                <Button
+                                                    onClick={handleReset}
+                                                    sx={{ mt: 2, mr: 1 }}
+                                                >Reset
+                                                </Button>
+                                                <Button
+                                                    variant="contained"
+                                                    onClick={handleSubmit}
+                                                    sx={{ mt: 2, mr: 1 }}
+                                                >Submit
+                                                </Button>
+                                            </div>
+                                        :   
+                                            <div>
+                                                <Button
+                                                onClick={handleBack}
+                                                sx={{ mt: 2, mr: 1 }}
+                                                >
+                                                {index === 0 ? null : 'Back'}
+                                                </Button>
+                                                <Button
+                                                    variant="contained"
+                                                    onClick={handleNext}
+                                                    sx={{ mt: 2, mr: 1 }}
+                                                >
+                                                {index === 0 ? 'Confirm Issue Location' : 'Next'}
+                                                </Button>
+                                            </div>
+                                        }
+                                        <Dialog
+                                            fullScreen
+                                            open={open}
+                                        >
+                                            <ConfirmationView />
+                                        </Dialog>
+                                        {/* <Button
+                                            disabled={index === 0}
+                                            onClick={index === steps.length - 1 ? {handleReset} : {handleBack}}
+                                            sx={{ mt: 2, mr: 1 }}
+                                        >
+                                            {index === steps.length - 1 ? 'Reset' : 'Back'}
+                                        </Button>
                                         <Button
                                             variant="contained"
-                                            onClick={handleNext}
+                                            onClick={index === steps.length - 1 ? {handleSubmit} : {handleNext}}
                                             sx={{ mt: 2, mr: 1 }}
                                         >
-                                            {index === steps.length - 1 ? 'Finish' : 'Continue'}
-                                        </Button>
-                                        <Button
-                                            disabled={index === 0}
-                                            onClick={handleBack}
-                                            sx={{ mt: 2, mr: 1 }}
-                                        >
-                                            Back
-                                        </Button>
+                                            {index === steps.length - 1 ? 'Submit' : 'Continue'}
+                                        </Button> */}
                                     </div>
                                 </Box>
                             </StepContent>
@@ -166,19 +202,19 @@ export default function CreateReportPage() {
                 </Stepper>
                 {activeStep === steps.length && (
                     <Paper square elevation={0} sx={{ p: 3 }}>
-                        <Typography>Submit Report!</Typography>
+                        {/* <Typography>Submit Report!</Typography>
+                        <Button onClick={handleReset} sx={{ mt: 2, mr: 2 }}>
+                            Reset
+                        </Button>
                         <Button
                             variant='contained'
                             onClick={handleSubmit}
                             sx={{ mt: 1, mr: 1 }}
-                        >Submit!</Button>
-                        <Button onClick={handleReset} sx={{ mt: 2, mr: 2 }}>
-                            Reset
-                        </Button>
+                        >Submit</Button> */}
                     </Paper>
                 )}
             </Box>
             <Nav/>
-        </CssBaseline>
+        </div>
     );
 }

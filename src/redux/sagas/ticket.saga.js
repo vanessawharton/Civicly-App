@@ -23,13 +23,13 @@ function* postTicket(action) {
 }
 
 // Ticket PUT
-function* editTicket() {
-    try {
+// function* sendNotification(action) {
+//     try {
         
-    } catch (error) {
-        console.log('Ticket PUT request failed', error);
-    }
-}
+//     } catch (error) {
+//         console.log('Error sending notificaiton', error);
+//     }
+// }
 
 // Ticket DELETE
 function* deleteTicket() {
@@ -77,6 +77,7 @@ function* updateTicketStatus(action) {
     console.log(action.payload);
     try {
         yield axios.put('/api/ticket/statusupdate', action.payload);
+        // yield put({type: 'SEND_NOTIFICATION'})
         yield put({type: 'FETCH_ALL_TICKETS'})
     }
     catch(error) {

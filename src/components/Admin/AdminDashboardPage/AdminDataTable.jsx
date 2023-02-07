@@ -11,6 +11,9 @@ import { useEffect, useState } from 'react';
 
 
 export default function AdminDataTable() {
+
+
+
     const tickets = useSelector((store) => store.ticket);
     const user = useSelector((store) => store.user);
     // const { id } = useParams();
@@ -19,7 +22,7 @@ export default function AdminDataTable() {
     const dispatch = useDispatch();
 
     const [username, setUsername] = useState('');
-    const [id, setId] = useState(tickets.id);
+    const [id, setId] = useState('');
     const [status, setStatus] = useState('');
     const [category, setCategory] = useState('');
     const [subcategory, setSubcategory] = useState('');
@@ -33,21 +36,20 @@ export default function AdminDataTable() {
     const [image, setImage] = useState('');
     const [open, setOpen] = useState(false);
     const [statusOpen, setStatusOpen] = useState(false);
+    const [userId, setUserId] = useState('');
+    // const [ticketDetails, setTicketDetails] = useState();
 
     const ticketDetails = {
-        id:id,
-        image: image,
-        description: description,
+        ticket_id: id,
+        comments: description,
         status: status,
-        date: date,
-        category: category,
-        subcategory: subcategory,
-        username: username
-    }
+        timestamp: date,
+        user_id: userId
+    };
 
     useEffect(() => {
-        
-    }, [ticketDetails])
+        console.log('ticket details are:', ticketDetails)
+    }, [ticketDetails]);
 
     const columns = [
         { field: 'id', headerName: 'Report #', width: 70 },
@@ -62,19 +64,19 @@ export default function AdminDataTable() {
     const handleDetails = (ticket) => {
         console.log('report clicked', ticket);
         setId(ticket.row.id);
-        // setStatus(ticket.row.status);
+        setStatus(ticket.row.status);
         setCategory(ticket.row.categoryName);
         setSubcategory(ticket.row.subcategory);
         // setLocation(row.location); still need to figure this out
-        //setSubmittedBy(row.submittedBy); need a SQL join for username, or anonymous
         setDate(ticket.row.date);
         setDescription(ticket.row.description);
-        //setImage(row.image_url); still need to figure this out as well
-        setLastStatusUpdate(ticket.row.status);
-        setUsername(user.username);
-
+        setImage(ticket.row.image_url);
+        // setUsername(user.username);
+        setUserId(ticket.row.user_id);
         setOpen(true);
-    }
+        // setTicketDetails(ticket);
+
+    };
 
     const handleClose = () => {
         setOpen(false);
@@ -85,11 +87,12 @@ export default function AdminDataTable() {
         setStatusOpen(true);
     }
 
-    const handleStatusClose = () => {
+    const handleSendStatusUpdate = () => {
         //dispatch 'UPDATE_TICKET_STATUS' with the new status to DB
         //or handle in the onChange of the status Select component below
         //this is where we handle sending notification too?
         dispatch({ type: 'UPDATE_TICKET_STATUS', payload: ticketDetails })
+        dispatch({ type: 'SEND_NOTIFICATION', payload: ticketDetails })
         setStatusOpen(false);
         setOpen(false);
     }
@@ -130,7 +133,7 @@ export default function AdminDataTable() {
                         margin="dense"
                         id="name"
                         label="Last Status Update"
-                        value={lastStatusUpdate}
+                        value={status}
                         type="text"
                         fullWidth
                         variant="standard"
@@ -247,7 +250,7 @@ export default function AdminDataTable() {
                             <MenuItem value="Closed">Closed</MenuItem>
                         </Select>
                         <Button variant="contained"
-                            onClick={handleStatusClose}
+                            onClick={handleSendStatusUpdate}
                         >Send Status Update</Button>
                     </FormControl>
                 </DialogActions>
