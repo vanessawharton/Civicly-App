@@ -86,19 +86,19 @@ export default function UserProfilePage() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 }}>Upvotes: {upvoteCount}
-            </Box><br></br><br></br><br></br>
+            </Box><br></br>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                }}>Home City: 
+                }}>Zip Code: {users.zipcode}
             </Box><br></br>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 }}>
-                <Button sx={{ width: 130, padding: 1, margin: 1 }} color="secondary" onClick={() => history.push('/myreports')} variant="contained">
+                <Button sx={{ padding: 1, margin: 1 }} color="secondary" onClick={() => history.push('/myreports')} variant="contained">
                     My Reports
                 </Button>
             </Box>

@@ -1,6 +1,6 @@
 import { GoogleMap, MarkerF, LoadScript, InfoWindowF } from "@react-google-maps/api";
 import Button from '@mui/material/Button';
-import ReportCarousel from "../ReportsCarousel/ReportsCarousel";
+import ReportCarousel from "./ReportsCarousel";
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 

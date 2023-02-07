@@ -12,7 +12,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 export default function NavMenu() {
-    const [value, setValue] = React.useState('home');
+    const [value, setValue] = React.useState('');
     const ref = React.useRef(null);
 
     const history = useHistory();
@@ -62,7 +62,7 @@ export default function NavMenu() {
                 />
                 <BottomNavigationAction 
                     label="Report Map" 
-                    value="map" 
+                    value="reportmap" 
                     icon={
                         <PinDropIcon 
                             sx={{
@@ -78,7 +78,7 @@ export default function NavMenu() {
                 />
                 <BottomNavigationAction 
                     label="Report" 
-                    value="add" 
+                    value="addreport" 
                     icon={
                         <AddCircleOutlineIcon 
                             sx={{
@@ -94,7 +94,7 @@ export default function NavMenu() {
                 />
                 <BottomNavigationAction 
                     label="Top Citizens" 
-                    value="rank" 
+                    value="topcitizens" 
                     icon={
                         <EmojiEventsIcon 
                         sx={{
@@ -113,7 +113,6 @@ export default function NavMenu() {
                     value="profile" 
                     icon={
                         <AccountBoxIcon 
-                        fontSize="large"
                         sx={{
                             color: '#191C24',
                             fontSize: 50,
