@@ -154,12 +154,10 @@ export default function CreateReportPage() {
                                         :   
                                             <div>
                                                 <Button
-                                                disabled={index === 0}
-                                                hidden={index === 0}
                                                 onClick={handleBack}
                                                 sx={{ mt: 2, mr: 1 }}
                                                 >
-                                                Back
+                                                {index === 0 ? null : 'Back'}
                                                 </Button>
                                                 <Button
                                                     variant="contained"
