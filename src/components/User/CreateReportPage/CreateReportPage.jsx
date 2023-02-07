@@ -14,6 +14,8 @@ import NewReportLocation from './NewReportLocation/NewReportLocation';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import IssueFormView from './IssueFormView';
+import { Dialog } from '@mui/material';
+import ConfirmationView from './ConfirmationView';
 
 
 const steps = [
@@ -33,6 +35,8 @@ const steps = [
 
 export default function CreateReportPage() {
     const dispatch = useDispatch();  
+
+    const [open, setOpen] = React.useState(false);
 
     const [activeStep, setActiveStep] = React.useState(0);
 
@@ -83,6 +87,7 @@ export default function CreateReportPage() {
             anonymous: anon,})
         console.log('this will submit the ticket');
         dispatch({type: "POST_TICKET", payload: newReport});
+        setOpen(true);
     }
 
   const getStepContent = index => {
@@ -114,6 +119,7 @@ export default function CreateReportPage() {
     
     }
 }  
+
 
     return (
         <div>
@@ -168,6 +174,12 @@ export default function CreateReportPage() {
                                                 </Button>
                                             </div>
                                         }
+                                        <Dialog
+                                            fullScreen
+                                            open={open}
+                                        >
+                                            <ConfirmationView />
+                                        </Dialog>
                                         {/* <Button
                                             disabled={index === 0}
                                             onClick={index === steps.length - 1 ? {handleReset} : {handleBack}}

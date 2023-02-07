@@ -23,6 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function Header() {
     const [open, setOpen] = React.useState(false);
+    const [hidden, setHidden] = React.useState(false);
 
     const notifications = useSelector((store) => store.notifications);
 
@@ -32,6 +33,10 @@ export default function Header() {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const hideNotification = () => {
+        setHidden(true);
     };
 
     return (
@@ -103,6 +108,15 @@ export default function Header() {
                                         <ListItemButton onClick={() => handleMsgClick(notification)} key={notification} >
                                             <ListItemText primary={notification.notification_status} secondary={notification.comments} />
                                         </ListItemButton>
+
+                                        <IconButton
+                                        edge="end"
+                                        color="inherit"
+                                        onClick={hideNotification}
+                                        aria-label="delete"
+                                        >
+                                            <CloseIcon />
+                                        </IconButton>
                                     </ListItem>
                                 ))} */}
                                 <Divider />
