@@ -23,10 +23,10 @@ export default function UploadForm ({ newReport, setNewReport }) {
         });
 
 
-    const [file, setFile] = useState('');
+    // const [file, setFile] = useState('');
     const [percent, setPercent] = useState(0);
     
-    const handleResize = async () => {
+    const handleResize = async (file) => {
         try {
             const resizedFile = await resizeFile(file)
             await console.log(resizedFile)
@@ -38,7 +38,9 @@ export default function UploadForm ({ newReport, setNewReport }) {
     }
 
     const handleChange = (event) => {
-        setFile(event.target.files[0])
+        // setFile(event.target.files[0])
+        handleResize(event.target.files[0])
+
     }
 
     const handleUpload =  resizedFile => {
@@ -89,17 +91,17 @@ export default function UploadForm ({ newReport, setNewReport }) {
             </Button>
             <br />
             <Divider />
-            <Button 
+            {/* <Button 
                 onClick={handleResize} 
                 variant='contained'
                 sx={{mt: 2, mr: 1, borderRadius: 5, backgroundColor: 'lightgray', color: 'black' }}
                 >
                 Upload Photo
-            </Button>
-            <Typography 
+            </Button> */}
+            {/* <Typography 
                 sx={{ mt: 2, mr: 1 }}>
                     {percent} % uploaded
-            </Typography>
+            </Typography> */}
         </>
     )
 }
