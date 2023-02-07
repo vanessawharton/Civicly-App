@@ -42,7 +42,7 @@ export default function CategoryView(newReport, setNewReport) {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}
-                    onClick={() => setCategory('6')}
+                    onClick={() => setCategory(6)}
                 >
                     <IconButton
                         aria-label="parking"
@@ -67,10 +67,10 @@ export default function CategoryView(newReport, setNewReport) {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(8)}
                 >
                     <IconButton 
                         aria-label="street"
-                        category='8'
                     >
                         <RemoveRoadRoundedIcon
                             sx={{
@@ -91,10 +91,10 @@ export default function CategoryView(newReport, setNewReport) {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(0)}
                 >
                     <IconButton 
                         aria-label="accessibility"
-                        category= '0'
                     >
                         <AccessibilityNewIcon
                             sx={{
@@ -115,10 +115,10 @@ export default function CategoryView(newReport, setNewReport) {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(7)}
                 >
                     <IconButton 
                         aria-label="property"
-                        category='7'
                     >
                         <MapsHomeWorkIcon                 
                             sx={{
@@ -139,10 +139,10 @@ export default function CategoryView(newReport, setNewReport) {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(3)}
                 >
                     <IconButton 
                         aria-label="trash"
-                        category='3'
                     >
                         <DeleteOutlineRoundedIcon
                             sx={{
@@ -163,10 +163,10 @@ export default function CategoryView(newReport, setNewReport) {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(2)}
                 >
                     <IconButton 
                         aria-label="bike"
-                        category='2'
                     >
                         <BikeScooterRoundedIcon
                             sx={{
@@ -187,10 +187,10 @@ export default function CategoryView(newReport, setNewReport) {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(4)}
                 >
                     <IconButton 
                         aria-label="graffiti"
-                        category='4'
                     >
                         <ReportRoundedIcon
                             sx={{
@@ -211,10 +211,10 @@ export default function CategoryView(newReport, setNewReport) {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(1)}
                 >
                     <IconButton 
                         aria-label="animal"
-                        category='1'
                     >
                         <PetsRoundedIcon
                             sx={{
@@ -235,10 +235,10 @@ export default function CategoryView(newReport, setNewReport) {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
+                    onClick={() => setCategory(5)}
                 >
                     <IconButton 
                         aria-label="environment"
-                        category='5'
                     >
                         <EnergySavingsLeafRoundedIcon
                             sx={{
