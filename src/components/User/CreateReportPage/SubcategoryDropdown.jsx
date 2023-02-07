@@ -5,7 +5,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import Paper from '@mui/material/Paper';
 
 export default function SubcategoryDropdown({subcategories, newReport, setNewReport, category}) {
-  console.log(category);
   return (
     <Paper
       component="form"
