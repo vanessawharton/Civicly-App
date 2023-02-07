@@ -126,15 +126,14 @@ export default function UserProfilePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                paddingBottom: 2
-                }}>Zipcode: {users.zipcode}
-            </Box>
+                }}>Home City: 
+            </Box><br></br>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 }}>
-                <Button sx={{ width: 130, padding: 1, margin: 1 }} color="secondary" onClick={() => history.push('/myreports')} variant="contained">
+                <Button sx={{ padding: 1, margin: 1 }} color="secondary" onClick={() => history.push('/myreports')} variant="contained">
                     My Reports
                 </Button>
             </Box>

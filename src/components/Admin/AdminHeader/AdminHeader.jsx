@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Logo from './Civicly White Logo Large.png';
 
-export default function Header() {
+export default function AdminHeader() {
     return (
         <Box 
             sx={{ flexGrow: 1,
