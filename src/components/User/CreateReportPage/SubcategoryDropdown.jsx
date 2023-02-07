@@ -4,8 +4,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import SearchIcon from '@mui/icons-material/Search';
 import Paper from '@mui/material/Paper';
 
-export default function SubcategoryDropdown({subcategories, newReport, setNewReport}) {
-
+export default function SubcategoryDropdown({subcategories, newReport, setNewReport, category}) {
+  console.log(category);
   return (
     <Paper
       component="form"
@@ -15,7 +15,7 @@ export default function SubcategoryDropdown({subcategories, newReport, setNewRep
       }}>
         <Autocomplete
           fullWidth
-          options={subcategories}
+          options={subcategories.filter(subcategory => subcategory.category === category)}
           getOptionLabel={option => option.name}
           renderInput={(params) => <TextField {...params} label="Choose Issue" />}
           onChange={(e, newValue) => {
