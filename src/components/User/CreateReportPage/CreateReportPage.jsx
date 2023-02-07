@@ -149,9 +149,9 @@ export default function CreateReportPage() {
                                         {index === steps.length - 1 ? 
                                             <div>
                                                 <Button
-                                                    onClick={handleReset}
+                                                    onClick={handleBack}
                                                     sx={{ mt: 2, mr: 1 }}
-                                                >Reset
+                                                >Back
                                                 </Button>
                                                 <Button
                                                     variant="contained"

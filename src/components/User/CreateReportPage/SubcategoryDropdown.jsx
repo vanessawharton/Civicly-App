@@ -15,13 +15,14 @@ export default function SubcategoryDropdown({subcategories, newReport, setNewRep
       }}>
         <Autocomplete
           fullWidth
-          options={subcategories.filter(subcategory => subcategory.category === category)}
+          required
+          options={category ? subcategories.filter(subcategory => subcategory.category === category): subcategories}
           getOptionLabel={option => option.name}
           renderInput={(params) => <TextField {...params} label="Choose Issue" />}
           onChange={(e, newValue) => {
             setNewReport({...newReport, 
-              // category_id: newValue.category,
-              // category: newValue.categoryName,
+              category_id: newValue.category,
+              category: newValue.categoryName,
               subcategory_id: newValue.id})}}
         />
       </Paper>
