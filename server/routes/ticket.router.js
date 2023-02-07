@@ -40,7 +40,7 @@ router.get('/upvotes/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/ticketcount/:id', rejectUnauthenticated, (req, res) => {
-    const query = `SELECT COUNT ("upvotes")
+    const query = `SELECT COUNT ("user_id")
     FROM "Ticket"
     WHERE "user_id" = $1;`;
     pool.query(query, [req.user.id])
@@ -70,14 +70,19 @@ router.get('/ticketcount/:id', rejectUnauthenticated, (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
     const queryValues = [req.body.imageUrl,
     req.body.description,
+    req.body.status,
+    req.body.upvotes,
     req.body.category_id,
     req.user.id,
+    
     req.body.anonymous,
     req.body.subcategory_id,
     req.body.latitude,
     req.body.longitude]
-    const query = `INSERT INTO "Ticket" ("image_url", "description", "category", "user_id", "anonymous", "subcategory_id", "latitude", "longitude")
-                   VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ;`;
+    const query = `
+    INSERT INTO "Ticket" ("image_url", "description", "status", "upvotes", "category", "user_id", 
+                            "date", "anonymous", "subcategory_id", "latitude", "longitude")
+    VALUES ($1, $2, $3, $4, $5, $6, now(), $7, $8, $9, $10) ;`;
 
     pool.query(query, queryValues)
         .then(result => {
@@ -101,7 +106,7 @@ router.post('/notifications', rejectUnauthenticated, (req, res) => {
     ];
 
     const queryText = `INSERT INTO "Notifications" ("user_id", "ticket_id", "comments", "timestamp", "notification_status")
-        VALUES ($1, $2, $3, $4, $5) ;`;
+        VALUES ($1, $2, $3, now(), $4) ;`;
 
     pool.query(queryVals, queryText)
         .then(result => {
@@ -117,35 +122,35 @@ router.post('/notifications', rejectUnauthenticated, (req, res) => {
  * PUT ticket route 
  */
 router.put('/upvote', rejectUnauthenticated, (req, res) => {
-    console.log('upvote router', req.body.location.upvotes+1)
+    console.log('upvote router', req.body.location.upvotes + 1)
     const query = `UPDATE "Ticket"
     SET "upvotes" = $1
     WHERE "id" = $2`;
-    pool.query(query, [req.body.location.upvotes+1, req.body.location.id])
-    .then(() => {
-        console.log('listing updated!');
-        res.sendStatus(200);
-    })
-    .catch((error) => {
-        console.log('Error PUTing upvote', error);
-        res.sendStatus(500);
-    })             
+    pool.query(query, [req.body.location.upvotes + 1, req.body.location.id])
+        .then(() => {
+            console.log('listing updated!');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('Error PUTing upvote', error);
+            res.sendStatus(500);
+        })
 });
 
 router.put('/downvote', rejectUnauthenticated, (req, res) => {
-    console.log('downvote router', req.body.location.upvotes-1)
+    console.log('downvote router', req.body.location.upvotes - 1)
     const query = `UPDATE "Ticket"
     SET "upvotes" = $1
     WHERE "id" = $2`;
-    pool.query(query, [req.body.location.upvotes-1, req.body.location.id])
-    .then(() => {
-        console.log('listing updated!');
-        res.sendStatus(200);
-    })
-    .catch((error) => {
-        console.log('Error PUTing downvote', error);
-        res.sendStatus(500);
-    })             
+    pool.query(query, [req.body.location.upvotes - 1, req.body.location.id])
+        .then(() => {
+            console.log('listing updated!');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('Error PUTing downvote', error);
+            res.sendStatus(500);
+        })
 });
 
 /**

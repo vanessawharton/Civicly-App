@@ -49,4 +49,20 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+// PUT router for the profile image upload for users
+router.put('/profileImage', (req, res) => {
+  console.log('user profile image router: ', req.body.image_url);
+  const query = `UPDATE "User"
+  SET "image_url" = $1
+  WHERE "id" = $2;`
+  pool
+  .query(query, [req.body.image_url, req.user.id])
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    console.log('User image profile failed: ', err);
+    res.sendStatus(500);
+  });
+  
+})
+
 module.exports = router;

@@ -51,7 +51,6 @@ console.log('whats in tickets: ', tickets);
                 {users.username}'s Reports
             </Box>
             <Divider sx={{margin: 3}}/>
-            <nav aria-label="secondary mailbox folders">
                 <List>
                 {tickets.map((ticket, i) => (
                 <ListItem disablePadding key={i}>
@@ -60,11 +59,9 @@ console.log('whats in tickets: ', tickets);
                     </ListItemButton>
                 </ListItem>
                 ))}
+                <ListItem sx={{paddingBottom: 11}}>
+                </ListItem>
                 </List>
-                    <IconButton aria-label="back" size="large" onClick={() => history.push('/profile')}>
-                    <ArrowBackIosNewIcon/> Back
-                    </IconButton>
-            </nav>
             <Nav/>
         </>
     )
