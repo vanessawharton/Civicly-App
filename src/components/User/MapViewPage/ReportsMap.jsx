@@ -1,5 +1,4 @@
-import { GoogleMap, MarkerF, LoadScript, InfoWindowF } from "@react-google-maps/api";
-import Button from '@mui/material/Button';
+import { GoogleMap, MarkerF, InfoWindowF } from "@react-google-maps/api";
 import ReportCarousel from "./ReportsCarousel";
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
@@ -7,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import { Box } from "@mui/system";
 import './ReportsMap.css'
-import ToggleButton from '@mui/material/ToggleButton';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 
@@ -108,33 +106,44 @@ function ReportsMap(){
 
         let color;
         
+        let category;
+        
         switch(location.category) {
-          case 'Sidewalks and Streets':
-            color='/images/blue-dot.png'
-            break;
-          case 'Property':
-            color='/images/purple-dot.png'
-            break;
-          case 'Parking':
-            color='/images/pink-dot.png'
-            break;
-          case 'Health and Environmental':
+          case '8':
             color='/images/yellow-dot.png'
+            category='Sidewalks and Streets'
             break;
-          case 'Graffiti':
+          case '7':
             color='/images/red-dot.png'
+            category='Property'
             break;
-          case 'Garbage and Recycling':
-            color='/images/orange-dot.png'
+          case '6':
+            color='/images/blue-dot.png'
+            category='Parking'
             break;
-          case 'Biking':
+          case '5':
             color='/images/green-dot.png'
+            category='Health and Environmental'
             break;
-          case 'Animal Control':
+          case '4':
             color='/images/marker_grey.png'
+            category='Graffiti'
             break;
-          case 'Accessibility':
+          case '3':
+            color='/images/pink-dot.png'
+            category='Garbage and Recycling'
+            break;
+          case '2':
             color='/images/marker_brown.png'
+            category='Biking'
+            break;
+          case '1':
+            color='/images/orange-dot.png'
+            category='Animal Control'
+            break;
+          case '0':
+            color='/images/purple-dot.png'
+            category='Accessibility'
             break;
           default:
             color='/images/red-dot.png'
@@ -147,7 +156,7 @@ function ReportsMap(){
               <InfoWindowF onCloseClick={onCloseClick}>
               <CardContent className="infoWindow">
                 <div className="textContainer">
-                  <Typography sx={{fontSize: 10, fontWeight: 700}}>{location.category}</Typography>
+                  <Typography sx={{fontSize: 10, fontWeight: 700}}>{category}</Typography>
                   <Typography sx={{fontSize: 10}}>Reported: {location.date}</Typography>
                   <Typography sx={{fontSize: 10}}>Status: {location.status}</Typography>
                   <Box sx={{ display: 'flex' , flexDirection: 'row'}}>
