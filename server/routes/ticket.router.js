@@ -74,7 +74,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     req.body.upvotes,
     req.body.category_id,
     req.user.id,
-    
     req.body.anonymous,
     req.body.subcategory_id,
     req.body.latitude,
