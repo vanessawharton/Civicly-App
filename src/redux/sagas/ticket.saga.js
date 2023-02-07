@@ -85,15 +85,27 @@ function* updateTicketStatus(action) {
     }
 }
 
-// function* sendNotification(action) {
-//     console.log('in sendNotifications', action.payload);
-//     try {
-//         yield axios.post('/api/ticket/notifications', action.payload)
+function* upvoteTicket(action) {
+    console.log('upvoteTicket', action.payload)
+    try{
+        yield axios.put('/api/ticket/upvote', action.payload);
+        yield put({ type: 'FETCH_ALL_TICKETS' });
+    }
+    catch(error) {
+        console.log('Error in ticket saga UPVOTE', error);
+    }
+}
 
-//     } catch (error) {
-//         console.log('Error in ticket.saga sendNotification', error);
-//     }
-// }
+function* downvoteTicket(action) {
+    console.log('downvoteTicket', action.payload)
+    try{
+        yield axios.put('/api/ticket/downvote', action.payload);
+        yield put({ type: 'FETCH_ALL_TICKETS' });
+    }
+    catch(error) {
+        console.log('Error in ticket saga DOWNVOTE', error);
+    }
+}
 
 
 function* ticketSaga() {
@@ -103,7 +115,8 @@ function* ticketSaga() {
     yield takeLatest('FETCH_USER_UPVOTES', fetchUserTicketUpvotes);
     yield takeLatest('FETCH_TICKET_COUNT', fetchUserTicketCount);
     yield takeLatest('UPDATE_TICKET_STATUS', updateTicketStatus);
-    // yield takeLatest('SEND_NOTIFICATION', sendNotification);
+    yield takeLatest('UPVOTE', upvoteTicket);
+    yield takeLatest('DOWNVOTE', downvoteTicket);
 }
 
 export default ticketSaga;

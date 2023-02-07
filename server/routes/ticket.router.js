@@ -8,20 +8,20 @@ const {
 /**
  * GET ticket route
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
-    const query = `SELECT * FROM
-    "Ticket";`;
+// router.get('/', rejectUnauthenticated, (req, res) => {
+//     const query = `SELECT * FROM
+//     "Ticket";`;
 
-    pool.query(query)
-        .then(result => {
-            console.log('GET IT!!', result.rows)
-            res.send(result.rows);
-        })
-        .catch(err => {
-            console.log('ERROR: Get all tickets', err);
-            res.sendStatus(500)
-        })
-});
+//     pool.query(query)
+//         .then(result => {
+//             console.log('GET IT!!', result.rows)
+//             res.send(result.rows);
+//         })
+//         .catch(err => {
+//             console.log('ERROR: Get all tickets', err);
+//             res.sendStatus(500)
+//         })
+// });
 
 // GET a total count of upvotes column specific to user_id
 router.get('/upvotes/:id', rejectUnauthenticated, (req, res) => {
@@ -116,9 +116,36 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 /**
  * PUT ticket route 
  */
-router.put('/', rejectUnauthenticated, (req, res) => {
+router.put('/upvote', rejectUnauthenticated, (req, res) => {
+    console.log('upvote router', req.body.location.upvotes+1)
+    const query = `UPDATE "Ticket"
+    SET "upvotes" = $1
+    WHERE "id" = $2`;
+    pool.query(query, [req.body.location.upvotes+1, req.body.location.id])
+    .then(() => {
+        console.log('listing updated!');
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        console.log('Error PUTing upvote', error);
+        res.sendStatus(500);
+    })             
+});
 
-
+router.put('/downvote', rejectUnauthenticated, (req, res) => {
+    console.log('downvote router', req.body.location.upvotes-1)
+    const query = `UPDATE "Ticket"
+    SET "upvotes" = $1
+    WHERE "id" = $2`;
+    pool.query(query, [req.body.location.upvotes-1, req.body.location.id])
+    .then(() => {
+        console.log('listing updated!');
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        console.log('Error PUTing downvote', error);
+        res.sendStatus(500);
+    })             
 });
 
 /**
