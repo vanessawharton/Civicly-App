@@ -19,7 +19,7 @@ export default function IssueFormView({ newReport, setNewReport, anon, setAnon, 
 
     return(
         <Container component="main" maxWidth="xs">
-            <Box component="form">
+            <Box>
                 {/* <TextField
                     margin="normal"
                     fullWidth
