@@ -40,7 +40,7 @@ router.get('/upvotes/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/ticketcount/:id', rejectUnauthenticated, (req, res) => {
-    const query = `SELECT COUNT ("upvotes")
+    const query = `SELECT COUNT ("user_id")
     FROM "Ticket"
     WHERE "user_id" = $1;`;
     pool.query(query, [req.user.id])
