@@ -1,14 +1,14 @@
 import { GoogleMap, MarkerF } from "@react-google-maps/api";
 import './ReportDetailMap.css';
 
-function ReportDetailMap() {
+function ReportDetailMap({latitude, longitude}) {
     return (
         <GoogleMap 
           mapContainerClassName="admin-map-container"
-          zoom={10} 
-          center={{lat: 39.8283, lng: -98.5795}}
+          zoom={16} 
+          center={{lat: +latitude, lng: +longitude}}
         >
-          <MarkerF position={{lat: 39.8283, lng: -98.5795}}>
+          <MarkerF position={{lat: +latitude, lng: +longitude}}>
           </MarkerF>
         </GoogleMap>
     )
