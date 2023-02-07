@@ -2,8 +2,9 @@ import * as React from 'react';
 import { useDispatch, useSelector  } from 'react-redux';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import PinDetailView from './PinDetailView';
-
+import { Box } from '@mui/system';
+import { Typography } from '@mui/material';
+import { Card, CardContent, CardMedia } from '@mui/material';
 
 const responsive = {
     tablet: {
@@ -30,23 +31,46 @@ export default function ReportCarousel({handleActiveMarker}) {
 
     return (
         <Carousel 
-            partialVisible={true} 
+            //partialVisible={true} 
             responsive={responsive} 
-            arrows={false}
+            arrows={true}
             swipeable={true}
             infinite={true}
-            autoPlay={true}
-            autoPlaySpeed={4000}
+            //autoPlay={true}
+            //autoPlaySpeed={4000}
             customTransition="all .2"
             transitionDuration={700}
             containerClass="carousel-container"
             itemClass="carousel-item-padding-40-px"
         >   
         {reports.map(report => {
+            console.log(report)
             return (
         <div key={report.id} onClick={() => handleActiveMarker(report)} >
-            <img src={report.image_url}/>
-            {report.description}
+            <Card sx={{m: .5}}>
+              <CardContent>
+                <CardMedia
+                component="img"
+                height="75"
+                image={report.image_url}
+                />
+                <Typography 
+                  fontWeight={700}
+                  fontSize={7}>
+                    {report.category}
+                </Typography>
+                <Typography 
+                  fontWeight={700}
+                  fontSize={7}>
+                    Reported:{report.date}
+                </Typography>
+                <Typography 
+                  fontWeight={700}
+                  fontSize={7}>
+                    Status:{report.status}
+                </Typography>
+              </CardContent>
+            </Card>
         </div>
             )
 })}
