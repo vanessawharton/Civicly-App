@@ -2,21 +2,21 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // Ticket GET
-function* fetchTicket() {
-    try {
-        const response = yield axios.get('/api/ticket');
+// function* fetchTicket() {
+//     try {
+//         const response = yield axios.get('/api/ticket');
 
-        yield put({ type: 'SET_TICKET', payload: response.data });
-    } catch (error) {
-        console.log('Ticket GET request failed', error);
-    }
-}
+//         yield put({ type: 'SET_TICKET', payload: response.data });
+//     } catch (error) {
+//         console.log('Ticket GET request failed', error);
+//     }
+// }
 
 // Ticket POST
 function* postTicket(action) {
     try {
         yield axios.post('/api/ticket', action.payload);
-        yield put({ type: 'FETCH_TICKET' });
+        yield put({ type: 'FETCH_ALL_TICKETS' });
     } catch (error) {
         console.log('Ticket POST request failed', error);
     }
@@ -109,7 +109,7 @@ function* downvoteTicket(action) {
 
 
 function* ticketSaga() {
-    yield takeLatest('FETCH_TICKET', fetchTicket);
+    //yield takeLatest('FETCH_TICKET', fetchTicket);
     yield takeLatest('POST_TICKET', postTicket);
     yield takeLatest('FETCH_ALL_TICKETS', fetchAllTickets);
     yield takeLatest('FETCH_USER_UPVOTES', fetchUserTicketUpvotes);
