@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { useDispatch, useSelector  } from 'react-redux';
+import {  useSelector  } from 'react-redux';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
-import { Card, CardContent, CardMedia } from '@mui/material';
+import { Card, CardContent, CardMedia, Box } from '@mui/material';
 
 const responsive = {
     tablet: {
@@ -22,33 +21,32 @@ const responsive = {
 export default function ReportCarousel({handleActiveMarker}) {
 
     const reports = useSelector((store) => store.inboundsMarkers);
-    const dispatch = useDispatch();
-
-    //GET all pin detail views on page load
-    // useEffect(() => {
-    //     dispatch({ type: 'FETCH_DETAILS'});
-    // }, []);
 
     return (
+        <Box>
+           <Typography
+           fontWeight={700}
+           fontSize={15}
+           mt={2}
+           ml={2}
+           >
+            Nearby Reports
+           </Typography>
         <Carousel 
-            //partialVisible={true} 
             responsive={responsive} 
             arrows={true}
             swipeable={true}
             infinite={true}
-            //autoPlay={true}
-            //autoPlaySpeed={4000}
             customTransition="all .2"
             transitionDuration={700}
             containerClass="carousel-container"
             itemClass="carousel-item-padding-40-px"
         >   
         {reports.map(report => {
-            console.log(report)
-            return (
+        return (
         <div key={report.id} onClick={() => handleActiveMarker(report)} >
             <Card sx={{m: .5}}>
-              <CardContent>
+              <CardContent sx={{height: 90}}>
                 <CardMedia
                 component="img"
                 height="75"
@@ -57,7 +55,7 @@ export default function ReportCarousel({handleActiveMarker}) {
                 <Typography 
                   fontWeight={700}
                   fontSize={7}>
-                    {report.category}
+                    {report.categoryName}
                 </Typography>
                 <Typography 
                   fontWeight={700}
@@ -73,7 +71,8 @@ export default function ReportCarousel({handleActiveMarker}) {
             </Card>
         </div>
             )
-})}
+        })}
         </Carousel>
+        </Box>
     );
 }
