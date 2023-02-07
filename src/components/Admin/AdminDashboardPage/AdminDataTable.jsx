@@ -115,7 +115,7 @@ export default function AdminDataTable() {
                 <DialogTitle>Report Details</DialogTitle>
                 <DialogContent>
                     <TextField
-                        autoFocus
+                        
                         margin="dense"
                         id="name"
                         label="Report Number"
@@ -123,13 +123,16 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     /><br /><br />
                     <Button variant="contained"
                         onClick={handleSeeMap}
                     >See Map Location
                     </Button>
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Last Status Update"
@@ -137,13 +140,16 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     /><br /><br />
                     <Button style={{ backgroundColor: "#bf0000" }}
                         variant="contained"
                         onClick={handleUpdateStatus}
                     >Update Status</Button><br />
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Category"
@@ -151,9 +157,12 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     />
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Subcategory"
@@ -161,9 +170,12 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     />
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Submitted By"
@@ -171,9 +183,12 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     />
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Date"
@@ -181,9 +196,12 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     />
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Notes"
@@ -193,10 +211,13 @@ export default function AdminDataTable() {
                         multiline
                         maxRows={10}
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     />
 
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Internal Comments"
@@ -204,6 +225,9 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     />
                     {/* <img>need to include user image here</img> */}
                 </DialogContent>
