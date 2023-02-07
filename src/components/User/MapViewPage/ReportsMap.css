@@ -1,10 +1,11 @@
 .map-container {
     width: 90%;
-    height: 63vh;
+    height: 60vh;
     display: block;
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
+    margin-top: 10px;
 }
 
 .infoWindow-image {
