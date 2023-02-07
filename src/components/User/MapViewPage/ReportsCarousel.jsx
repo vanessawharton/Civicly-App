@@ -34,38 +34,38 @@ export default function ReportCarousel({handleActiveMarker}) {
             itemClass="carousel-item-padding-40-px"
         >   
         {reports.map(report => {
-            let category
-switch(report.category) {
-    case '8':
-      category='Sidewalks and Streets'
-      break;
-    case '7':
-      category='Property'
-      break;
-    case '6':
-      category='Parking'
-      break;
-    case '5':
-      category='Health and Environmental'
-      break;
-    case '4':
-      category='Graffiti'
-      break;
-    case '3':
-      category='Garbage and Recycling'
-      break;
-    case '2':
-      category='Biking'
-      break;
-    case '1':
-      category='Animal Control'
-      break;
-    case '0':
-      category='Accessibility'
-      break;
-    default:
-      category='category'
-  }
+//             let category
+// switch(report.category) {
+//     case '8':
+//       category='Sidewalks and Streets'
+//       break;
+//     case '7':
+//       category='Property'
+//       break;
+//     case '6':
+//       category='Parking'
+//       break;
+//     case '5':
+//       category='Health and Environmental'
+//       break;
+//     case '4':
+//       category='Graffiti'
+//       break;
+//     case '3':
+//       category='Garbage and Recycling'
+//       break;
+//     case '2':
+//       category='Biking'
+//       break;
+//     case '1':
+//       category='Animal Control'
+//       break;
+//     case '0':
+//       category='Accessibility'
+//       break;
+//     default:
+//       category='category'
+//   }
             return (
         <div key={report.id} onClick={() => handleActiveMarker(report)} >
             <Card sx={{m: .5}}>
@@ -78,7 +78,7 @@ switch(report.category) {
                 <Typography 
                   fontWeight={700}
                   fontSize={7}>
-                    {category}
+                    {report.categoryName}
                 </Typography>
                 <Typography 
                   fontWeight={700}

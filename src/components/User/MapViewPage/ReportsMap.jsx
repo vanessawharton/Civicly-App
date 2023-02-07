@@ -106,44 +106,44 @@ function ReportsMap(){
 
         let color;
         
-        let category;
+        //let category;
         
         switch(location.category) {
           case '8':
             color='/images/yellow-dot.png'
-            category='Sidewalks and Streets'
+            //category='Sidewalks and Streets'
             break;
           case '7':
             color='/images/red-dot.png'
-            category='Property'
+            //category='Property'
             break;
           case '6':
             color='/images/blue-dot.png'
-            category='Parking'
+            //category='Parking'
             break;
           case '5':
             color='/images/green-dot.png'
-            category='Health and Environmental'
+            //category='Health and Environmental'
             break;
           case '4':
             color='/images/marker_grey.png'
-            category='Graffiti'
+            //category='Graffiti'
             break;
           case '3':
             color='/images/pink-dot.png'
-            category='Garbage and Recycling'
+            //category='Garbage and Recycling'
             break;
           case '2':
             color='/images/marker_brown.png'
-            category='Biking'
+            //category='Biking'
             break;
           case '1':
             color='/images/orange-dot.png'
-            category='Animal Control'
+            //category='Animal Control'
             break;
           case '0':
             color='/images/purple-dot.png'
-            category='Accessibility'
+            //category='Accessibility'
             break;
           default:
             color='/images/red-dot.png'
@@ -156,7 +156,7 @@ function ReportsMap(){
               <InfoWindowF onCloseClick={onCloseClick}>
               <CardContent className="infoWindow">
                 <div className="textContainer">
-                  <Typography sx={{fontSize: 10, fontWeight: 700}}>{category}</Typography>
+                  <Typography sx={{fontSize: 10, fontWeight: 700}}>{location.categoryName}</Typography>
                   <Typography sx={{fontSize: 10}}>Reported: {location.date}</Typography>
                   <Typography sx={{fontSize: 10}}>Status: {location.status}</Typography>
                   <Box sx={{ display: 'flex' , flexDirection: 'row'}}>
