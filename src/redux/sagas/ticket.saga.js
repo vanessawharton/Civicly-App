@@ -23,13 +23,13 @@ function* postTicket(action) {
 }
 
 // Ticket PUT
-function* editTicket() {
-    try {
+// function* sendNotification(action) {
+//     try {
         
-    } catch (error) {
-        console.log('Ticket PUT request failed', error);
-    }
-}
+//     } catch (error) {
+//         console.log('Error sending notificaiton', error);
+//     }
+// }
 
 // Ticket DELETE
 function* deleteTicket() {
@@ -77,12 +77,23 @@ function* updateTicketStatus(action) {
     console.log(action.payload);
     try {
         yield axios.put('/api/ticket/statusupdate', action.payload);
+        // yield put({type: 'SEND_NOTIFICATION'})
         yield put({type: 'FETCH_ALL_TICKETS'})
     }
     catch(error) {
         console.log('Error in ticket saga UPDATE_TICKET_STATUS', error);
     }
 }
+
+// function* sendNotification(action) {
+//     console.log('in sendNotifications', action.payload);
+//     try {
+//         yield axios.post('/api/ticket/notifications', action.payload)
+
+//     } catch (error) {
+//         console.log('Error in ticket.saga sendNotification', error);
+//     }
+// }
 
 
 function* ticketSaga() {
@@ -91,7 +102,8 @@ function* ticketSaga() {
     yield takeLatest('FETCH_ALL_TICKETS', fetchAllTickets);
     yield takeLatest('FETCH_USER_UPVOTES', fetchUserTicketUpvotes);
     yield takeLatest('FETCH_TICKET_COUNT', fetchUserTicketCount);
-    yield takeLatest('UPDATE_TICKET_STATUS', updateTicketStatus)
+    yield takeLatest('UPDATE_TICKET_STATUS', updateTicketStatus);
+    // yield takeLatest('SEND_NOTIFICATION', sendNotification);
 }
 
 export default ticketSaga;

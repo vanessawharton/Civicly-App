@@ -69,13 +69,13 @@ router.get('/ticketcount/:id', rejectUnauthenticated, (req, res) => {
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
     const queryValues = [req.body.imageUrl,
-                         req.body.description, 
-                         req.body.category_id,
-                         req.user.id,
-                         req.body.anonymous,
-                         req.body.subcategory_id,
-                         req.body.latitude,
-                         req.body.longitude]
+    req.body.description,
+    req.body.category_id,
+    req.user.id,
+    req.body.anonymous,
+    req.body.subcategory_id,
+    req.body.latitude,
+    req.body.longitude]
     const query = `INSERT INTO "Ticket" ("image_url", "description", "category", "user_id", "anonymous", "subcategory_id", "latitude", "longitude")
                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ;`;
 
@@ -87,8 +87,31 @@ router.post('/', rejectUnauthenticated, (req, res) => {
             console.log('ERROR: Could not Add ticket', err);
             res.sendStatus(500)
         })
-
 });
+
+//post route for inserting into notifications table when status is updated
+// router.post('/notifications', rejectUnauthenticated, (req, res) => {
+//     console.log('this is req.body in router.post /notifications', req.body);
+//     const queryVals = [
+//         req.body.user_id,
+//         req.body.id,
+//         req.body.description,
+//         req.body.date,
+//         req.body.status
+//     ];
+
+//     const queryText = `INSERT INTO "Notifications" ("user_id", "ticket_id", "comments", "timestamp", "notification_status")
+//         VALUES ($1, $2, $3, $4, $5) ;`;
+
+//     pool.query(queryVals, queryText)
+//         .then(result => {
+//             res.sendStatus(200);
+//         })
+//         .catch(error => {
+//             console.log('Error posting to Notifications table', error);
+//             res.sendStatus(500)
+//         })
+// });
 
 /**
  * PUT ticket route 
@@ -114,7 +137,7 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
             JOIN "Subcategories"
             ON "Subcategories"."id" = "Ticket"."subcategory_id"
             JOIN "User" 
-            ON "User"."id" = "Ticket"."user_id";`; 
+            ON "User"."id" = "Ticket"."user_id";`;
 
     pool.query(queryText)
         .then(result => {
@@ -143,7 +166,7 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
                     default:
                         return { ...element };
                 }
-                
+
             });
             console.log(returnTickets);
             res.send(returnTickets);
@@ -156,7 +179,7 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
 router.put('/statusupdate', rejectUnauthenticated, (req, res) => {
     console.log('in ticket.router PUT', req.body.status);
 
-    let queryParams = [req.body.status, req.body.id]
+    let queryParams = [req.body.status, req.body.ticket_id]
 
     let queryText = `
         UPDATE "Ticket"

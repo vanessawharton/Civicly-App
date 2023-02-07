@@ -23,12 +23,13 @@ function* postNotifications() {
     }
 }
 
-// Notifications PUT
-function* editNotifications() {
+function* sendNotification(action) {
+    console.log('in sendNotification', action.payload);
     try {
-        
+        yield axios.post('/api/notifications', action.payload)
+
     } catch (error) {
-        console.log('Notifications PUT request failed', error);
+        console.log('Error in ticket.saga sendNotification', error);
     }
 }
 
@@ -45,6 +46,7 @@ function* deleteNotifications() {
 function* notificationsSaga() {
     yield takeLatest('FETCH_NOTIFICATIONS', fetchNotifications);
     yield takeLatest('POST_NOTIFICATIONS', postNotifications);
+    yield takeLatest('SEND_NOTIFICATION', sendNotification);
 }
 
 export default notificationsSaga;
