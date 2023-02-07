@@ -46,9 +46,11 @@ export default function UserProfilePage() {
     };
     const handleClose = () => {
         setOpen(false);
+        dispatch({ type: 'PUT_PROFILE_IMAGE', payload: profileImage })
+
     };
 
-
+    const [profileImage, setProfileImage] = React.useState('')
 
     return (
         <>
@@ -72,11 +74,13 @@ export default function UserProfilePage() {
                         <Stack direction="row" spacing={2}>
                             <Avatar
                             alt="Profile Image"
-                            src=""
+                            src={profileImage}
                             sx={{ width: 150, height: 150, alignSelf: 'center'}}
                             />
                         </Stack>
-                        <ProfileUploadForm />
+                        <ProfileUploadForm 
+                            profileImage={profileImage}
+                            setProfileImage={setProfileImage}/>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose}>Save</Button>
@@ -91,7 +95,7 @@ export default function UserProfilePage() {
                 <Stack direction="row" spacing={2}>
                     <Avatar
                     alt="Profile Image"
-                    src=""
+                    src={users.image_url}
                     sx={{ width: 150, height: 150 }}
                     />
                 </Stack>
@@ -122,7 +126,7 @@ export default function UserProfilePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                }}>Home City: 
+                }}>ZIP Code: {users.zipcode}
             </Box><br></br>
             <Box component="span" sx={{ 
                 display: 'flex',

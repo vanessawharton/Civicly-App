@@ -7,7 +7,7 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Box from '@mui/material/Box';
 
 
-export default function ProfileUploadForm ({ newReport, setNewReport }) {
+export default function ProfileUploadForm ({ profileImage, setProfileImage }) {
     // image resizer
     const resizeFile = (file) =>
         new Promise((resolve) => {
@@ -47,7 +47,7 @@ export default function ProfileUploadForm ({ newReport, setNewReport }) {
             alert('Please select a photo to upload');
         }
 
-        const storageRef = ref(storage, `/files/${resizedFile.name}`)
+        const storageRef = ref(storage, `/profile-images/${resizedFile.name}`)
         const uploadTask = uploadBytesResumable(storageRef, resizedFile);
 
 
@@ -65,8 +65,8 @@ export default function ProfileUploadForm ({ newReport, setNewReport }) {
             () => {
                 // download url
                 getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                    setNewReport({...newReport, imageUrl: url})
-                    console.log(newReport);
+                    setProfileImage(url)
+                    console.log(profileImage);
                 });
                 }
         ); 
