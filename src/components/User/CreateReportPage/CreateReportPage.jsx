@@ -12,11 +12,11 @@ import Nav from '../NavMenu/NavMenu';
 import Header from '../Header/Header';
 
 
-import NewReportLocation from '../NewReportLocation/NewReportLocation';
-import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
+import NewReportLocation from './NewReportLocation/NewReportLocation';
+import CategoryDropdown from './CategoryDropdown';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import IssueFormView from '../IssueFormView/IssueFormView';
+import IssueFormView from './IssueFormView';
 
 
 

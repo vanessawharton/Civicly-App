@@ -4,8 +4,8 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { ListItem, ListItemText, Switch, Button } from '@mui/material';
-import UploadForm from '../UploadForm/UploadForm';
-import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
+import UploadForm from './UploadForm';
+import CategoryDropdown from './CategoryDropdown';
 
 
 

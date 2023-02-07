@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import LandingPage from '../User/LandingPage/LandingPage';
 import HomePage from '../User/HomePage/HomePage';
 import UserLoginPage from '../User/UserLoginPage/UserLoginPage';
@@ -23,9 +22,7 @@ import CreateReportPage from '../User/CreateReportPage/CreateReportPage';
 import MapViewPage from '../User/MapViewPage/MapViewPage';
 import TopCitizensPage from '../User/TopCitizensPage/TopCitizensPage';
 import UserProfilePage from '../User/UserProfilePage/UserProfilePage';
-import UserReportsPage from '../User/UserReportsPage/UserReportsPage';
-import CategoryView from '../User/CategoryView/CategoryView';
-
+import UserReportsPage from '../User/UserProfilePage/UserReportsPage';
 import './App.css';
 
 function App() {
@@ -109,6 +106,8 @@ function App() {
               }
             </Route>
 
+            <Redirect exact from="/admin" to="/admin/dashboard" />
+
             <Route
               exact path="/admin/dashboard"
             >
@@ -150,7 +149,6 @@ function App() {
             >
               <UserReportsPage />
             </ProtectedRoute>
-
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>
