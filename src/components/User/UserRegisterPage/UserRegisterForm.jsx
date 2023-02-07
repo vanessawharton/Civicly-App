@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
+import { Button, Input, TextField, Typography } from '@mui/material';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -39,26 +40,42 @@ function RegisterForm() {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-          <form className="formPanel" onSubmit={registerUser}>
-            <h2>Register User</h2>
+          <Box component="form" className="formPanel" onSubmit={registerUser}>
+            <Typography variant="h4">Register User</Typography>
             {errors.registrationMessage && (
               <h3 className="alert" role="alert">
                 {errors.registrationMessage}
               </h3>
             )}
             <div>
-              <label htmlFor="username">
-                Username:
-                <input
-                  type="text"
-                  name="username"
-                  value={username}
+              <TextField
+                  margin="normal"
                   required
+                  fullWidth
+                  id="userName"
+                  label="Username"
+                  name="username"
+                  type="username"
+                  autoComplete="username"
+                  value={username}
                   onChange={(event) => setUsername(event.target.value)}
+                  autoFocus
                 />
-              </label>
             </div>
             <div>
+            <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="password"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  autoComplete="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+{/* 
               <label htmlFor="password">
                 Password:
                 <input
@@ -68,10 +85,23 @@ function RegisterForm() {
                   required
                   onChange={(event) => setPassword(event.target.value)}
                 />
-              </label>
+              </label> */}
             </div>
             <div>
-              <label htmlFor="zipCode">
+            <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="zipcode"
+                  label="zipcode"
+                  name="zipcode"
+                  type="zipcode"
+                  autoComplete="zipcode"
+                  value={zipcode}
+                  onChange={(event) => setZipcode(event.target.value)}
+                />
+
+              {/* <label htmlFor="zipCode">
                 Zip Code:
                 <input
                   type="zipcode"
@@ -80,12 +110,12 @@ function RegisterForm() {
                   required
                   onChange={(event) => setZipcode(event.target.value)}
                 />
-              </label>
+              </label> */}
             </div>
             <div>
-              <input className="btn" type="submit" name="submit" value="Register" />
+              <Button variant="contained" type="submit" value="Register" >Submit</Button>
             </div>
-          </form>
+          </Box>
         </Box>
         <Link onClick={() => { history.push('/login'); }}>Log in</Link>
       </Container>
