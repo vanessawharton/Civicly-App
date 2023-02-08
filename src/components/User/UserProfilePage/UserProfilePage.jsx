@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import Nav from '../NavMenu/NavMenu';
@@ -15,11 +15,6 @@ import Header from '../Header/Header';
 import { useSelector } from "react-redux";
 import ProfileUploadForm from './ProfileUploadForm';
 
-// ~~~ WORK IN PROGRESS ~~~
-
-// Styled somewhat
-// My Reports button href is currently directed at TopCitizens, 
-// will need to be changed once My Reports page is finished
 
 export default function UserProfilePage() {
     //pull in redux here to use user information to display on the DOM
@@ -49,6 +44,10 @@ export default function UserProfilePage() {
 
     };
 
+    const handleCancel = () => {
+        setOpen(false);
+    };
+
     const [profileImage, setProfileImage] = React.useState('')
 
     return (
@@ -63,7 +62,7 @@ export default function UserProfilePage() {
                     <IconButton sx={{ gridRow: '1', justifySelf: 'right' }} color="black" size="medium" aria-label="edit profile" component="label">
                         <EditOutlinedIcon fontSize="large" onClick={handleClickOpen}/>
                     </IconButton>
-                <Dialog sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} open={open} onClose={handleClose}>
+                <Dialog sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} open={open}>
                     <DialogTitle sx={{ display: 'grid', justifyContent: 'center', alignItems: 'center'}} id="alert-dialog-title">
                         {`Update Profile Image`}
                     </DialogTitle>
@@ -80,6 +79,7 @@ export default function UserProfilePage() {
                             setProfileImage={setProfileImage}/>
                     </DialogContent>
                     <DialogActions>
+                        <Button onClick={handleCancel}>Cancel</Button>
                         <Button onClick={handleClose}>Save</Button>
                     </DialogActions>
                 </Dialog>
