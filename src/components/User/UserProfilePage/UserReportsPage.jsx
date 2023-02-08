@@ -46,6 +46,10 @@ export default function UserReportsPage() {
 
 console.log('whats in tickets: ', tickets);
 
+    const handleClick = (ticket) => {
+        history.push('/reportmap');
+        dispatch({type: 'SET_ACTIVE_MARKER', payload: ticket})
+    }
 
     return (
         <> 
@@ -70,7 +74,7 @@ console.log('whats in tickets: ', tickets);
                     <StyledBadge sx={{marginRight: 1}} badgeContent={ticket.upvotes} color="primary">
                         <ThumbUpAltIcon color="action" />
                     </StyledBadge>
-                    <ListItemButton component="a" onClick={() => history.push('/reportmap')}>
+                    <ListItemButton component="a" onClick={() => handleClick(ticket)}>
                         <ListItemText primary={`${ticket.subcategory}: Status - ${ticket.status}`} secondary={`Description: ${ticket.description}`}/>
                     </ListItemButton>
                 </ListItem>

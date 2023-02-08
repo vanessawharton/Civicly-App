@@ -23,7 +23,7 @@ export default function ReportCarousel({handleActiveMarker}) {
     const reports = useSelector((store) => store.inboundsMarkers);
 
     return (
-        <Box>
+        <Box sx={{backgroundColor: 'lightgrey', height: 200 }}>
            <Typography
            fontWeight={700}
            fontSize={15}
