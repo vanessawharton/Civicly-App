@@ -49,6 +49,7 @@ export default function AdminDataTable({ theme }) {
 
     useEffect(() => {
         console.log('ticket details are:', ticketDetails)
+        
     }, [ticketDetails]);
 
     const columns = [
@@ -56,7 +57,8 @@ export default function AdminDataTable({ theme }) {
         { field: 'status', headerName: 'Status', headerAlign: 'center', width: 100 },
         { field: 'categoryName', headerName: 'Category', headerAlign: 'center', width: 175 },
         { field: 'subcategory', headerName: 'Subcategory', headerAlign: 'center', width: 175 },
-        { field: 'date', headerName: 'Date', headerAlign: 'center', width: 200 },
+        { field: 'date', headerName: 'Date', headerAlign: 'center', width: 200, 
+        valueGetter: (params) => new Date(params.row.date).toLocaleDateString() },
         // { field: 'username', headerName: 'Citizen', width: 100 },
         { field: 'description', headerName: 'Details', headerAlign: 'center', width: 265 }
     ];
@@ -75,8 +77,11 @@ export default function AdminDataTable({ theme }) {
         // setUsername(ticket.row.user_id)
         setUserId(ticket.row.user_id);
         setOpen(true);
-    };
-    
+    }
+
+    // const dateGetter = (date) => {
+    //     new Date(date).toLocaleDateString()
+    // }
 
     const handleClose = () => {
         setOpen(false);
@@ -111,7 +116,8 @@ export default function AdminDataTable({ theme }) {
                     color: 'palette.primary.main',
                 },
             }}
-                rows={tickets} onRowClick={handleDetails}
+                rows={tickets} 
+                onRowClick={handleDetails}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
@@ -191,7 +197,7 @@ export default function AdminDataTable({ theme }) {
                         margin="dense"
                         id="name"
                         label="Date"
-                        value= {new Date(date)}
+                        value= {new Date(date).toLocaleDateString()}
                         type="text"
                         fullWidth
                         variant="standard"
