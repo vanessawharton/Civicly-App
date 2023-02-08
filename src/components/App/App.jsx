@@ -111,7 +111,7 @@ function App() {
             <Route
               exact path="/admin/dashboard"
             >
-              <AdminDashboardPage />
+              <AdminDashboardPage theme={theme} />
             </Route>
 
             <Route

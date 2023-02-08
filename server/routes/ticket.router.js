@@ -180,10 +180,10 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
         .then(result => {
             const tickets = result.rows
             const returnTickets = tickets.map(element => {
-                console.log(element.category);
+                // console.log(element.date);
                 switch (element.category) {
                     case '0':
-                        return { ...element, categoryName: 'Accessibility' }
+                        return { ...element, categoryName: 'Accessibility'}
                     case '1':
                         return { ...element, categoryName: 'Animal Control' }
                     case '2':

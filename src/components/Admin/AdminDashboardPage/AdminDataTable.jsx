@@ -6,10 +6,12 @@ import { Button, InputLabel, Select, MenuItem, FormControl, NativeSelect, Link }
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { Box } from '@mui/system';
 import ReportDetailMap from '../ReportDetailMap/ReportDetailMap';
+import './AdminDataTable.css';
 
 
-export default function AdminDataTable() {
+export default function AdminDataTable({ theme }) {
 
     const tickets = useSelector((store) => store.ticket);
     const user = useSelector((store) => store.user);
@@ -25,7 +27,7 @@ export default function AdminDataTable() {
     const [subcategory, setSubcategory] = useState('');
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
-    // const [submittedBy, setSubmittedBy] = useState();
+    const [submittedBy, setSubmittedBy] = useState('');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
     const [license, setLicense] = useState('');
@@ -47,16 +49,18 @@ export default function AdminDataTable() {
 
     useEffect(() => {
         console.log('ticket details are:', ticketDetails)
+        
     }, [ticketDetails]);
 
     const columns = [
-        { field: 'id', headerName: 'Report #', headerAlign: 'center', width: 70 },
-        { field: 'status', headerName: 'Status', headerAlign: 'center',  width: 100 },
-        { field: 'categoryName', headerName: 'Category', headerAlign: 'center',  width: 175 },
-        { field: 'subcategory', headerName: 'Subcategory', headerAlign: 'center',  width: 175 },
-        { field: 'date', headerName: 'Date', headerAlign: 'center',  width: 100 },
+        { field: 'id', headerName: 'Report #', headerAlign: 'center', width: 100 },
+        { field: 'status', headerName: 'Status', headerAlign: 'center', width: 100 },
+        { field: 'categoryName', headerName: 'Category', headerAlign: 'center', width: 175 },
+        { field: 'subcategory', headerName: 'Subcategory', headerAlign: 'center', width: 175 },
+        { field: 'date', headerName: 'Date', headerAlign: 'center', width: 200, 
+        valueGetter: (params) => new Date(params.row.date).toLocaleDateString() },
         // { field: 'username', headerName: 'Citizen', width: 100 },
-        { field: 'description', headerName: 'Details', headerAlign: 'center',  width: 265 }
+        { field: 'description', headerName: 'Details', headerAlign: 'center', width: 265 }
     ];
 
     const handleDetails = (ticket) => {
@@ -70,12 +74,14 @@ export default function AdminDataTable() {
         setDate(ticket.row.date);
         setDescription(ticket.row.description);
         setImage(ticket.row.image_url);
-        // setUsername(user.username);
+        // setUsername(ticket.row.user_id)
         setUserId(ticket.row.user_id);
         setOpen(true);
-        // setTicketDetails(ticket);
+    }
 
-    };
+    // const dateGetter = (date) => {
+    //     new Date(date).toLocaleDateString()
+    // }
 
     const handleClose = () => {
         setOpen(false);
@@ -94,26 +100,35 @@ export default function AdminDataTable() {
     }
 
     return (
-        <div style={{ height: 400, width: '100%' }}>
+        <Box sx={{
+            height: 400,
+            width: '100%',
+            '& .MuiDataGrid-columnHeaders': {
+                backgroundColor: '#8cd1ff',
+            },
+        }}
+        >
             <DataGrid sx={{
                 boxShadow: 2,
                 border: 2,
                 borderColor: 'primary.light',
                 '& .MuiDataGrid-cell:hover': {
-                    color: 'primary.main',
+                    color: 'palette.primary.main',
                 },
             }}
-                rows={tickets} onRowClick={handleDetails}
+                rows={tickets} 
+                onRowClick={handleDetails}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
             />
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Report Details</DialogTitle><Button edge="end" position="fixed" style={{backgroundColor: "#bf0000" }}
-                        variant="contained"
-                        onClick={handleUpdateStatus}
-                    >Update Status</Button>
-                <DialogContent>
+                <DialogTitle>Report Details</DialogTitle><Button edge="end" position="fixed" style={{ backgroundColor: "#bf0000" }}
+                    variant="contained"
+                    onClick={handleUpdateStatus}
+                >Update Status</Button>
+                <DialogContent display="flex"
+                >
                     <TextField
 
                         margin="dense"
@@ -127,9 +142,6 @@ export default function AdminDataTable() {
                             { readOnly: true, disabled: true }
                         }
                     /><br /><br />
-                    <ReportDetailMap
-                        latitude={latitude}
-                        longitude={longitude}/>
                     <TextField
 
                         margin="dense"
@@ -143,6 +155,18 @@ export default function AdminDataTable() {
                             { readOnly: true, disabled: true }
                         }
                     /><br /><br />
+                    <DialogContentText className="img-txt">
+                        Report Image
+                    </DialogContentText>
+                    <img className="report-image" style={{ maxHeight: 300, MaxWidth: 300 }} src={image} />
+                    <br /><br />
+                    <DialogContentText className="img-txt">
+                        Report Location
+                    </DialogContentText>
+                    <ReportDetailMap
+                        latitude={latitude}
+                        longitude={longitude} /><br /><br />
+
                     <TextField
 
                         margin="dense"
@@ -170,24 +194,10 @@ export default function AdminDataTable() {
                         }
                     />
                     <TextField
-
-                        margin="dense"
-                        id="name"
-                        label="Submitted By"
-                        value={username}
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        inputProps={
-                            { readOnly: true, disabled: true }
-                        }
-                    />
-                    <TextField
-
                         margin="dense"
                         id="name"
                         label="Date"
-                        value={date}
+                        value= {new Date(date).toLocaleDateString()}
                         type="text"
                         fullWidth
                         variant="standard"
@@ -199,7 +209,7 @@ export default function AdminDataTable() {
 
                         margin="dense"
                         id="name"
-                        label="Notes"
+                        label="Notes from Citizen"
                         value={description}
                         type="text"
                         fullWidth
@@ -224,7 +234,6 @@ export default function AdminDataTable() {
                             { readOnly: true, disabled: true }
                         }
                     />
-                    {/* <img>need to include user image here</img> */}
                 </DialogContent>
                 <DialogActions>
                     <Button style={{ backgroundColor: "#5A5A5A" }}
@@ -270,6 +279,6 @@ export default function AdminDataTable() {
                     </FormControl>
                 </DialogActions>
             </Dialog>
-        </div>
+        </Box>
     );
 }

@@ -1,0 +1,13 @@
+.report-image {
+    /* width: 90%; */
+    height: 65vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+.img-txt {
+    display: flex;
+    justify-content: center;
+}
