@@ -60,7 +60,7 @@ export default function ReportCarousel({handleActiveMarker}) {
                 <Typography 
                   fontWeight={700}
                   fontSize={7}>
-                    Reported:{report.date}
+                    Reported:{new Date(report.date).toLocaleDateString()}
                 </Typography>
                 <Typography 
                   fontWeight={700}

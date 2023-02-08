@@ -3,10 +3,12 @@ import ReportCarousel from "./ReportsCarousel";
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Typography from '@mui/material/Typography';
-import CardContent from '@mui/material/CardContent';
 import { Box } from "@mui/system";
 import './ReportsMap.css'
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import { Button } from "@mui/material";
 
 
 
@@ -173,27 +175,36 @@ function ReportsMap(){
         return (
        
             <MarkerF key ={location.id} position={{lat: +location.latitude, lng: +location.longitude}} onClick={() => handleActiveMarker(location)} 
-            options={{icon: `${color}`}}>
+            options={{icon: `${color}`}}
+            >
             {activeMarker === location.id ? (
               <InfoWindowF onCloseClick={onCloseClick}>
-              <CardContent className="infoWindowContent">
+                <div>
+              <Typography sx={{fontSize: 14, fontWeight: 700, mb: 1, textAlign: "center"}}>{location.categoryName}</Typography>
+              <div className="infoWindowContent">
                 <Box className="textContainer">
-                  <Typography sx={{fontSize: 12, fontWeight: 700, mb: 1}}>{location.categoryName}</Typography>
+                  {/* <Typography sx={{fontSize: 12, fontWeight: 700, mb: 1}}>{location.categoryName}</Typography> */}
                   <Typography sx={{fontSize: 10}}>
                     <Typography sx={{fontWeight: 700, fontSize: 10}}> Reported:
                     </Typography> 
-                    {location.date}
+                       {new Date(location.date).toLocaleDateString()}
                   </Typography>
                   <Typography sx={{fontSize: 10}}><Typography sx={{fontWeight: 700, fontSize: 10}}>Status:</Typography> {location.status}</Typography>
                   <Box sx={{ display: 'flex' , flexDirection: 'row', mt: 1}}>
-                    <ThumbUpIcon selected={selected} sx={{fontSize: 30, color: 'blue'}} onClick={() => handleUpVote(location)}/>
-                    <Typography sx={{mt: 1, ml: 3}}>
+                    {/* <Tooltip>
+                      <IconButton>
+                        <ThumbUpIcon selected={selected} sx={{fontSize: 20, color: '#4c8bf5'}} onClick={() => handleUpVote(location)}/>
+                      </IconButton>
+                    </Tooltip> */}
+                    <Button onClick={() => handleUpVote(location)} sx={{ml: -1.5, mt: 2, fontSize: 10, color: 'grey'}}>upvote</Button>
+                    <Typography sx={{fontSize: 10, mt: 3}}>
                       {location.upvotes}
                     </Typography>
                   </Box>
                 </Box>
                 <img className="infoWindow-image" src={location.image_url}/>
-              </CardContent>
+              </div>
+              </div>
             </InfoWindowF>
             ) : null}
             </MarkerF>

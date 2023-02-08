@@ -8,11 +8,14 @@
     margin-top: 10px;
 }
 
+
 .infoWindow-image {
-    width: 100px;
+    width: 220px;
     height: 100px;
     margin: 5px;
     border-radius: 3px;
+    overflow: hidden;
+    position: center;
 }
 
 .infoWindowContent {
@@ -27,5 +30,5 @@
 } */
 
 .textContainer {
-    width: 80px;
+    width: 90px;
 }
