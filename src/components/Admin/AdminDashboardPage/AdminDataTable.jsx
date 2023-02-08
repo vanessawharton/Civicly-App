@@ -56,7 +56,7 @@ export default function AdminDataTable({ theme }) {
         { field: 'status', headerName: 'Status', headerAlign: 'center', width: 100 },
         { field: 'categoryName', headerName: 'Category', headerAlign: 'center', width: 175 },
         { field: 'subcategory', headerName: 'Subcategory', headerAlign: 'center', width: 175 },
-        { field: 'date', headerName: 'Date', headerAlign: 'center', width: 100 },
+        { field: 'date', headerName: 'Date', headerAlign: 'center', width: 200 },
         // { field: 'username', headerName: 'Citizen', width: 100 },
         { field: 'description', headerName: 'Details', headerAlign: 'center', width: 265 }
     ];
@@ -75,9 +75,8 @@ export default function AdminDataTable({ theme }) {
         // setUsername(ticket.row.user_id)
         setUserId(ticket.row.user_id);
         setOpen(true);
-
-
     };
+    
 
     const handleClose = () => {
         setOpen(false);
@@ -192,7 +191,7 @@ export default function AdminDataTable({ theme }) {
                         margin="dense"
                         id="name"
                         label="Date"
-                        value={date}
+                        value= {new Date(date)}
                         type="text"
                         fullWidth
                         variant="standard"
