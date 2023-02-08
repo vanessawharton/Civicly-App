@@ -23,23 +23,37 @@ function ReportsMap(){
   const dispatch = useDispatch();
 
   const tickets = useSelector(store => store.ticket)
+  const activeMarkerTriggerTicket = useSelector(store => store.activeMarker)
 
   
   useEffect (() => {
     dispatch({type: 'FETCH_ALL_TICKETS'});
-    userPosition()
+    !activeMarkerTriggerTicket && userPosition()
+
   }, [])
+
+  // useEffect(() => {
+  //   handleActiveMarker(activeMarkerTriggerTicket)
+  // }, [activeMarkerTriggerTicket] )
 
   const userPosition = () => {
     navigator.geolocation.getCurrentPosition(position => {
       setLatitude(position.coords.latitude);
       setLongitude(position.coords.longitude);
       setFocus(10);
+
+
     });
   };
 
   const handleMapLoad = map => {
     setMapRef(map);
+    if (activeMarkerTriggerTicket) {
+      handleActiveMarker(activeMarkerTriggerTicket)
+      setFocus(12);
+      dispatch({type: 'UNSET_ACTIVE_MARKER'})
+    }
+
   };
 
   const handleCenterChanged = () => {
@@ -64,6 +78,7 @@ function ReportsMap(){
     };
 
   const handleActiveMarker = (marker) => {
+    console.log(marker);
     setLatitude(+marker.latitude);
     setLongitude(+marker.longitude);
     setSelected(false)    
