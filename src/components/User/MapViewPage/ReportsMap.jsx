@@ -13,9 +13,9 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 function ReportsMap(){
   
-  const [latitude, setLatitude] = useState(39.8283);
-  const [longitude, setLongitude] = useState(-98.5795);
-  const [focus, setFocus] = useState(5);
+  const [latitude, setLatitude] = useState(44.9778);
+  const [longitude, setLongitude] = useState(-93.2650);
+  const [focus, setFocus] = useState(8);
   const [activeMarker, setActiveMarker] = useState(null);
   const [mapref, setMapRef] = useState(null);
   
@@ -176,22 +176,26 @@ function ReportsMap(){
             options={{icon: `${color}`}}>
             {activeMarker === location.id ? (
               <InfoWindowF onCloseClick={onCloseClick}>
-              <CardContent className="infoWindow">
-                <div className="textContainer">
-                  <Typography sx={{fontSize: 10, fontWeight: 700}}>{location.categoryName}</Typography>
-                  <Typography sx={{fontSize: 10}}>Reported: {location.date}</Typography>
-                  <Typography sx={{fontSize: 10}}>Status: {location.status}</Typography>
-                  <Box sx={{ display: 'flex' , flexDirection: 'row'}}>
-                    <ThumbUpIcon selected={selected} sx={{fontSize: 40, color: 'blue'}} onClick={() => handleUpVote(location)}/>
-                    <Typography sx={{mt: 2, ml: 3}}>
+              <CardContent className="infoWindowContent">
+                <Box className="textContainer">
+                  <Typography sx={{fontSize: 12, fontWeight: 700, mb: 1}}>{location.categoryName}</Typography>
+                  <Typography sx={{fontSize: 10}}>
+                    <Typography sx={{fontWeight: 700, fontSize: 10}}> Reported:
+                    </Typography> 
+                    {location.date}
+                  </Typography>
+                  <Typography sx={{fontSize: 10}}><Typography sx={{fontWeight: 700, fontSize: 10}}>Status:</Typography> {location.status}</Typography>
+                  <Box sx={{ display: 'flex' , flexDirection: 'row', mt: 1}}>
+                    <ThumbUpIcon selected={selected} sx={{fontSize: 30, color: 'blue'}} onClick={() => handleUpVote(location)}/>
+                    <Typography sx={{mt: 1, ml: 3}}>
                       {location.upvotes}
                     </Typography>
                   </Box>
-                </div>
+                </Box>
                 <img className="infoWindow-image" src={location.image_url}/>
               </CardContent>
             </InfoWindowF>
-          ) : null}
+            ) : null}
             </MarkerF>
           
         )
