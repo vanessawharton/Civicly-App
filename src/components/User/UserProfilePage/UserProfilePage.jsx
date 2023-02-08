@@ -71,7 +71,7 @@ export default function UserProfilePage() {
                         {`Update Profile Image`}
                     </DialogTitle>
                     <DialogContent>
-                        <Stack direction="row" spacing={2}>
+                        <Stack sx={{ justifyContent: 'center' }} direction="row" spacing={2}>
                             <Avatar
                             alt="Profile Image"
                             src={profileImage}
@@ -92,7 +92,7 @@ export default function UserProfilePage() {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}>
-                <Stack direction="row" spacing={2}>
+                <Stack paddingBottom={1} direction="row" spacing={2}>
                     <Avatar
                     alt="Profile Image"
                     src={users.image_url}
@@ -105,16 +105,18 @@ export default function UserProfilePage() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontWeight: 'bold',
-                fontSize: 'h6.fontSize'
+                fontSize: 'h6.fontSize',
+                paddingBottom: 7
             }}>
                 {users.username}
-            </Box><br></br><br></br>
+            </Box>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                paddingBottom: 2
                 }}>Reports Submitted: {ticketCount}
-            </Box><br></br>
+            </Box>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
@@ -126,14 +128,15 @@ export default function UserProfilePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                paddingBottom: 2
                 }}>ZIP Code: {users.zipcode}
-            </Box><br></br>
+            </Box>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 }}>
-                <Button sx={{ padding: 1, margin: 1 }} color="secondary" onClick={() => history.push('/myreports')} variant="contained">
+                <Button sx={{ width: 130, padding: 1, margin: 1 }} color="secondary" onClick={() => history.push('/myreports')} variant="contained">
                     My Reports
                 </Button>
             </Box>

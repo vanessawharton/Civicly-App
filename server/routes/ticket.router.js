@@ -8,20 +8,25 @@ const {
 /**
  * GET ticket route
  */
-// router.get('/', rejectUnauthenticated, (req, res) => {
-//     const query = `SELECT * FROM
-//     "Ticket";`;
+router.get('/user/:id', rejectUnauthenticated, (req, res) => {
+    const query = `SELECT "Ticket".*, "Subcategories"."name" AS "subcategory"
+    FROM "Ticket"
+    JOIN "Subcategories"
+    ON "Subcategories"."id" = "Ticket"."subcategory_id"
+    JOIN "User" 
+    ON "User"."id" = "Ticket"."user_id"
+    WHERE "user_id" = $1`;
 
-//     pool.query(query)
-//         .then(result => {
-//             console.log('GET IT!!', result.rows)
-//             res.send(result.rows);
-//         })
-//         .catch(err => {
-//             console.log('ERROR: Get all tickets', err);
-//             res.sendStatus(500)
-//         })
-// });
+    pool.query(query, [req.user.id])
+        .then(result => {
+            console.log('GET user_id tickets!!', result.rows)
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log('ERROR: Get all user_id tickets', err);
+            res.sendStatus(500)
+        })
+});
 
 // GET a total count of upvotes column specific to user_id
 router.get('/upvotes/:id', rejectUnauthenticated, (req, res) => {
@@ -168,7 +173,8 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
             JOIN "Subcategories"
             ON "Subcategories"."id" = "Ticket"."subcategory_id"
             JOIN "User" 
-            ON "User"."id" = "Ticket"."user_id";`;
+            ON "User"."id" = "Ticket"."user_id"
+            ORDER BY "id" DESC;`;
 
     pool.query(queryText)
         .then(result => {
