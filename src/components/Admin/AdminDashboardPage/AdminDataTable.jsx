@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 import ReportDetailMap from '../ReportDetailMap/ReportDetailMap';
-// import './AdminDataTable.css';
+import './AdminDataTable.css';
 
 
 export default function AdminDataTable({ theme }) {
