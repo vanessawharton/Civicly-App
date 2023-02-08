@@ -50,6 +50,7 @@ function RegisterForm() {
             <div>
               <TextField
                   margin="normal"
+                  sx={{backgroundColor: "rgba(255, 255, 255, .75)"}}
                   required
                   fullWidth
                   id="userName"
@@ -65,6 +66,7 @@ function RegisterForm() {
             <div>
             <TextField
                   margin="normal"
+                  sx={{backgroundColor: "rgba(255, 255, 255, .75)"}}
                   required
                   fullWidth
                   id="password"
@@ -90,6 +92,7 @@ function RegisterForm() {
             <div>
             <TextField
                   margin="normal"
+                  sx={{backgroundColor: "rgba(255, 255, 255, .75)"}}
                   required
                   fullWidth
                   id="zipcode"
@@ -113,11 +116,11 @@ function RegisterForm() {
               </label> */}
             </div>
             <div>
-              <Button variant="contained" type="submit" value="Register" >Submit</Button>
+              <Button sx={{mt:2}} variant="contained" type="submit" value="Register" >Register</Button>
             </div>
           </Box>
         </Box>
-        <Link onClick={() => { history.push('/login'); }}>Log in</Link>
+        <Button onClick={() => { history.push('/login'); }}>Log in</Button>
       </Container>
     </div>
   );
