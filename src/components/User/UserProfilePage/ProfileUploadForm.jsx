@@ -47,6 +47,9 @@ export default function ProfileUploadForm ({ profileImage, setProfileImage }) {
             alert('Please select a photo to upload');
         }
 
+        // Here is where you select the folder "profile-images" in Firebase that will receive profile images. 
+        // These names must match here and on Firebase. Create the file in firebase with no forward slashes (case-sensitive).
+        //                            ~~~V~~~~~~~~~~~~~~V~~~
         const storageRef = ref(storage, `/profile-images/${resizedFile.name}`)
         const uploadTask = uploadBytesResumable(storageRef, resizedFile);
 

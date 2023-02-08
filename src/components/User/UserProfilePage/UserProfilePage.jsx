@@ -32,7 +32,7 @@ export default function UserProfilePage() {
 
     const [open, setOpen] = React.useState(false);
 
-
+    //On page load we get 3 reducers. All ticket info, user info, and count and sum for tickets and upvotes
     useEffect(() => {
         dispatch({ type: 'FETCH_ALL_TICKETS' })
         dispatch({ type: 'FETCH_TICKET_COUNT' })
@@ -40,7 +40,6 @@ export default function UserProfilePage() {
     }, []);
 
 // dialog for edit profile pic
-
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -55,18 +54,16 @@ export default function UserProfilePage() {
     return (
         <>
             <Header />
-            <Box sx={{
-                display: 'grid',
-            }}>
+            <Box sx={{ display: 'grid' }}>
                 <center>
-                <Typography sx={{ gridRow: '1', justifySelf: 'center'}} variant="h4" gutterBottom>
+                <Typography sx={{ gridRow: '1', justifySelf: 'center' }} variant="h4" gutterBottom>
                     Citizen Profile
                 </Typography>
                 </center>
                     <IconButton sx={{ gridRow: '1', justifySelf: 'right' }} color="black" size="medium" aria-label="edit profile" component="label">
                         <EditOutlinedIcon fontSize="large" onClick={handleClickOpen}/>
                     </IconButton>
-                <Dialog sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}} open={open} onClose={handleClose}>
+                <Dialog sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} open={open} onClose={handleClose}>
                     <DialogTitle sx={{ display: 'grid', justifyContent: 'center', alignItems: 'center'}} id="alert-dialog-title">
                         {`Update Profile Image`}
                     </DialogTitle>
@@ -75,7 +72,7 @@ export default function UserProfilePage() {
                             <Avatar
                             alt="Profile Image"
                             src={profileImage}
-                            sx={{ width: 150, height: 150, alignSelf: 'center'}}
+                            sx={{ width: 150, height: 150, alignSelf: 'center' }}
                             />
                         </Stack>
                         <ProfileUploadForm 
@@ -91,7 +88,7 @@ export default function UserProfilePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-            }}>
+                }}>
                 <Stack paddingBottom={1} direction="row" spacing={2}>
                     <Avatar
                     alt="Profile Image"
@@ -107,7 +104,7 @@ export default function UserProfilePage() {
                 fontWeight: 'bold',
                 fontSize: 'h6.fontSize',
                 paddingBottom: 7
-            }}>
+                }}>
                 {users.username}
             </Box>
             <Box component="span" sx={{ 
