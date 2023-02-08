@@ -115,7 +115,7 @@ export default function AdminDataTable() {
                     onClick={handleUpdateStatus}
                 >Update Status</Button>
                 <DialogContent display="flex"
-                                justfiyContent="center">
+                    justfiyContent="center">
                     <TextField
 
                         margin="dense"
@@ -146,13 +146,13 @@ export default function AdminDataTable() {
                         Report Image
                     </DialogContentText>
                     <img className="report-image" style={{ maxHeight: 300, MaxWidth: 300 }} src={image} />
-                        <br/><br/>
-                        <DialogContentText className="img-txt">
-                            Report Location
-                        </DialogContentText>
+                    <br /><br />
+                    <DialogContentText className="img-txt">
+                        Report Location
+                    </DialogContentText>
                     <ReportDetailMap
                         latitude={latitude}
-                        longitude={longitude} /><br/><br/>
+                        longitude={longitude} /><br /><br />
 
                     <TextField
 
