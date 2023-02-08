@@ -6,6 +6,7 @@ import subcategories from './subcategories.reducer'
 import upvotes from './upvotes.reducer'
 import ticketCount from './ticketCount.reducer'
 import inboundsMarkers from './inboundsmarkers';
+import activeMarker from './activeMarker.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   subcategories,
   upvotes,
   ticketCount,
-  inboundsMarkers
+  inboundsMarkers,
+  activeMarker
 });
 
 export default rootReducer;
