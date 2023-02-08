@@ -6,11 +6,12 @@ import { Button, InputLabel, Select, MenuItem, FormControl, NativeSelect, Link }
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { Box } from '@mui/system';
 import ReportDetailMap from '../ReportDetailMap/ReportDetailMap';
 import './AdminDataTable.css';
 
 
-export default function AdminDataTable() {
+export default function AdminDataTable({ theme }) {
 
     const tickets = useSelector((store) => store.ticket);
     const user = useSelector((store) => store.user);
@@ -51,7 +52,7 @@ export default function AdminDataTable() {
     }, [ticketDetails]);
 
     const columns = [
-        { field: 'id', headerName: 'Report #', headerAlign: 'center', width: 70 },
+        { field: 'id', headerName: 'Report #', headerAlign: 'center', width: 100 },
         { field: 'status', headerName: 'Status', headerAlign: 'center', width: 100 },
         { field: 'categoryName', headerName: 'Category', headerAlign: 'center', width: 175 },
         { field: 'subcategory', headerName: 'Subcategory', headerAlign: 'center', width: 175 },
@@ -95,13 +96,20 @@ export default function AdminDataTable() {
     }
 
     return (
-        <div style={{ height: 400, width: '100%' }}>
+        <Box sx={{
+            height: 400,
+            width: '100%',
+            '& .MuiDataGrid-columnHeaders': {
+                backgroundColor: '#8cd1ff',
+            },
+        }}
+        >
             <DataGrid sx={{
                 boxShadow: 2,
                 border: 2,
                 borderColor: 'primary.light',
                 '& .MuiDataGrid-cell:hover': {
-                    color: 'primary.main',
+                    color: 'palette.primary.main',
                 },
             }}
                 rows={tickets} onRowClick={handleDetails}
@@ -115,7 +123,7 @@ export default function AdminDataTable() {
                     onClick={handleUpdateStatus}
                 >Update Status</Button>
                 <DialogContent display="flex"
-                    justfiyContent="center">
+                >
                     <TextField
 
                         margin="dense"
@@ -266,6 +274,6 @@ export default function AdminDataTable() {
                     </FormControl>
                 </DialogActions>
             </Dialog>
-        </div>
+        </Box>
     );
 }
