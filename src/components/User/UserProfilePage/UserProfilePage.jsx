@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import Badge from '@mui/material/Badge';
 import Typography from '@mui/material/Typography';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Button from '@mui/material/Button';
@@ -50,18 +52,18 @@ export default function UserProfilePage() {
 
     const [profileImage, setProfileImage] = React.useState('')
 
+
+//     <Fab sx={{position: 'absolute', bottom: 520, right: 110,}}size="small" color="none" aria-label="edit">
+//     <EditOutlinedIcon fontSize="medium" onClick={handleClickOpen}/>
+// </Fab>
+
     return (
         <>
             <Header />
             <Box sx={{ display: 'grid' }}>
-                <center>
-                <Typography sx={{ gridRow: '1', justifySelf: 'center' }} variant="h4" gutterBottom>
+                <Typography sx={{ paddingTop: 4, gridRow: '1', justifySelf: 'center' }} variant="h4" gutterBottom>
                     Citizen Profile
                 </Typography>
-                </center>
-                    <IconButton sx={{ gridRow: '1', justifySelf: 'right' }} color="black" size="medium" aria-label="edit profile" component="label">
-                        <EditOutlinedIcon fontSize="large" onClick={handleClickOpen}/>
-                    </IconButton>
                 <Dialog sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} open={open}>
                     <DialogTitle sx={{ display: 'grid', justifyContent: 'center', alignItems: 'center'}} id="alert-dialog-title">
                         {`Update Profile Image`}
@@ -90,11 +92,17 @@ export default function UserProfilePage() {
                 justifyContent: 'center',
                 }}>
                 <Stack paddingBottom={1} direction="row" spacing={2}>
-                    <Avatar
-                    alt="Profile Image"
-                    src={users.image_url}
-                    sx={{ width: 150, height: 150 }}
-                    />
+                    <Badge
+                        overlap="circular"
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                        badgeContent={ 
+                            <Fab color="black" size="small">
+                                <EditOutlinedIcon fontSize="medium" onClick={handleClickOpen}/>
+                            </Fab>
+                        }
+                    >
+                        <Avatar alt="Profile Image" src={users.image_url} sx={{ width: 200, height: 200 }} />
+                    </Badge>
                 </Stack>
             </Box>
             <Box sx={{
@@ -118,7 +126,7 @@ export default function UserProfilePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                paddingBottom: 9
+                paddingBottom: 7
                 }}>Upvotes: {upvoteCount}
             </Box>
             <Box component="span" sx={{ 
@@ -133,7 +141,7 @@ export default function UserProfilePage() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 }}>
-                <Button sx={{ width: 130, padding: 1, margin: 1 }} color="secondary" onClick={() => history.push('/myreports')} variant="contained">
+                <Button sx={{ width: 130, padding: 1, margin: 1 }} color="primary" onClick={() => history.push('/myreports')} variant="contained">
                     My Reports
                 </Button>
             </Box>
@@ -142,7 +150,7 @@ export default function UserProfilePage() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 }}>
-                <Button  sx={{ width: 130, padding: 1, margin: 1 }} color="primary" href="/" variant="contained" onClick={() => dispatch({ type: 'LOGOUT' })}>
+                <Button  sx={{ width: 130, padding: 1, margin: 1 }} color="secondary" href="/" variant="contained" onClick={() => dispatch({ type: 'LOGOUT' })}>
                     Log Out
                 </Button>
             </Box>

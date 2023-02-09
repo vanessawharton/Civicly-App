@@ -82,7 +82,7 @@ export default function ProfileUploadForm ({ profileImage, setProfileImage }) {
                 <Button
                     variant='contained'
                     component="label"
-                    sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2, mr: 1, backgroundColor: 'lightgray', color: 'black', borderRadius: 5}}
+                    sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2, mr: 1, backgroundColor: 'primary', color: 'white', borderRadius: 5}}
                     >
                         <AddAPhotoIcon sx={{ display: 'flex', justifyContent: 'center', mr: 1.5 }} />
                         Add Profile Image
@@ -97,7 +97,7 @@ export default function ProfileUploadForm ({ profileImage, setProfileImage }) {
                 <Button 
                     onClick={handleResize} 
                     variant='contained'
-                    sx={{mt: 2, mr: 1, borderRadius: 5, backgroundColor: 'lightgray', color: 'black' }}
+                    sx={{mt: 2, mr: 1, borderRadius: 5, backgroundColor: 'primary', color: 'white' }}
                     >
                     Upload Photo
                 </Button>
