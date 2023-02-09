@@ -173,7 +173,7 @@ Since the app is not client facing at this time - there is no registration page.
  3. **Report Map View** - 
  4. **Add New Report** -  
  5. **Top Citizens** -  
- 6. **Citizen Profile** - 
+ 6. **Citizen Profile** - Users may view their total upvotes and tickets submitted. User's can upload a profile picture. From here users can also navigate to view all your reports submitted which contains ticket information. These individual tickets can also navigate the user to the Report Map where it was placed.
 
 ## Developer Notes
 

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import Nav from '../NavMenu/NavMenu';
@@ -10,18 +9,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { useEffect } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-// .mapping over reports that have a link that pulls up their ticket
-// use a mui list to map over
-// have report links that history.push to the report map
 
 export default function UserReportsPage() {
 
@@ -30,6 +24,7 @@ export default function UserReportsPage() {
     const users = useSelector((store) => store.user);
     const tickets = useSelector((store) => store.ticket);
 
+    // Styling for like button badge
     const StyledBadge = styled(Badge)(({ theme }) => ({
         '& .MuiBadge-badge': {
         right: -3,
@@ -39,13 +34,12 @@ export default function UserReportsPage() {
         },
     }));
 
-
+    // On page load refreshes user specific tickets based on ID
     useEffect(() => {
         dispatch({ type: 'FETCH_USER_TICKETS' })
     }, []);
 
-console.log('whats in tickets: ', tickets);
-
+    // History.pushes to the specific Map Pin for the Ticket you click on
     const handleClick = (ticket) => {
         history.push('/reportmap');
         dispatch({type: 'SET_ACTIVE_MARKER', payload: ticket})

@@ -47,7 +47,9 @@ export default function UploadForm ({ newReport, setNewReport }) {
         if (!resizedFile) {
             alert('Please select a photo to upload');
         }
-
+        // Here is where you select the folder "files" in Firebase that will receive images for ticket photos. 
+        // These names must match here and on Firebase. Create the file in firebase with no forward slashes (case-sensitive).
+        //                            ~~~V~~~~~V~~~
         const storageRef = ref(storage, `/files/${resizedFile.name}`)
         const uploadTask = uploadBytesResumable(storageRef, resizedFile);
 

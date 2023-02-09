@@ -124,7 +124,9 @@ export default function Header() {
                         </Dialog>
                     </Toolbar>
                 </AppBar>
-                <Toolbar />
+                <Toolbar
+                    sx={{ minHeight: 32,
+                    }}/>
             </Box>
         </div>
     );

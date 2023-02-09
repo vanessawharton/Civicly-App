@@ -3,6 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Logo from './Civicly White Logo Large.png';
+import LogOutButton from './LogOutButton';
 
 export default function AdminHeader() {
     return (
@@ -13,16 +14,19 @@ export default function AdminHeader() {
                 sx={{ backgroundColor: '#8A8D9F', }}>
                 <Toolbar
                     sx={{
-                        display: 'flex',
-                        justifyContent: 'center'
+                        // display: 'flex',
+                        justifyContent: 'space-between'
                     }}>
                     <img 
                         src={Logo}
                         style={{ 
                             maxHeight: 40,
-                            margin: 5
+                            margin: 5,
                             }} 
                     />
+                    <LogOutButton style={{
+                        justifyContent: "right"
+                    }} />
                 </Toolbar>
             </AppBar>
             <Toolbar />
