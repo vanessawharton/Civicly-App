@@ -9,6 +9,7 @@ import SubcategoryDropdown from './SubcategoryDropdown';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import { Divider, Typography } from '@mui/material';
 
 
 export default function IssueFormView({ newReport, setNewReport, anon, setAnon, subcategories, category }) {
@@ -16,25 +17,12 @@ export default function IssueFormView({ newReport, setNewReport, anon, setAnon, 
     const handleToggle = () => {
         setAnon(!anon)
     }
+    console.log(category);
 
     return(
         <Container component="main" maxWidth="xs">
             <Box>
-                {/* <TextField
-                    margin="normal"
-                    fullWidth
-                    id="report"
-                    label="Report"
-                    name="report"
-                    autoFocus
-                    />
-                    <TextField
-                    margin="normal"
-                    fullWidth
-                    id="license-plate-number"
-                    label="License Plate Number"
-                    name="license-plate-number"
-                    /> */}
+                <Typography sx={{mb: 1, mt: 1}} variant="h5">{subcategories.filter(subcategory => subcategory.category === category)[0].categoryName} Issue</Typography>
                 <SubcategoryDropdown
                     category={category}
                     subcategories={subcategories}
@@ -63,20 +51,6 @@ export default function IssueFormView({ newReport, setNewReport, anon, setAnon, 
                         label="Submit Anonymously"
                     />
                 </FormGroup>
-                    {/* <ListItem
-                    key={'anon-switch'}
-                    secondaryAction={
-                        <Box sx={{display: "inline-flex", flexDirection: "row"}}>
-                            <Switch
-                                edge="start"
-                                onChange={handleToggle}
-                                checked={anon}
-                            />
-                        </Box>
-                    }
-                >
-                    <ListItemText primary={`Submit Anonymously`} />
-                </ListItem> */}
                 <UploadForm
                     newReport={newReport}
                     setNewReport={setNewReport}/>
