@@ -7,11 +7,14 @@ import Typography from '@mui/material/Typography';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import Nav from '../NavMenu/NavMenu';
 import Header from '../Header/Header';
 import { useSelector } from "react-redux";
+import ProfileUploadForm from './ProfileUploadForm';
+
 // ~~~ WORK IN PROGRESS ~~~
 
 // Styled somewhat
@@ -27,16 +30,27 @@ export default function UserProfilePage() {
     const ticketCount = useSelector((store) => store.ticketCount);
     const upvoteCount = useSelector((store) => store.upvotes);
 
+    const [open, setOpen] = React.useState(false);
+
 
     useEffect(() => {
         dispatch({ type: 'FETCH_ALL_TICKETS' })
         dispatch({ type: 'FETCH_TICKET_COUNT' })
         dispatch({ type: 'FETCH_USER_UPVOTES' })
     }, []);
-    
 
-    console.log('whats in ticket count: ', ticketCount);
-    console.log('what in upvote sum: ', upvoteCount);
+// dialog for edit profile pic
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+        dispatch({ type: 'PUT_PROFILE_IMAGE', payload: profileImage })
+
+    };
+
+    const [profileImage, setProfileImage] = React.useState('')
 
     return (
         <>
@@ -50,18 +64,38 @@ export default function UserProfilePage() {
                 </Typography>
                 </center>
                     <IconButton sx={{ gridRow: '1', justifySelf: 'right' }} color="black" size="medium" aria-label="edit profile" component="label">
-                        <EditOutlinedIcon fontSize="large"/>
+                        <EditOutlinedIcon fontSize="large" onClick={handleClickOpen}/>
                     </IconButton>
+                <Dialog sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}} open={open} onClose={handleClose}>
+                    <DialogTitle sx={{ display: 'grid', justifyContent: 'center', alignItems: 'center'}} id="alert-dialog-title">
+                        {`Update Profile Image`}
+                    </DialogTitle>
+                    <DialogContent>
+                        <Stack sx={{ justifyContent: 'center' }} direction="row" spacing={2}>
+                            <Avatar
+                            alt="Profile Image"
+                            src={profileImage}
+                            sx={{ width: 150, height: 150, alignSelf: 'center'}}
+                            />
+                        </Stack>
+                        <ProfileUploadForm 
+                            profileImage={profileImage}
+                            setProfileImage={setProfileImage}/>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose}>Save</Button>
+                    </DialogActions>
+                </Dialog>
             </Box><br></br>
             <Box sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
             }}>
-                <Stack direction="row" spacing={2}>
+                <Stack paddingBottom={1} direction="row" spacing={2}>
                     <Avatar
                     alt="Profile Image"
-                    src=""
+                    src={users.image_url}
                     sx={{ width: 150, height: 150 }}
                     />
                 </Stack>
@@ -71,34 +105,38 @@ export default function UserProfilePage() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontWeight: 'bold',
-                fontSize: 'h6.fontSize'
+                fontSize: 'h6.fontSize',
+                paddingBottom: 7
             }}>
                 {users.username}
-            </Box><br></br><br></br>
+            </Box>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                paddingBottom: 2
                 }}>Reports Submitted: {ticketCount}
-            </Box><br></br>
+            </Box>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                paddingBottom: 9
                 }}>Upvotes: {upvoteCount}
-            </Box><br></br>
+            </Box>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                }}>Zip Code: {users.zipcode}
-            </Box><br></br>
+                paddingBottom: 2
+                }}>ZIP Code: {users.zipcode}
+            </Box>
             <Box component="span" sx={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 }}>
-                <Button sx={{ padding: 1, margin: 1 }} color="secondary" onClick={() => history.push('/myreports')} variant="contained">
+                <Button sx={{ width: 130, padding: 1, margin: 1 }} color="secondary" onClick={() => history.push('/myreports')} variant="contained">
                     My Reports
                 </Button>
             </Box>

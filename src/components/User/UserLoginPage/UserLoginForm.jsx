@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
+import { Button, TextField, Typography } from '@mui/material';
 
 function UserLoginForm() {
   const [username, setUsername] = useState('');
@@ -41,14 +42,45 @@ function UserLoginForm() {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-          <form className="formPanel" onSubmit={login}>
-            <h2>Welcome Back!</h2>
+          <Box component="form" className="formPanel" onSubmit={login}>
+            <Typography variant="h4">Welcome Back!</Typography>
             {errors.loginMessage && (
               <h3 className="alert" role="alert">
                 {errors.loginMessage}
               </h3>
             )}
-              <label htmlFor="username">
+            <div>
+              <TextField
+                  margin="normal"
+                  sx={{backgroundColor: "rgba(255, 255, 255, .75)"}}
+                  required
+                  fullWidth
+                  id="userName"
+                  label="Username"
+                  name="username"
+                  type="username"
+                  autoComplete="username"
+                  value={username}
+                  onChange={(event) => setUsername(event.target.value)}
+                  autoFocus
+                />
+            </div>
+            <div>
+              <TextField
+                    margin="normal"
+                    sx={{backgroundColor: "rgba(255, 255, 255, .75)"}}
+                    required
+                    fullWidth
+                    id="password"
+                    label="Password"
+                    name="password"
+                    type="password"
+                    autoComplete="password"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                  />
+            </div>
+              {/* <label htmlFor="username">
                 Username:
                 <input
                   type="text"
@@ -67,11 +99,13 @@ function UserLoginForm() {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                 />
-              </label>
-              <input className="btn" type="submit" name="submit" value="Log In" />
-          </form>
+              </label> */}
+              <div>
+                <Button sx={{mt:2}} variant='contained' type="submit" name="submit" value="Log In">Log in</Button>
+              </div>
           </Box>
-        <Link onClick={() => {history.push('/register');}}>Don't have a login? Register here!</Link>
+          </Box>
+        <Button onClick={() => {history.push('/register');}}>Don't have a login? Register here!</Button>
       </Container>
     </div>
   );

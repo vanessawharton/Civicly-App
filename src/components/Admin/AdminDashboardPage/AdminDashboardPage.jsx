@@ -7,7 +7,6 @@ import { Grid, TextField } from "@mui/material"
 import { useHistory, useParams } from 'react-router-dom';
 import { Button, InputLabel, FormControl, NativeSelect } from '@mui/material';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-
 import './AdminDashboardPage.css';
 import { useSelector } from "react-redux";
 
@@ -74,14 +73,14 @@ export default function AdminDashBoardPage() {
 
     return (
         <>
-            <AdminHeader />
+            <AdminHeader /><br/><br/>
             <div className="body">
                 
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }}
                     display="flex"
                     justifyContent="center"
                 >
-                    <Grid item xs={2} sm={3} md={3}
+                    {/* <Grid item xs={2} sm={3} md={3}
                         display="flex"
                         justifyContent="center"
                         justify="center"
@@ -113,7 +112,7 @@ export default function AdminDashBoardPage() {
                             onClick={handleReporting}
                         >Reporting
                         </Button>
-                    </Grid>
+                    </Grid> */}
                     <Grid>
                         <br />
                         <Grid item xs={12}
@@ -131,7 +130,7 @@ export default function AdminDashBoardPage() {
                         alignItems="center"
                         marginLeft={5}
                         marginRight={5}>
-                        <AdminDataTable />
+                        <AdminDataTable /><br/><br/>
                     </Grid>
                 </Grid>
                 <Dialog open={open} onClose={handleClose}>

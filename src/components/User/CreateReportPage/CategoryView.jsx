@@ -13,8 +13,7 @@ import RemoveRoadRoundedIcon from '@mui/icons-material/RemoveRoadRounded';
 import ReportRoundedIcon from '@mui/icons-material/ReportRounded';
 
 
-export default function CategoryView(newReport, setNewReport) {
-    const [category, setCategory] = useState();
+export default function CategoryView({ newReport, setNewReport, category, setCategory }) {
     const ref = useRef(null);
 
     return (

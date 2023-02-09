@@ -6,13 +6,12 @@ import { Button, InputLabel, Select, MenuItem, FormControl, NativeSelect, Link }
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { Box } from '@mui/system';
+import ReportDetailMap from '../ReportDetailMap/ReportDetailMap';
+import './AdminDataTable.css';
 
 
-
-
-export default function AdminDataTable() {
-
-
+export default function AdminDataTable({ theme }) {
 
     const tickets = useSelector((store) => store.ticket);
     const user = useSelector((store) => store.user);
@@ -26,8 +25,9 @@ export default function AdminDataTable() {
     const [status, setStatus] = useState('');
     const [category, setCategory] = useState('');
     const [subcategory, setSubcategory] = useState('');
-    const [location, setLocation] = useState('');
-    // const [submittedBy, setSubmittedBy] = useState();
+    const [latitude, setLatitude] = useState('');
+    const [longitude, setLongitude] = useState('');
+    const [submittedBy, setSubmittedBy] = useState('');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
     const [license, setLicense] = useState('');
@@ -49,16 +49,18 @@ export default function AdminDataTable() {
 
     useEffect(() => {
         console.log('ticket details are:', ticketDetails)
+        
     }, [ticketDetails]);
 
     const columns = [
-        { field: 'id', headerName: 'Report #', width: 70 },
-        { field: 'status', headerName: 'Status', width: 100 },
-        { field: 'categoryName', headerName: 'Category', width: 175 },
-        { field: 'subcategory', headerName: 'Subcategory', width: 175 },
-        { field: 'date', headerName: 'Date', width: 100 },
+        { field: 'id', headerName: 'Report #', headerAlign: 'center', width: 100 },
+        { field: 'status', headerName: 'Status', headerAlign: 'center', width: 100 },
+        { field: 'categoryName', headerName: 'Category', headerAlign: 'center', width: 175 },
+        { field: 'subcategory', headerName: 'Subcategory', headerAlign: 'center', width: 175 },
+        { field: 'date', headerName: 'Date', headerAlign: 'center', width: 200, 
+        valueGetter: (params) => new Date(params.row.date).toLocaleDateString() },
         // { field: 'username', headerName: 'Citizen', width: 100 },
-        { field: 'description', headerName: 'Details', width: 265 }
+        { field: 'description', headerName: 'Details', headerAlign: 'center', width: 265 }
     ];
 
     const handleDetails = (ticket) => {
@@ -67,16 +69,19 @@ export default function AdminDataTable() {
         setStatus(ticket.row.status);
         setCategory(ticket.row.categoryName);
         setSubcategory(ticket.row.subcategory);
-        // setLocation(row.location); still need to figure this out
+        setLatitude(ticket.row.latitude);
+        setLongitude(ticket.row.longitude);
         setDate(ticket.row.date);
         setDescription(ticket.row.description);
         setImage(ticket.row.image_url);
-        // setUsername(user.username);
+        // setUsername(ticket.row.user_id)
         setUserId(ticket.row.user_id);
         setOpen(true);
-        // setTicketDetails(ticket);
+    }
 
-    };
+    // const dateGetter = (date) => {
+    //     new Date(date).toLocaleDateString()
+    // }
 
     const handleClose = () => {
         setOpen(false);
@@ -88,34 +93,44 @@ export default function AdminDataTable() {
     }
 
     const handleSendStatusUpdate = () => {
-        //dispatch 'UPDATE_TICKET_STATUS' with the new status to DB
-        //or handle in the onChange of the status Select component below
-        //this is where we handle sending notification too?
         dispatch({ type: 'UPDATE_TICKET_STATUS', payload: ticketDetails })
         dispatch({ type: 'SEND_NOTIFICATION', payload: ticketDetails })
         setStatusOpen(false);
         setOpen(false);
     }
 
-    const handleSeeMap = () => {
-        console.log('see map button clicked');
-        //this is where we would handle showing the map view based
-        //on the geolocation of submitted ticket
-    }
-
     return (
-        <div style={{ height: 400, width: '100%' }}>
-            <DataGrid sx={{ m: 2 }}
-                rows={tickets} onRowClick={handleDetails}
+        <Box sx={{
+            height: 400,
+            width: '100%',
+            '& .MuiDataGrid-columnHeaders': {
+                backgroundColor: '#8cd1ff',
+            },
+        }}
+        >
+            <DataGrid sx={{
+                boxShadow: 2,
+                border: 2,
+                borderColor: 'primary.light',
+                '& .MuiDataGrid-cell:hover': {
+                    color: 'palette.primary.main',
+                },
+            }}
+                rows={tickets} 
+                onRowClick={handleDetails}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
             />
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Report Details</DialogTitle>
-                <DialogContent>
+                <DialogTitle>Report Details</DialogTitle><Button edge="end" position="fixed" style={{ backgroundColor: "#bf0000" }}
+                    variant="contained"
+                    onClick={handleUpdateStatus}
+                >Update Status</Button>
+                <DialogContent display="flex"
+                >
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Report Number"
@@ -123,13 +138,12 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     /><br /><br />
-                    <Button variant="contained"
-                        onClick={handleSeeMap}
-                    >See Map Location
-                    </Button>
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Last Status Update"
@@ -137,13 +151,24 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     /><br /><br />
-                    <Button style={{ backgroundColor: "#bf0000" }}
-                        variant="contained"
-                        onClick={handleUpdateStatus}
-                    >Update Status</Button><br />
+                    <DialogContentText className="img-txt">
+                        Report Image
+                    </DialogContentText>
+                    <img className="report-image" style={{ maxHeight: 300, MaxWidth: 300 }} src={image} />
+                    <br /><br />
+                    <DialogContentText className="img-txt">
+                        Report Location
+                    </DialogContentText>
+                    <ReportDetailMap
+                        latitude={latitude}
+                        longitude={longitude} /><br /><br />
+
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Category"
@@ -151,9 +176,12 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     />
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Subcategory"
@@ -161,42 +189,40 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     />
                     <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Submitted By"
-                        value={username}
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                    />
-                    <TextField
-                        autoFocus
                         margin="dense"
                         id="name"
                         label="Date"
-                        value={date}
+                        value= {new Date(date).toLocaleDateString()}
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     />
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
-                        label="Notes"
+                        label="Notes from Citizen"
                         value={description}
                         type="text"
                         fullWidth
                         multiline
                         maxRows={10}
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     />
 
                     <TextField
-                        autoFocus
+
                         margin="dense"
                         id="name"
                         label="Internal Comments"
@@ -204,18 +230,16 @@ export default function AdminDataTable() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
                     />
-                    {/* <img>need to include user image here</img> */}
                 </DialogContent>
                 <DialogActions>
                     <Button style={{ backgroundColor: "#5A5A5A" }}
                         variant="contained"
                         onClick={handleClose}
                     >Back To Dashboard</Button>
-                    <Button style={{ backgroundColor: "#bf0000" }}
-                        variant="contained"
-                        onClick={handleUpdateStatus}
-                    >Update Status</Button>
                 </DialogActions>
             </Dialog>
             <Dialog
@@ -255,6 +279,6 @@ export default function AdminDataTable() {
                     </FormControl>
                 </DialogActions>
             </Dialog>
-        </div>
+        </Box>
     );
 }

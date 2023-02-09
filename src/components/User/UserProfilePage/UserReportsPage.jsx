@@ -10,6 +10,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import { styled } from '@mui/material/styles';
+import Badge from '@mui/material/Badge';
+import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { useEffect } from 'react';
 import { useSelector } from "react-redux";
@@ -25,14 +30,26 @@ export default function UserReportsPage() {
     const users = useSelector((store) => store.user);
     const tickets = useSelector((store) => store.ticket);
 
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+        right: -3,
+        top: 2,
+        border: `2px solid ${theme.palette.background.paper}`,
+        padding: '0 4px',
+        },
+    }));
+
 
     useEffect(() => {
-        window.scrollTo(0, 0)
-        dispatch({ type: 'FETCH_ALL_TICKETS' })
+        dispatch({ type: 'FETCH_USER_TICKETS' })
     }, []);
 
 console.log('whats in tickets: ', tickets);
 
+    const handleClick = (ticket) => {
+        history.push('/reportmap');
+        dispatch({type: 'SET_ACTIVE_MARKER', payload: ticket})
+    }
 
     return (
         <> 
@@ -51,20 +68,20 @@ console.log('whats in tickets: ', tickets);
                 {users.username}'s Reports
             </Box>
             <Divider sx={{margin: 3}}/>
-            <nav aria-label="secondary mailbox folders">
                 <List>
                 {tickets.map((ticket, i) => (
-                <ListItem disablePadding key={i}>
-                    <ListItemButton component="a" onClick={() => history.push('/reportmap')}>
-                        <ListItemText primary={`${ticket.categoryName}: ${ticket.subcategory}`} secondary={`Status: ${ticket.status} - ${ticket.description}`}/>
+                <ListItem sx={{ paddingLeft: 3 }} disablePadding key={i}>
+                    <StyledBadge sx={{marginRight: 1}} badgeContent={ticket.upvotes} color="primary">
+                        <ThumbUpAltIcon color="action" />
+                    </StyledBadge>
+                    <ListItemButton component="a" onClick={() => handleClick(ticket)}>
+                        <ListItemText primary={`${ticket.subcategory}: Status - ${ticket.status}`} secondary={`Description: ${ticket.description}`}/>
                     </ListItemButton>
                 </ListItem>
                 ))}
+                <ListItem sx={{paddingBottom: 11}}>
+                </ListItem>
                 </List>
-                    <IconButton aria-label="back" size="large" onClick={() => history.push('/profile')}>
-                    <ArrowBackIosNewIcon/> Back
-                    </IconButton>
-            </nav>
             <Nav/>
         </>
     )

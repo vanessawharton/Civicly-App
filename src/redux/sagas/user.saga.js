@@ -24,8 +24,19 @@ function* fetchUser() {
   }
 }
 
+// USER profile image PUT
+function* putUserProfileImage(action) {
+  try {
+      yield axios.put('/api/user/profileImage', {image_url: action.payload});
+      yield put({ type: 'FETCH_USER' });
+  } catch (error) {
+      console.log('Profile Image PUT request failed', error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('PUT_PROFILE_IMAGE', putUserProfileImage);
 }
 
 export default userSaga;

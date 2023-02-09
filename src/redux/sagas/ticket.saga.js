@@ -1,16 +1,17 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// Ticket GET
-// function* fetchTicket() {
-//     try {
-//         const response = yield axios.get('/api/ticket');
+// Ticket GET ticker by user ID
+function* fetchUserTickets(action) {
 
-//         yield put({ type: 'SET_TICKET', payload: response.data });
-//     } catch (error) {
-//         console.log('Ticket GET request failed', error);
-//     }
-// }
+    try {
+        const response = yield axios.get('/api/ticket/user/'+ action.payload);
+        console.log('whats in set tickets by user id', response.data );
+        yield put({ type: 'SET_USER_TICKETS', payload: response.data });
+    } catch (error) {
+        console.log('User Tickets by ID GET request failed', error);
+    }
+}
 
 // Ticket POST
 function* postTicket(action) {
@@ -112,6 +113,7 @@ function* ticketSaga() {
     //yield takeLatest('FETCH_TICKET', fetchTicket);
     yield takeLatest('POST_TICKET', postTicket);
     yield takeLatest('FETCH_ALL_TICKETS', fetchAllTickets);
+    yield takeLatest('FETCH_USER_TICKETS', fetchUserTickets);
     yield takeLatest('FETCH_USER_UPVOTES', fetchUserTicketUpvotes);
     yield takeLatest('FETCH_TICKET_COUNT', fetchUserTicketCount);
     yield takeLatest('UPDATE_TICKET_STATUS', updateTicketStatus);

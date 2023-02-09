@@ -4,9 +4,10 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Resizer from "react-image-file-resizer";
 import { Button, Input, Divider, Typography, RaisedButton } from "@mui/material";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import Box from '@mui/material/Box';
 
 
-export default function UploadForm ({ newReport, setNewReport }) {
+export default function ProfileUploadForm ({ profileImage, setProfileImage }) {
     // image resizer
     const resizeFile = (file) =>
         new Promise((resolve) => {
@@ -23,10 +24,10 @@ export default function UploadForm ({ newReport, setNewReport }) {
         });
 
 
-    // const [file, setFile] = useState('');
+    const [file, setFile] = useState('');
     const [percent, setPercent] = useState(0);
     
-    const handleResize = async (file) => {
+    const handleResize = async () => {
         try {
             const resizedFile = await resizeFile(file)
             await console.log(resizedFile)
@@ -38,9 +39,7 @@ export default function UploadForm ({ newReport, setNewReport }) {
     }
 
     const handleChange = (event) => {
-        // setFile(event.target.files[0])
-        handleResize(event.target.files[0])
-
+        setFile(event.target.files[0])
     }
 
     const handleUpload =  resizedFile => {
@@ -48,7 +47,7 @@ export default function UploadForm ({ newReport, setNewReport }) {
             alert('Please select a photo to upload');
         }
 
-        const storageRef = ref(storage, `/files/${resizedFile.name}`)
+        const storageRef = ref(storage, `/profile-images/${resizedFile.name}`)
         const uploadTask = uploadBytesResumable(storageRef, resizedFile);
 
 
@@ -66,8 +65,8 @@ export default function UploadForm ({ newReport, setNewReport }) {
             () => {
                 // download url
                 getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                    setNewReport({...newReport, imageUrl: url})
-                    console.log(newReport);
+                    setProfileImage(url)
+                    console.log(profileImage);
                 });
                 }
         ); 
@@ -76,32 +75,34 @@ export default function UploadForm ({ newReport, setNewReport }) {
 
     return (
         <>
-            <Button
-                variant='contained'
-                component="label"
-                sx={{ display: 'flex', mt: 2, mr: 1, backgroundColor: 'lightgray', color: 'black', borderRadius: 5}}
-                >
-                    <AddAPhotoIcon sx={{ mr: 1.5 }} />
-                    Add Photo
-                <input 
-                    hidden
-                    type="file" 
-                    accept="image/*" 
-                    onChange={handleChange} />
-            </Button>
-            <br />
-            <Divider />
-            {/* <Button 
-                onClick={handleResize} 
-                variant='contained'
-                sx={{mt: 2, mr: 1, borderRadius: 5, backgroundColor: 'lightgray', color: 'black' }}
-                >
-                Upload Photo
-            </Button> */}
-            {/* <Typography 
-                sx={{ mt: 2, mr: 1 }}>
-                    {percent} % uploaded
-            </Typography> */}
+            <Box sx={{ display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+                <Button
+                    variant='contained'
+                    component="label"
+                    sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2, mr: 1, backgroundColor: 'lightgray', color: 'black', borderRadius: 5}}
+                    >
+                        <AddAPhotoIcon sx={{ display: 'flex', justifyContent: 'center', mr: 1.5 }} />
+                        Add Profile Image
+                    <input 
+                        hidden
+                        type="file" 
+                        accept="image/*" 
+                        onChange={handleChange} />
+                </Button>
+                <br />
+                <Divider />
+                <Button 
+                    onClick={handleResize} 
+                    variant='contained'
+                    sx={{mt: 2, mr: 1, borderRadius: 5, backgroundColor: 'lightgray', color: 'black' }}
+                    >
+                    Upload Photo
+                </Button>
+                <Typography 
+                    sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2, mr: 1 }}>
+                        {percent} % uploaded
+                </Typography>
+            </Box>
         </>
     )
 }
