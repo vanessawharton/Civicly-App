@@ -134,6 +134,10 @@ export default function CreateReportPage() {
                     variant='h5'
                     sx={{
                         backgroundColor: "#FFBC00",
+                        pt: 1,
+                        pb: 1,
+                        mb: 1,
+                        borderRadius: 1
                     }}
                 >
                     Create New Report
