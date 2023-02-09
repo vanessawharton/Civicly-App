@@ -80,7 +80,7 @@ function Map (props) {
         style={{
             left: '50%',
             marginLeft: -28,
-            marginTop: -160,
+            marginTop: -130,
             position: 'fixed',
             top: '50%',
             bottom: '50%',

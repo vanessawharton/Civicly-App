@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 import ReportDetailMap from '../ReportDetailMap/ReportDetailMap';
+import Swal from 'sweetalert2'
 import './AdminDataTable.css';
 
 
@@ -79,10 +80,6 @@ export default function AdminDataTable({ theme }) {
         setOpen(true);
     }
 
-    // const dateGetter = (date) => {
-    //     new Date(date).toLocaleDateString()
-    // }
-
     const handleClose = () => {
         setOpen(false);
     }
@@ -95,6 +92,11 @@ export default function AdminDataTable({ theme }) {
     const handleSendStatusUpdate = () => {
         dispatch({ type: 'UPDATE_TICKET_STATUS', payload: ticketDetails })
         dispatch({ type: 'SEND_NOTIFICATION', payload: ticketDetails })
+        Swal.fire({
+            text: 'Report Status Updated!',
+            confirmButtonColor: '#8cd1ff',
+            confirmButtonText: 'OK'
+        })
         setStatusOpen(false);
         setOpen(false);
     }
