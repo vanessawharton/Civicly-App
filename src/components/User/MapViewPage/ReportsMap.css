@@ -1,5 +1,5 @@
 .map-container {
-    width: 90%;
+    width: 90vw;
     height: 60vh;
     display: block;
     margin-left: auto;
@@ -15,20 +15,9 @@
     margin: 5px;
     border-radius: 3px;
     overflow: hidden;
-    position: center;
 }
 
 .infoWindowContent {
     display: flex;
     flex-direction: row;
-}
-
-/* .infoWindow-heading{
-    height: auto;
-    font-weight: 700;
-    color: black;
-} */
-
-.textContainer {
-    width: 90px;
 }
