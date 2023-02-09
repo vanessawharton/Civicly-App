@@ -3,6 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Logo from './Civicly White Logo Large.png';
+import LogOutButton from './LogOutButton';
 
 export default function AdminHeader() {
     return (
@@ -23,6 +24,7 @@ export default function AdminHeader() {
                             margin: 5
                             }} 
                     />
+                    <LogOutButton />
                 </Toolbar>
             </AppBar>
             <Toolbar />

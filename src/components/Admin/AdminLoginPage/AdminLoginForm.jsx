@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Button, TextField, Box } from '@mui/material';
+import { useHistory } from 'react-router-dom';
 
 export default function AdminLoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const errors = useSelector(store => store.errors);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const login = (event) => {
         event.preventDefault();
@@ -20,7 +22,7 @@ export default function AdminLoginForm() {
                     password: password,
                 },
             });
-            //add a history.push here, or handle routing in the app.js file
+            history.pushState('/admin/dashboard');
         } else {
             dispatch({ type: 'LOGIN_INPUT_ERROR' });
         }
