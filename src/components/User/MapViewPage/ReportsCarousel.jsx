@@ -46,7 +46,7 @@ export default function ReportCarousel({handleActiveMarker}) {
         return (
         <div key={report.id} onClick={() => handleActiveMarker(report)} >
             <Card sx={{m: .5}}>
-              <CardContent sx={{height: 90}}>
+              {/* <CardContent sx={{height: 90}}> */}
                 <CardMedia
                 component="img"
                 height="75"
@@ -54,20 +54,26 @@ export default function ReportCarousel({handleActiveMarker}) {
                 />
                 <Typography 
                   fontWeight={700}
-                  fontSize={7}>
+                  fontSize={7}
+                  sx={{ml: .5}}
+                  >
                     {report.categoryName}
                 </Typography>
                 <Typography 
                   fontWeight={700}
-                  fontSize={7}>
-                    Reported:{report.date}
+                  fontSize={7}
+                  sx={{ml: .5}}
+                  >
+                    Reported:{new Date(report.date).toLocaleDateString()}
                 </Typography>
                 <Typography 
                   fontWeight={700}
-                  fontSize={7}>
+                  fontSize={7}
+                  sx={{ml: .5}}
+                  >
                     Status:{report.status}
                 </Typography>
-              </CardContent>
+              {/* </CardContent> */}
             </Card>
         </div>
             )
