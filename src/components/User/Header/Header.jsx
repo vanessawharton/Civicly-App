@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useState, useRef, forwardRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,15 +18,18 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import { useSelector } from "react-redux";
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="down" ref={ref} {...props} />;
 });
 
 export default function Header() {
-    const [open, setOpen] = React.useState(false);
-    const [hidden, setHidden] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [hidden, setHidden] = useState(false);
 
     const notifications = useSelector((store) => store.notifications);
+    console.log(notifications);
+
+    const dispatch = useDispatch();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -38,6 +42,24 @@ export default function Header() {
     const hideNotification = () => {
         setHidden(true);
     };
+
+    useEffect(() => {
+
+        dispatch({ type: 'FETCH_NOTIFICATIONS' });
+
+        const getNotifications = () => {
+            dispatch({ type: 'FETCH_NOTIFICATIONS' });
+        }
+
+        getNotifications();
+
+        const interval= setInterval(() => {
+            getNotifications()
+        }, 180000);
+
+        return () => clearInterval(interval);
+
+    }, []);
 
     return (
         <div>
@@ -103,7 +125,7 @@ export default function Header() {
                                 </Toolbar>
                             </AppBar>
                             <List sx={{ pt: 0 }}>
-                                {/* {notifications.map((notification) => (
+                                {notifications.map((notification) => (
                                     <ListItem>
                                         <ListItemButton onClick={() => handleMsgClick(notification)} key={notification} >
                                             <ListItemText primary={notification.notification_status} secondary={notification.comments} />
@@ -118,7 +140,7 @@ export default function Header() {
                                             <CloseIcon />
                                         </IconButton>
                                     </ListItem>
-                                ))} */}
+                                ))}
                                 <Divider />
                             </List>
                         </Dialog>
