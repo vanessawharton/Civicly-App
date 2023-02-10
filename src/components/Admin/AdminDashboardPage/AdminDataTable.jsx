@@ -281,7 +281,6 @@ export default function AdminDataTable({ theme }) {
                         <Select labelId="status-update"
                             id="status-update"
                             value={status}
-                            label="Update Status"
                             onChange={(e) => {
                                 console.log('Status updated to: ', e.target.value)
                                 setStatus(e.target.value)
