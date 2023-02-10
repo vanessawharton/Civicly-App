@@ -291,7 +291,7 @@ export default function AdminDataTable({ theme }) {
                             <MenuItem value="Accepted">Accepted</MenuItem>
                             <MenuItem value="Dispatched">Dispatched</MenuItem>
                             <MenuItem value="Closed">Closed</MenuItem>
-                        </Select>
+                        </Select><br/>
                         <Button variant="contained"
                             onClick={handleSendStatusUpdate}
                         >Send Status Update</Button>
