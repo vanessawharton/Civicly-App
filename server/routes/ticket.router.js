@@ -6,7 +6,7 @@ const {
 } = require('../modules/authentication-middleware');
 
 /**
- * GET ticket route
+ * GET tickets route by user desc order most recent
  */
 router.get('/user/:id', rejectUnauthenticated, (req, res) => {
     const query = `SELECT "Ticket".*, "Subcategories"."name" AS "subcategory"
@@ -15,7 +15,8 @@ router.get('/user/:id', rejectUnauthenticated, (req, res) => {
     ON "Subcategories"."id" = "Ticket"."subcategory_id"
     JOIN "User" 
     ON "User"."id" = "Ticket"."user_id"
-    WHERE "user_id" = $1`;
+    WHERE "user_id" = 1
+    ORDER BY "id" DESC;`;
 
     pool.query(query, [req.user.id])
         .then(result => {
