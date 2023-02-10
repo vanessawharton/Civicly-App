@@ -16,7 +16,7 @@ function ReportsMap(){
 
   const [latitude, setLatitude] = useState(44.9778);
   const [longitude, setLongitude] = useState(-93.2650);
-  const [focus, setFocus] = useState(8);
+  const [focus, setFocus] = useState(10);
   const [activeMarker, setActiveMarker] = useState(null);
   const [mapref, setMapRef] = useState(null);
   const [upvoteSelected, setUpvoteSelected] = useState(false);
