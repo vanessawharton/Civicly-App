@@ -38,6 +38,7 @@ export default function AdminDataTable({ theme }) {
     const [open, setOpen] = useState(false);
     const [statusOpen, setStatusOpen] = useState(false);
     const [userId, setUserId] = useState('');
+    const [upvotes, setUpvotes] = useState('');
     // const [ticketDetails, setTicketDetails] = useState();
 
     const ticketDetails = {
@@ -50,7 +51,7 @@ export default function AdminDataTable({ theme }) {
 
     useEffect(() => {
         console.log('ticket details are:', ticketDetails)
-        
+
     }, [ticketDetails]);
 
     const columns = [
@@ -58,8 +59,10 @@ export default function AdminDataTable({ theme }) {
         { field: 'status', headerName: 'Status', headerAlign: 'center', width: 100 },
         { field: 'categoryName', headerName: 'Category', headerAlign: 'center', width: 175 },
         { field: 'subcategory', headerName: 'Subcategory', headerAlign: 'center', width: 175 },
-        { field: 'date', headerName: 'Date', headerAlign: 'center', width: 200, 
-        valueGetter: (params) => new Date(params.row.date).toLocaleDateString() },
+        {
+            field: 'date', headerName: 'Date', headerAlign: 'center', width: 200,
+            valueGetter: (params) => new Date(params.row.date).toLocaleDateString()
+        },
         // { field: 'username', headerName: 'Citizen', width: 100 },
         { field: 'description', headerName: 'Details', headerAlign: 'center', width: 265 }
     ];
@@ -77,6 +80,7 @@ export default function AdminDataTable({ theme }) {
         setImage(ticket.row.image_url);
         // setUsername(ticket.row.user_id)
         setUserId(ticket.row.user_id);
+        setUpvotes(ticket.row.upvotes);
         setOpen(true);
     }
 
@@ -118,7 +122,7 @@ export default function AdminDataTable({ theme }) {
                     color: 'palette.primary.main',
                 },
             }}
-                rows={tickets} 
+                rows={tickets}
                 onRowClick={handleDetails}
                 columns={columns}
                 pageSize={5}
@@ -150,6 +154,20 @@ export default function AdminDataTable({ theme }) {
                         id="name"
                         label="Last Status Update"
                         value={status}
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
+                    />
+
+                    <TextField
+
+                        margin="dense"
+                        id="name"
+                        label="Citizen Upvotes"
+                        value={upvotes}
                         type="text"
                         fullWidth
                         variant="standard"
@@ -199,7 +217,7 @@ export default function AdminDataTable({ theme }) {
                         margin="dense"
                         id="name"
                         label="Date"
-                        value= {new Date(date).toLocaleDateString()}
+                        value={new Date(date).toLocaleDateString()}
                         type="text"
                         fullWidth
                         variant="standard"
@@ -223,7 +241,7 @@ export default function AdminDataTable({ theme }) {
                         }
                     />
 
-                    <TextField
+                    {/* <TextField
 
                         margin="dense"
                         id="name"
@@ -235,7 +253,7 @@ export default function AdminDataTable({ theme }) {
                         inputProps={
                             { readOnly: true, disabled: true }
                         }
-                    />
+                    /> */}
                 </DialogContent>
                 <DialogActions>
                     <Button style={{ backgroundColor: "#5A5A5A" }}
