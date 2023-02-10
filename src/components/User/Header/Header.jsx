@@ -1,5 +1,6 @@
 import { useState, useRef, forwardRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,6 +18,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import { useSelector } from "react-redux";
+import Badge from '@mui/material/Badge';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { NotificationsNoneOutlined } from '@mui/icons-material';
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="down" ref={ref} {...props} />;
@@ -24,12 +28,19 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 export default function Header() {
     const [open, setOpen] = useState(false);
-    const [hidden, setHidden] = useState(false);
+    // const [invisible, setInvisible] = useState(false);
+    const [hidden, setHidden] = useState('');
+    const [id, setId] = useState('');
 
     const notifications = useSelector((store) => store.notifications);
-    console.log(notifications);
+    
+    const notificationDetail= {
+        id: id,
+        is_hidden: hidden
+    };
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -39,9 +50,19 @@ export default function Header() {
         setOpen(false);
     };
 
-    const hideNotification = () => {
-        setHidden(true);
+    const handleMsgClick =() => {
+        history.push('/myreports');
+    }
+
+    const hideNotification = (notification) => {
+        console.log('notification is:', notification);
+        console.log('notification detail is', notificationDetail);
+        dispatch({ type: 'HIDE_NOTIFICATION', payload: {...notificationDetail, id: notification.id, is_hidden: true} })
     };
+
+    // const handleBadgeVisibility = () => {
+    //     setInvisible(!invisible);
+    // };
 
     useEffect(() => {
 
@@ -60,6 +81,13 @@ export default function Header() {
         return () => clearInterval(interval);
 
     }, []);
+
+    useEffect(() => {
+        console.log('yesification details are:', notificationDetail);
+
+    }, [notificationDetail]);
+
+    console.log("whhhhaaa", !notifications.filter(notification => notification.is_hidden === false).length === 0);
 
     return (
         <div>
@@ -80,21 +108,30 @@ export default function Header() {
                             mb: 5,
                         }}
                     />
-                        <IconButton
-                            size="large"
-                            edge="end"
-                            position="fixed"
-                            color="inherit"
-                            aria-label="notifications-bell"
-                            sx={{
-                                mt: 1,
-                                ml: 5,
-                                color: "#FFBC00",
-                            }}
-                            onClick={handleClickOpen}
-                        >
-                            <NotificationsIcon />
-                        </IconButton>
+                            <IconButton
+                                size="large"
+                                edge="end"
+                                position="fixed"
+                                color="inherit"
+                                aria-label="notifications-bell"
+                                sx={{
+                                    mt: 1,
+                                    ml: 5,
+                                    color: "#FFBC00",
+                                    
+                                }}
+                                onClick={handleClickOpen}
+                            >
+                                <Badge 
+                                    invisible={notifications.filter(notification => notification.is_hidden === false).length === 0}
+                                    fontSize="large"
+                                    color="primary"
+                                    variant="dot"
+                                    overlap="circular"
+                                >
+                                <NotificationsIcon />
+                                </Badge>
+                            </IconButton>
                         <Dialog
                             fullScreen
                             aria-labelledby="customized-dialog-title"
@@ -120,26 +157,28 @@ export default function Header() {
                                         onClick={handleClose}
                                         aria-label="close"
                                     >
-                                        <CloseIcon />
+                                        <HighlightOffIcon />
                                     </IconButton>
                                 </Toolbar>
                             </AppBar>
                             <List sx={{ pt: 0 }}>
-                                {notifications.map((notification) => (
-                                    <ListItem>
-                                        <ListItemButton onClick={() => handleMsgClick(notification)} key={notification} >
-                                            <ListItemText primary={notification.notification_status} secondary={notification.comments} />
-                                        </ListItemButton>
-
-                                        <IconButton
-                                        edge="end"
-                                        color="inherit"
-                                        onClick={hideNotification}
-                                        aria-label="delete"
+                                {notifications.map(notification => (
+                                    !notification.is_hidden && 
+                                        <ListItem
+                                            key={notification.id}
                                         >
-                                            <CloseIcon />
-                                        </IconButton>
-                                    </ListItem>
+                                            <ListItemButton onClick={() => handleMsgClick(notification)} key={notification} >
+                                                <ListItemText primary={notification.notification_status} secondary={notification.comments} />
+                                            </ListItemButton>
+                                            <IconButton
+                                                edge="end"
+                                                color="inherit"
+                                                onClick={() => hideNotification(notification)}
+                                                aria-label="delete"
+                                            >
+                                                <CloseIcon />
+                                            </IconButton>
+                                        </ListItem>
                                 ))}
                                 <Divider />
                             </List>

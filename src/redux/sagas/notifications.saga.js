@@ -33,6 +33,17 @@ function* sendNotification(action) {
     }
 }
 
+// Notifications PUT
+function* hideNotification(action) {
+    console.log('in hideNotification', action.payload);
+    try {
+        yield axios.put('/api/notifications/hidenotification', action.payload)
+        yield put({type: 'FETCH_NOTIFICATIONS'})
+    } catch (error) {
+        console.log('Error in hideNotification', error);
+    }
+}
+
 // Notifications DELETE
 function* deleteNotifications() {
     try {
@@ -47,6 +58,7 @@ function* notificationsSaga() {
     yield takeLatest('FETCH_NOTIFICATIONS', fetchNotifications);
     yield takeLatest('POST_NOTIFICATIONS', postNotifications);
     yield takeLatest('SEND_NOTIFICATION', sendNotification);
+    yield takeLatest('HIDE_NOTIFICATION', hideNotification);
 }
 
 export default notificationsSaga;
