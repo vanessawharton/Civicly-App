@@ -9,7 +9,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded';
+import Stack from '@mui/material/Stack';
+import Avatar from '@mui/material/Avatar';
+import Fab from '@mui/material/Fab';
+import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
@@ -24,11 +28,11 @@ export default function UserReportsPage() {
     const users = useSelector((store) => store.user);
     const tickets = useSelector((store) => store.ticket);
 
-    // Styling for like button badge
+    // Styling for upvote arrow badge
     const StyledBadge = styled(Badge)(({ theme }) => ({
         '& .MuiBadge-badge': {
-        right: -3,
-        top: 2,
+        right: 3,
+        top: 12,
         border: `2px solid ${theme.palette.background.paper}`,
         padding: '0 4px',
         },
@@ -65,9 +69,18 @@ export default function UserReportsPage() {
                 <List>
                 {tickets.map((ticket, i) => (
                 <ListItem sx={{ paddingLeft: 3 }} disablePadding key={i}>
-                    <StyledBadge sx={{marginRight: 1}} badgeContent={ticket.upvotes} color="primary">
-                        <ThumbUpAltIcon color="action" />
-                    </StyledBadge>
+                    <Stack paddingBottom={1} direction="row" spacing={2}>
+                        <StyledBadge
+                            overlap="circular"
+                            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                            color="primary"
+                            badgeContent={ticket.upvotes}
+                        >
+                            <Avatar sx={{ width: 30, height: 30 }} color="black">
+                                <ArrowUpwardRoundedIcon fontSize="small"/>
+                            </Avatar>
+                        </StyledBadge>
+                    </Stack>
                     <ListItemButton component="a" onClick={() => handleClick(ticket)}>
                         <ListItemText primary={`${ticket.subcategory}: Status - ${ticket.status}`} secondary={`Description: ${ticket.description}`}/>
                     </ListItemButton>
