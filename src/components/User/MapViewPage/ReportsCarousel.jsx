@@ -2,8 +2,7 @@ import * as React from 'react';
 import {  useSelector  } from 'react-redux';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Typography } from '@mui/material';
-import { Card, CardContent, CardMedia, Box } from '@mui/material';
+import { Card, CardMedia, Box, Typography } from '@mui/material';
 
 const responsive = {
     tablet: {
@@ -18,7 +17,7 @@ const responsive = {
     }
 };
 
-export default function ReportCarousel({handleActiveMarker}) {
+function ReportCarousel({handleActiveMarker}) {
 
     const reports = useSelector((store) => store.inboundsMarkers);
 
@@ -46,7 +45,6 @@ export default function ReportCarousel({handleActiveMarker}) {
         return (
         <div key={report.id} onClick={() => handleActiveMarker(report)} >
             <Card sx={{m: .5}}>
-              {/* <CardContent sx={{height: 90}}> */}
                 <CardMedia
                 component="img"
                 height="75"
@@ -73,7 +71,6 @@ export default function ReportCarousel({handleActiveMarker}) {
                   >
                     Status:{report.status}
                 </Typography>
-              {/* </CardContent> */}
             </Card>
         </div>
             )
@@ -82,3 +79,5 @@ export default function ReportCarousel({handleActiveMarker}) {
         </Box>
     );
 }
+
+export default ReportCarousel;
