@@ -9,6 +9,19 @@ const {
  * GET notifications route
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
+    const query = 
+    `SELECT * FROM "Notifications"
+    WHERE "user_id" = $1`;
+
+    pool.query(query, [req.user.id])
+        .then(result => {
+            console.log('GET NOTIFICATIONS  ', result.rows)
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log('ERROR: Get all notifications', err);
+            res.sendStatus(500)
+        })
 
 
 });
