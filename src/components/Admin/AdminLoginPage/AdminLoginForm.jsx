@@ -28,54 +28,54 @@ export default function AdminLoginForm() {
         }
     }; // end login
     return (
-            <form
-                className="formPanel" onSubmit={login}>
-                <h2>Civicly Admin Login</h2>
-                {errors.loginMessage && (
-                    <h3 className="alert" role="alert">
-                        {errors.loginMessage}
-                    </h3>
-                )}
-                <div style={{ justifyContent: "center", alignItems: "center" }}>
-                    <label htmlFor="username">
-                        <TextField
-                            variant="standard"
-                            type="text"
-                            label="username"
-                            name="username"
-                            required
-                            value={username}
-                            onChange={(event) => setUsername(event.target.value)}
-                        />
-                    </label>
-                </div>
-                <br />
-                <div>
-                    <label htmlFor="password">
+        <form
+            className="formPanel" onSubmit={login}>
+            <h2>Civicly Admin Login</h2>
+            {errors.loginMessage && (
+                <h3 className="alert" role="alert">
+                    {errors.loginMessage}
+                </h3>
+            )}
+            <div style={{ justifyContent: "center", alignItems: "center" }}>
+                <label htmlFor="username">
+                    <TextField
+                        variant="standard"
+                        type="text"
+                        label="username"
+                        name="username"
+                        required
+                        value={username}
+                        onChange={(event) => setUsername(event.target.value)}
+                    />
+                </label>
+            </div>
+            <br />
+            <div>
+                <label htmlFor="password">
 
-                        <TextField
-                            variant="standard"
-                            label="password"
-                            type="password"
-                            name="password"
-                            required
-                            value={password}
-                            onChange={(event) => setPassword(event.target.value)}
-                        />
-                    </label>
-                </div>
-                <br />
-                <div>
-                    {/* <input className="btn" type="submit" name="submit" value="Log In" /> */}
-                    <Button style={{
-                        color: "#FFFFFF",
-                        backgroundColor: "#50C878"
-                    }}
-                        className="btn" type="submit" name="submit" value="Log In"
-                    >
-                        Log In
-                    </Button>
-                </div>
-            </form>
+                    <TextField
+                        variant="standard"
+                        label="password"
+                        type="password"
+                        name="password"
+                        required
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
+                </label>
+            </div>
+            <br />
+            <div>
+                {/* <input className="btn" type="submit" name="submit" value="Log In" /> */}
+                <Button style={{
+                    color: "#FFFFFF",
+                    backgroundColor: "#50C878"
+                }}
+                    className="btn" type="submit" name="submit" value="Log In"
+                >
+                    Log In
+                </Button>
+            </div>
+        </form>
     );
 }

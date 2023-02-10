@@ -165,6 +165,13 @@ Since the app is not client facing at this time - there is no registration page.
  2. **Dashboard** - 
  3. **Report Detail** -
 
+ ## Admin usage
+1. Enter your username and password on the admin login page, and user will be navigated to the Admin Dashboard.
+2. The Admin Dashboard will display a data grid with all submitted tickets from all users. The admin will have the option to sort this data by Status, Category, SubCategory or Date.
+3. Clicking anywhere in a report row will open a report details window displaying all relevant details for the report, as well as a field for the admin to add notes to a report. These notes will only be visible to admins looking at the report.
+4. By clicking the 'Update Status' button in the report details view, a pop-up window will show with a dropdown menu. The menu will include options to update the status of a report to 'Accepted', 'Dispatched', or 'Closed'. Selecting one of these options and clicking the 'Send Status Update' button will update the report status and send a notification to the user, keeping them up to date on the statuses of their report as the municipality addresses the issue.
+5. Choosing the status 'Closed', will signify to the citizen that this report has been addressed, dispatched and corrected. This action will eliminate the report from the citizen map view as well.
+
 
 ### Mobile *(Citizen)*
 
