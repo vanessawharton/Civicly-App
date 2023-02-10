@@ -55,9 +55,22 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 /**
  * PUT notifications route 
  */
-router.put('/', rejectUnauthenticated, (req, res) => {
+router.put('/hidenotification', rejectUnauthenticated, (req, res) => {
+    console.log('in notification.router PUT', req.body.status);
 
+    let queryParams = [req.body.is_hidden, req.body.id]
 
+    let queryText = `
+        UPDATE "Notifications"
+        SET "is_hidden" = $1
+        WHERE "id" = $2;`;
+
+    pool.query(queryText, queryParams)
+        .then((results) => res.sendStatus(200))
+        .catch(err => {
+            res.sendStatus(500)
+            console.log(err);
+        })
 });
 
 /**

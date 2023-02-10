@@ -35,6 +35,7 @@ export default function UserReportsPage() {
         top: 12,
         border: `2px solid ${theme.palette.background.paper}`,
         padding: '0 4px',
+        zIndex: 0
         },
     }));
 
