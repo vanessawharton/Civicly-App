@@ -75,6 +75,7 @@ export default function UserReportsPage() {
                             overlap="circular"
                             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                             color="primary"
+                            showZero
                             badgeContent={ticket.upvotes}
                         >
                             <Avatar sx={{ width: 30, height: 30 }} color="black">
