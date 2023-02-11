@@ -162,16 +162,16 @@ function ReportsMap(){
                     </Typography>
                     <div className="infoWindowContent">
                       <Box >
-                        <Typography sx={{fontSize: 10}}>
-                          <Typography sx={{fontWeight: 700, fontSize: 10}}> 
+                         <Typography sx={{fontWeight: 700, fontSize: 10}}> 
                             Reported:
-                          </Typography> 
+                        </Typography> 
+                        <Typography sx={{fontSize: 10}}>
                             {new Date(location.date).toLocaleDateString()}
                         </Typography>
-                        <Typography sx={{fontSize: 10}}>
-                          <Typography sx={{fontWeight: 700, fontSize: 10}}>
+                        <Typography sx={{fontWeight: 700, fontSize: 10}}>
                             Status:
-                          </Typography> 
+                        </Typography> 
+                        <Typography sx={{fontSize: 10}}>
                             {location.status}
                         </Typography>
                         <Box sx={{ display: 'flex' , flexDirection: 'row', mt: 1}}>
