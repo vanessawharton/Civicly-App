@@ -15,7 +15,7 @@ router.get('/user/:id', rejectUnauthenticated, (req, res) => {
     ON "Subcategories"."id" = "Ticket"."subcategory_id"
     JOIN "User" 
     ON "User"."id" = "Ticket"."user_id"
-    WHERE "user_id" = 1
+    WHERE "user_id" = $1
     ORDER BY "id" DESC;`;
 
     pool.query(query, [req.user.id])
