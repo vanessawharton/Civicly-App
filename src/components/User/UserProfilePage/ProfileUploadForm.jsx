@@ -24,10 +24,10 @@ export default function ProfileUploadForm ({ profileImage, setProfileImage }) {
         });
 
 
-    const [file, setFile] = useState('');
+    // const [file, setFile] = useState('');
     const [percent, setPercent] = useState(0);
     
-    const handleResize = async () => {
+    const handleResize = async (file) => {
         try {
             const resizedFile = await resizeFile(file)
             await console.log(resizedFile)
@@ -39,7 +39,8 @@ export default function ProfileUploadForm ({ profileImage, setProfileImage }) {
     }
 
     const handleChange = (event) => {
-        setFile(event.target.files[0])
+        // setFile(event.target.files[0])
+        handleResize(event.target.files[0])
     }
 
     const handleUpload =  resizedFile => {
@@ -94,7 +95,7 @@ export default function ProfileUploadForm ({ profileImage, setProfileImage }) {
                 </Button>
                 <br />
                 <Divider />
-                <Button 
+                {/* <Button 
                     onClick={handleResize} 
                     variant='contained'
                     sx={{mt: 2, mr: 1, borderRadius: 5, backgroundColor: 'primary', color: 'white' }}
@@ -104,7 +105,7 @@ export default function ProfileUploadForm ({ profileImage, setProfileImage }) {
                 <Typography 
                     sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2, mr: 1 }}>
                         {percent} % uploaded
-                </Typography>
+                </Typography> */}
             </Box>
         </>
     )
