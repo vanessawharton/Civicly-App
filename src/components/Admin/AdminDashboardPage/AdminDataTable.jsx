@@ -50,7 +50,7 @@ export default function AdminDataTable({ theme }) {
     };
 
     useEffect(() => {
-        console.log('ticket details are:', ticketDetails)
+        // console.log('ticket details are:', ticketDetails)
 
     }, [ticketDetails]);
 
@@ -125,8 +125,8 @@ export default function AdminDataTable({ theme }) {
                 rows={tickets}
                 onRowClick={handleDetails}
                 columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
+                pageSize={10}
+                rowsPerPageOptions={[10]}
             />
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Report Details</DialogTitle><Button edge="end" position="fixed" style={{ backgroundColor: "#bf0000" }}

@@ -11,7 +11,8 @@ const {
 router.get('/', rejectUnauthenticated, (req, res) => {
     const query = 
     `SELECT * FROM "Notifications"
-    WHERE "user_id" = $1`;
+    WHERE "user_id" = $1
+    ORDER BY "timestamp" DESC;`;
 
     pool.query(query, [req.user.id])
         .then(result => {
