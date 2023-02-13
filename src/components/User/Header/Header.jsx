@@ -168,7 +168,10 @@ export default function Header() {
                                             key={notification.id}
                                         >
                                             <ListItemButton onClick={() => handleMsgClick(notification)} key={notification} >
-                                                <ListItemText primary={notification.notification_status} secondary={notification.comments} />
+                                                <ListItemText
+                                                    primary={`Report: ${notification.comments}`} secondary={`City of Minneapolis Updated Status - ${notification.notification_status}`} 
+                                                >
+                                                </ListItemText>
                                             </ListItemButton>
                                             <IconButton
                                                 edge="end"
