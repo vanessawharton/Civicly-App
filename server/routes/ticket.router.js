@@ -175,6 +175,7 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
             ON "Subcategories"."id" = "Ticket"."subcategory_id"
             JOIN "User" 
             ON "User"."id" = "Ticket"."user_id"
+            WHERE "status" != 'Closed'
             ORDER BY "id" DESC;`;
 
     pool.query(queryText)
