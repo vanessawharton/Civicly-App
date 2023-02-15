@@ -17,7 +17,6 @@ export default function AdminDataTable({ theme }) {
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch();
 
-    const [username, setUsername] = useState('');
     const [id, setId] = useState('');
     const [status, setStatus] = useState('');
     const [category, setCategory] = useState('');
@@ -34,6 +33,7 @@ export default function AdminDataTable({ theme }) {
     const [open, setOpen] = useState(false);
     const [statusOpen, setStatusOpen] = useState(false);
     const [userId, setUserId] = useState('');
+    const [userName, setUserName] =useState('');
     const [upvotes, setUpvotes] = useState('');
     // const [ticketDetails, setTicketDetails] = useState();
 
@@ -73,7 +73,6 @@ export default function AdminDataTable({ theme }) {
         setDate(ticket.row.date);
         setDescription(ticket.row.description);
         setImage(ticket.row.image_url);
-        // setUsername(ticket.row.user_id)
         setUserId(ticket.row.user_id);
         setUpvotes(ticket.row.upvotes);
         setOpen(true);
@@ -215,6 +214,21 @@ export default function AdminDataTable({ theme }) {
                         value={new Date(date).toLocaleDateString()}
                         type="text"
                         fullWidth
+                        variant="standard"
+                        inputProps={
+                            { readOnly: true, disabled: true }
+                        }
+                    />
+                    <TextField
+
+                        margin="dense"
+                        id="name"
+                        label="Citizen ID"
+                        value={userId}
+                        type="text"
+                        fullWidth
+                        multiline
+                        maxRows={10}
                         variant="standard"
                         inputProps={
                             { readOnly: true, disabled: true }
