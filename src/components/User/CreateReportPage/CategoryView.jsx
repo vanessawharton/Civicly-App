@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -11,7 +11,7 @@ import EnergySavingsLeafRoundedIcon from '@mui/icons-material/EnergySavingsLeafR
 import PetsRoundedIcon from '@mui/icons-material/PetsRounded';
 import RemoveRoadRoundedIcon from '@mui/icons-material/RemoveRoadRounded';
 import ReportRoundedIcon from '@mui/icons-material/ReportRounded';
-import { BottomNavigationAction, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 
 export default function CategoryView({newReport, setNewReport, category, setCategory}) {
