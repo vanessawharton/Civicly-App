@@ -1,15 +1,15 @@
 
   
 
-![REPO SIZE]
+![REPO SIZE](https://img.shields.io/github/repo-size/Civicly-Client-Project/Civicly-Client-Project?style=flat-square)
 
   
 
-![TOP_LANGUAGE]
+![TOP_LANGUAGE](https://img.shields.io/github/languages/top/Civicly-Client-Project/Civicly-Client-Project?style=flat-square)
 
   
 
-![FORKS]
+![FORKS](https://img.shields.io/github/forks/Civicly-Client-Project/Civicly-Client-Project?style=social)
 
 # Civicly
 
@@ -33,11 +33,11 @@ With this project being a much larger workload than previous projects in our exp
 
 ##### Wireframe / User Flow Prototype:
   
-Through the sprint, our team met with the Client on multiple occasions to provide updates, and clarify questions. In order to remain on schedule, our group utilized a Trello board to visualize tasks that were in-progress, waiting to be reviewed, or completed. This helped clarify which pieces of the puzzle still needed clarification and streamlined the team's workflow.
+Through the sprint, our team met with the Client to provide updates and clarify questions. In order to remain on schedule, our group utilized a Trello board to visualize tasks that were in-progress, waiting to be reviewed, or completed. This helped clarify which pieces of the puzzle still needed to be done and streamlined the team's workflow.
 
 As a representation of the planning spent on this project - we have included the scope document. This process involved spending time considering user flow, component structure, and design potential for the application. This experience also involved setting a timeline for certain features and was an interesting venture into estimating development time for a small team of developers.
 
-[Scope Document with Wireframes](https://docs.google.com/document/d/1KP1pOUiBFMbrFIzqj-Oz6PArrrHwvRoKoHIDeLrmhUo/edit#heading=h.lhguc6hte2r4)
+[Scope Document with Wireframes](https://docs.google.com/document/d/1KP1pOUiBFMbrFIzqj-Oz6PArrrHwvRoKoHIDeLrmhUo/edit?usp=sharing)
 
   
 
@@ -138,15 +138,13 @@ Navigate to http://localhost:3000 if the run client script doesn't automatically
 $ ~ npm run client
 ```
 
-Since the app is not client facing at this time - there is no registration page. You will have to add an account through a `SQL INSERT` in your database manager.
 
 ## Built With:
 
 * [React.js](https://reactjs.org/docs/getting-started.html)
 * [Node.js](https://nodejs.org/en/docs/)
-* [Material-UI](https://mui.com) - components and styling
-* [React-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) - Drag and Drop functionality for mobile view
-* [SweetAlert 2](https://sweetalert2.github.io/) - Visual feedback for users
+* [Material-UI](https://mui.com) - Components and Styling
+* [SweetAlert 2](https://sweetalert2.github.io/) - Visual Feedback for Admin Users
 * [Passport](https://www.passportjs.org) - Secure Login & Account Management
 
 *For a full list of dependencies - see the Package.json*
@@ -159,13 +157,13 @@ Since the app is not client facing at this time - there is no registration page.
 
   This application is meant to serve as a proof of concept for Civicly's development.
 
-### Desktop *(Admin)*
+## Desktop *(Admin)*
 
- 1. **Log In** - when logging in on a desktop using admin level credentials users will be brought to a desktop 'Dashboard'
- 2. **Dashboard** - 
- 3. **Report Detail** -
+ 1. **Log In** 
+ 2. **Dashboard** 
+ 3. **Report Detail** 
 
- ## Admin usage
+ ### Admin Usage
 1. Enter your username and password on the admin login page, and user will be navigated to the Admin Dashboard.
 2. The Admin Dashboard will display a data grid with all submitted tickets from all users. The admin will have the option to sort this data by Status, Category, SubCategory or Date.
 3. Clicking anywhere in a report row will open a report details window displaying all relevant details for the report, as well as a field for the admin to add notes to a report. These notes will only be visible to admins looking at the report.
@@ -175,12 +173,15 @@ Since the app is not client facing at this time - there is no registration page.
 
 ### Mobile *(Citizen)*
 
- 1. **Landing Page** -  
- 2. **Log In/Register** - users can log in on a mobile device to access the mobile features. 
+ 1. **Landing Page** -  This is an initial splash page which shows options to log in or register as a new user.
+ 2. **Log In/Register** - Users can log in on a mobile device to access the mobile features. 
  3. **Report Map View** - 
  4. **Add New Report** -  
- 5. **Top Citizens** -  
+ 5. **Top Citizens** -  Users can potentially see their status as  "top citizen" by the amount of reports  submitted and upvotes received. Top filter buttons are meant to sort and display by week, year, and overall scoreboard for game-ification and community involvement purposes.
  6. **Citizen Profile** - Users may view their total upvotes and tickets submitted. User's can upload a profile picture. From here users can also navigate to view all your reports submitted which contains ticket information. These individual tickets can also navigate the user to the Report Map where it was placed.
+
+## Citizen Usage
+
 
 ## Developer Notes
 
@@ -189,12 +190,8 @@ Since the app is not client facing at this time - there is no registration page.
 
 ## Authors & Acknowledgement
 
-Thanks to [Firebase](https://firebase.google.com/) whose API supplied image upload capabilities for multiple parts of this application.
+This app was built by Dylan Roets, Vanessa Wharton, Andrew Carey, Jared Lindquist, and Paul Norling.
 
-Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped us make this application a reality.
+Thanks to [Firebase](https://firebase.google.com/) and [Google Maps](https://maps.google.com/) whose APIs supplied image upload and mapping capabilities for multiple parts of this application.
 
-Special thanks to the services that made the start of our Map display development possible:
-
- - [Radar](https://radar.com) - for Geo Coding
- - [MapTiler](https://www.maptiler.com) 
- - [Pigeon Maps](https://pigeon-maps.js.org) - React Maps
+Special thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped us make this application a reality.
