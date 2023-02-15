@@ -190,7 +190,12 @@ $ ~ npm run client
 
 ## Authors & Acknowledgement
 
-This app was built by Dylan Roets, Vanessa Wharton, Andrew Carey, Jared Lindquist, and Paul Norling.
+This app was built by:
+ Dylan Roets (https://github.com/dylanroets)
+ Vanessa Wharton (https://github.com/vanessawharton)
+ Andrew Carey (https://github.com/arcarey)
+ Jared Lindquist (https://github.com/jared-lindquist) 
+ and Paul Norling (https://github.com/PaulNorling)
 
 Thanks to [Firebase](https://firebase.google.com/) and [Google Maps](https://maps.google.com/) whose APIs supplied image upload and mapping capabilities for multiple parts of this application.
 
