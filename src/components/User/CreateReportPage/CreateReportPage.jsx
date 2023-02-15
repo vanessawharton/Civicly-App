@@ -63,7 +63,7 @@ export default function CreateReportPage() {
 
 
   React.useEffect(() => {
-    console.log(newReport);
+
   }, [newReport])
 
   React.useEffect(() => {

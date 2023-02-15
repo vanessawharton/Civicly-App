@@ -1,15 +1,15 @@
 
   
 
-![REPO SIZE]
+![REPO SIZE](https://img.shields.io/github/repo-size/vanessawharton/Civicly-App?style=flat-square)
 
   
 
-![TOP_LANGUAGE]
+![TOP_LANGUAGE](https://img.shields.io/github/languages/top/vanessawharton/Civicly-App?style=flat-square)
 
   
 
-![FORKS]
+![FORKS](https://img.shields.io/github/forks/vanessawharton/Civicly-App?style=social)
 
 # Civicly
 
@@ -33,11 +33,11 @@ With this project being a much larger workload than previous projects in our exp
 
 ##### Wireframe / User Flow Prototype:
   
-Through the sprint, our team met with the Client on multiple occasions to provide updates, and clarify questions. In order to remain on schedule, our group utilized a Trello board to visualize tasks that were in-progress, waiting to be reviewed, or completed. This helped clarify which pieces of the puzzle still needed clarification and streamlined the team's workflow.
+Through the sprint, our team met with the Client to provide updates and clarify questions. In order to remain on schedule, our group utilized a Trello board to visualize tasks that were in-progress, waiting to be reviewed, or completed. This helped clarify which pieces of the puzzle still needed to be done and streamlined the team's workflow.
 
 As a representation of the planning spent on this project - we have included the scope document. This process involved spending time considering user flow, component structure, and design potential for the application. This experience also involved setting a timeline for certain features and was an interesting venture into estimating development time for a small team of developers.
 
-[Scope Document with Wireframes](https://docs.google.com/document/d/1KP1pOUiBFMbrFIzqj-Oz6PArrrHwvRoKoHIDeLrmhUo/edit#heading=h.lhguc6hte2r4)
+[Scope Document with Wireframes](https://docs.google.com/document/d/1KP1pOUiBFMbrFIzqj-Oz6PArrrHwvRoKoHIDeLrmhUo/edit?usp=sharing)
 
   
 
@@ -138,42 +138,80 @@ Navigate to http://localhost:3000 if the run client script doesn't automatically
 $ ~ npm run client
 ```
 
-Since the app is not client facing at this time - there is no registration page. You will have to add an account through a `SQL INSERT` in your database manager.
 
 ## Built With:
 
 * [React.js](https://reactjs.org/docs/getting-started.html)
 * [Node.js](https://nodejs.org/en/docs/)
-* [Material-UI](https://mui.com) - components and styling
-* [React-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) - Drag and Drop functionality for mobile view
-* [SweetAlert 2](https://sweetalert2.github.io/) - Visual feedback for users
+* [Material-UI](https://mui.com) - Components and Styling
+* [SweetAlert 2](https://sweetalert2.github.io/) - Visual Feedback for Admin Users
 * [Passport](https://www.passportjs.org) - Secure Login & Account Management
 
 *For a full list of dependencies - see the Package.json*
 
 ## Screen Shots
 
-  ![]
+  * Landing Page
+
+  <img src="https://user-images.githubusercontent.com/111813443/219004293-571f1b6f-d054-4ad0-b48a-d82648783e61.png" width="250">
+
+  * Home Page
+
+  <img src="https://user-images.githubusercontent.com/111813443/219003189-db69981f-053e-430e-85a3-441a23a2d9d9.png" width="250">
+
+  * Report Map Page
+
+  <img src="https://user-images.githubusercontent.com/111813443/219005594-42389330-96ff-4e35-89f1-d9dfbed05030.png" width="250">
+
+  * Add New Report
+  <img src="https://user-images.githubusercontent.com/111813443/219012167-e006fb78-0e5d-4493-8a46-691dad7acc28.mov">
+
+
+  * Top Citizens Page
+
+  <img src="https://user-images.githubusercontent.com/111813443/219003355-ad480768-6efc-4942-806d-008cfdd0ae8a.png" width="250">
+
+  * User Profile Page
+
+  <img src="https://user-images.githubusercontent.com/111813443/219005572-e022e260-7858-4af6-b53a-202d080623d5.png" width="250">
+
+  * Admin Dashboard
+
+  <img src="https://user-images.githubusercontent.com/111813443/219004791-f3cfc55e-e34e-4e89-a2d1-ef06ac47da8d.png" width="600">
+
+  * Admin- Report Details
+
+  <img src="https://user-images.githubusercontent.com/111813443/219004805-60b01dd0-d47b-48d5-a318-e4ef02b5a31d.png" width="250">
 
 ## Usage
 
   This application is meant to serve as a proof of concept for Civicly's development.
 
-### Desktop *(Admin)*
+## Desktop *(Admin)*
 
- 1. **Log In** - when logging in on a desktop using admin level credentials users will be brought to a desktop 'Dashboard'
- 2. **Dashboard** - 
- 3. **Report Detail** -
+ 1. **Log In** 
+ 2. **Dashboard** 
+ 3. **Report Detail** 
+
+ ### Admin Usage
+1. Enter your username and password on the admin login page, and user will be navigated to the Admin Dashboard.
+2. The Admin Dashboard will display a data grid with all submitted tickets from all users. The admin will have the option to sort this data by Status, Category, SubCategory or Date.
+3. Clicking anywhere in a report row will open a report details window displaying all relevant details for the report, as well as a field for the admin to add notes to a report. These notes will only be visible to admins looking at the report.
+4. By clicking the 'Update Status' button in the report details view, a pop-up window will show with a dropdown menu. The menu will include options to update the status of a report to 'Accepted', 'Dispatched', or 'Closed'. Selecting one of these options and clicking the 'Send Status Update' button will update the report status and send a notification to the user, keeping them up to date on the statuses of their report as the municipality addresses the issue.
+5. Choosing the status 'Closed', will signify to the citizen that this report has been addressed, dispatched and corrected. This action will eliminate the report from the citizen map view as well.
 
 
-### Mobile *(Citizen)*
+## Mobile *(Citizen)*
 
- 1. **Landing Page** -  
- 2. **Log In/Register** - users can log in on a mobile device to access the mobile features. 
+ 1. **Landing Page** -  This is an initial splash page which shows options to log in or register as a new user.
+ 2. **Log In/Register** - Users can log in on a mobile device to access the mobile features. 
  3. **Report Map View** - 
  4. **Add New Report** -  
- 5. **Top Citizens** -  
+ 5. **Top Citizens** -  Users can potentially see their status as  "top citizen" by the amount of reports  submitted and upvotes received. Top filter buttons are meant to sort and display by week, year, and overall scoreboard for game-ification and community involvement purposes.
  6. **Citizen Profile** - Users may view their total upvotes and tickets submitted. User's can upload a profile picture. From here users can also navigate to view all your reports submitted which contains ticket information. These individual tickets can also navigate the user to the Report Map where it was placed.
+
+  ### Citizen Usage
+
 
 ## Developer Notes
 
@@ -182,12 +220,13 @@ Since the app is not client facing at this time - there is no registration page.
 
 ## Authors & Acknowledgement
 
-Thanks to [Firebase](https://firebase.google.com/) whose API supplied image upload capabilities for multiple parts of this application.
+This app was built by:
+ [Dylan Roets](https://github.com/dylanroets), 
+ [Vanessa Wharton](https://github.com/vanessawharton), 
+ [Andrew Carey](https://github.com/arcarey), 
+ [Jared Lindquist](https://github.com/jared-lindquist),  
+ and [Paul Norling](https://github.com/PaulNorling).
 
-Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped us make this application a reality.
+Thanks to [Firebase](https://firebase.google.com/) and [Google Maps](https://maps.google.com/) whose APIs supplied image upload and mapping capabilities for multiple parts of this application.
 
-Special thanks to the services that made the start of our Map display development possible:
-
- - [Radar](https://radar.com) - for Geo Coding
- - [MapTiler](https://www.maptiler.com) 
- - [Pigeon Maps](https://pigeon-maps.js.org) - React Maps
+Special thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped us make this application a reality.

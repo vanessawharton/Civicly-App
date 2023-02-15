@@ -17,12 +17,11 @@ export default function IssueFormView({ newReport, setNewReport, anon, setAnon, 
     const handleToggle = () => {
         setAnon(!anon)
     }
-    console.log(category);
 
     return(
         <Container component="main" maxWidth="xs">
             <Box>
-                <Typography sx={{mb: 1, mt: 1}} variant="h5">{subcategories.filter(subcategory => subcategory.category === category)[0].categoryName} Issue</Typography>
+                <Typography sx={{mb: 1, mt: 1}} variant="h5">{subcategories.filter(subcategory => subcategory.category === category)[0].categoryName}</Typography>
                 <SubcategoryDropdown
                     category={category}
                     subcategories={subcategories}

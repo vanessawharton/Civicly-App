@@ -83,11 +83,8 @@ export default function Header() {
     }, []);
 
     useEffect(() => {
-        console.log('yesification details are:', notificationDetail);
 
     }, [notificationDetail]);
-
-    console.log("whhhhaaa", !notifications.filter(notification => notification.is_hidden === false).length === 0);
 
     return (
         <div>
@@ -168,7 +165,10 @@ export default function Header() {
                                             key={notification.id}
                                         >
                                             <ListItemButton onClick={() => handleMsgClick(notification)} key={notification} >
-                                                <ListItemText primary={notification.notification_status} secondary={notification.comments} />
+                                                <ListItemText
+                                                    primary={`Report: ${notification.comments}`} secondary={`City of Minneapolis Updated Status - ${notification.notification_status}`} 
+                                                >
+                                                </ListItemText>
                                             </ListItemButton>
                                             <IconButton
                                                 edge="end"

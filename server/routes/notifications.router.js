@@ -11,11 +11,11 @@ const {
 router.get('/', rejectUnauthenticated, (req, res) => {
     const query = 
     `SELECT * FROM "Notifications"
-    WHERE "user_id" = $1`;
+    WHERE "user_id" = $1
+    ORDER BY "timestamp" DESC;`;
 
     pool.query(query, [req.user.id])
         .then(result => {
-            console.log('GET NOTIFICATIONS  ', result.rows)
             res.send(result.rows);
         })
         .catch(err => {
@@ -30,7 +30,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  * POST notifications route
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
-    console.log('this is req.body in router.post /notifications', req.body);
     const queryVals = [
         req.body.user_id,
         req.body.ticket_id,
@@ -56,7 +55,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
  * PUT notifications route 
  */
 router.put('/hidenotification', rejectUnauthenticated, (req, res) => {
-    console.log('in notification.router PUT', req.body.status);
 
     let queryParams = [req.body.is_hidden, req.body.id]
 
@@ -71,14 +69,6 @@ router.put('/hidenotification', rejectUnauthenticated, (req, res) => {
             res.sendStatus(500)
             console.log(err);
         })
-});
-
-/**
- * DELETE notifications route
- */
-router.delete('/', rejectUnauthenticated, (req, res) => {
-
-
 });
 
 module.exports = router;

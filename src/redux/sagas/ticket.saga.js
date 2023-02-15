@@ -6,7 +6,6 @@ function* fetchUserTickets(action) {
 
     try {
         const response = yield axios.get('/api/ticket/user/'+ action.payload);
-        console.log('whats in set tickets by user id', response.data );
         yield put({ type: 'SET_USER_TICKETS', payload: response.data });
     } catch (error) {
         console.log('User Tickets by ID GET request failed', error);
@@ -75,7 +74,6 @@ function* fetchUserTicketCount(action) {
 }
 
 function* updateTicketStatus(action) {
-    console.log(action.payload);
     try {
         yield axios.put('/api/ticket/statusupdate', action.payload);
         // yield put({type: 'SEND_NOTIFICATION'})
@@ -87,7 +85,6 @@ function* updateTicketStatus(action) {
 }
 
 function* upvoteTicket(action) {
-    console.log('upvoteTicket', action.payload)
     try{
         yield axios.put('/api/ticket/upvote', action.payload);
         yield put({ type: 'FETCH_ALL_TICKETS' });
@@ -98,7 +95,6 @@ function* upvoteTicket(action) {
 }
 
 function* downvoteTicket(action) {
-    console.log('downvoteTicket', action.payload)
     try{
         yield axios.put('/api/ticket/downvote', action.payload);
         yield put({ type: 'FETCH_ALL_TICKETS' });

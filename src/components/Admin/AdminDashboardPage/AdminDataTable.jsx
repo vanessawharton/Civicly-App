@@ -1,8 +1,7 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { useSelector } from "react-redux";
-import { Grid, TextField } from "@mui/material"
-import { useHistory, useParams } from 'react-router-dom';
-import { Button, InputLabel, Select, MenuItem, FormControl, NativeSelect, Link } from '@mui/material';
+import { TextField } from "@mui/material"
+import { Button, InputLabel, Select, MenuItem, FormControl } from '@mui/material';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -16,9 +15,6 @@ export default function AdminDataTable({ theme }) {
 
     const tickets = useSelector((store) => store.ticket);
     const user = useSelector((store) => store.user);
-    // const { id } = useParams();
-    const history = useHistory();
-    // const store = useReduxStore();
     const dispatch = useDispatch();
 
     const [username, setUsername] = useState('');
@@ -50,7 +46,7 @@ export default function AdminDataTable({ theme }) {
     };
 
     useEffect(() => {
-        console.log('ticket details are:', ticketDetails)
+        // console.log('ticket details are:', ticketDetails)
 
     }, [ticketDetails]);
 
@@ -63,7 +59,6 @@ export default function AdminDataTable({ theme }) {
             field: 'date', headerName: 'Date', headerAlign: 'center', width: 200,
             valueGetter: (params) => new Date(params.row.date).toLocaleDateString()
         },
-        // { field: 'username', headerName: 'Citizen', width: 100 },
         { field: 'description', headerName: 'Details', headerAlign: 'center', width: 265 }
     ];
 
@@ -125,8 +120,8 @@ export default function AdminDataTable({ theme }) {
                 rows={tickets}
                 onRowClick={handleDetails}
                 columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
+                pageSize={10}
+                rowsPerPageOptions={[10]}
             />
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Report Details</DialogTitle><Button edge="end" position="fixed" style={{ backgroundColor: "#bf0000" }}
@@ -240,20 +235,6 @@ export default function AdminDataTable({ theme }) {
                             { readOnly: true, disabled: true }
                         }
                     />
-
-                    {/* <TextField
-
-                        margin="dense"
-                        id="name"
-                        label="Internal Comments"
-                        value={internalComments}
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        inputProps={
-                            { readOnly: true, disabled: true }
-                        }
-                    /> */}
                 </DialogContent>
                 <DialogActions>
                     <Button style={{ backgroundColor: "#5A5A5A" }}
@@ -291,7 +272,7 @@ export default function AdminDataTable({ theme }) {
                             <MenuItem value="Accepted">Accepted</MenuItem>
                             <MenuItem value="Dispatched">Dispatched</MenuItem>
                             <MenuItem value="Closed">Closed</MenuItem>
-                        </Select><br/>
+                        </Select><br />
                         <Button variant="contained"
                             onClick={handleSendStatusUpdate}
                         >Send Status Update</Button>
