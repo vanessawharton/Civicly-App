@@ -60,19 +60,6 @@ router.get('/ticketcount/:id', rejectUnauthenticated, (req, res) => {
         })
 });
 
-
-
-/**
- * POST ticket route
- * {imageUrl: '',
-    description: '',
-    category: '',
-    category_id: '',
-    anonymous: false,
-    subcategory_id: null,
-    latitude: '',
-    longitude: '',}
- */
 router.post('/', rejectUnauthenticated, (req, res) => {
     const queryValues = [req.body.imageUrl,
     req.body.description,
@@ -156,14 +143,6 @@ router.put('/downvote', rejectUnauthenticated, (req, res) => {
             console.log('Error PUTing downvote', error);
             res.sendStatus(500);
         })
-});
-
-/**
- * DELETE ticket route
- */
-router.delete('/', rejectUnauthenticated, (req, res) => {
-
-
 });
 
 //Admin get all tickets route

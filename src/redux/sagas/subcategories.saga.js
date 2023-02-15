@@ -22,27 +22,6 @@ function* postSubcategories() {
     }
 }
 
-// Subcategories PUT
-function* editSubcategories() {
-    try {
-        
-    } catch (error) {
-        console.log('Subcategories PUT request failed', error);
-    }
-}
-
-// Subcategories DELETE
-function* deleteSubcategories() {
-    try {
-        
-    } catch (error) {
-        console.log('Subcategories DELETE request failed', error);
-    }
-}
-
-
-
-
 function* subcategoriesSaga() {
     yield takeLatest('FETCH_SUBCATEGORIES', fetchSubcategories);
     yield takeLatest('POST_SUBCATEGORIES', postSubcategories);

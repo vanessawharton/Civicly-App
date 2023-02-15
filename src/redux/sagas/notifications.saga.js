@@ -44,16 +44,6 @@ function* hideNotification(action) {
     }
 }
 
-// Notifications DELETE
-function* deleteNotifications() {
-    try {
-        
-    } catch (error) {
-        console.log('Notifications DELETE request failed', error);
-    }
-}
-
-
 function* notificationsSaga() {
     yield takeLatest('FETCH_NOTIFICATIONS', fetchNotifications);
     yield takeLatest('POST_NOTIFICATIONS', postNotifications);

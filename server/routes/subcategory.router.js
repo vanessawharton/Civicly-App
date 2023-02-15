@@ -50,28 +50,4 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 });
 
-/**
- * POST subcategory route
- */
-router.post('/', rejectUnauthenticated, (req, res) => {
-
-
-});
-
-/**
- * PUT subcategory route 
- */
-router.put('/', rejectUnauthenticated, (req, res) => {
-
-
-});
-
-/**
- * DELETE subcategory route
- */
-router.delete('/', rejectUnauthenticated, (req, res) => {
-
-
-});
-
 module.exports = router;
