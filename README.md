@@ -203,15 +203,28 @@ $ ~ npm run client
 
 ## Mobile *(Citizen)*
 
- 1. **Landing Page** -  This is an initial splash page which shows options to log in or register as a new user.
- 2. **Log In/Register** - Users can log in on a mobile device to access the mobile features. 
- 3. **Report Map View** - 
- 4. **Add New Report** -  
- 5. **Top Citizens** -  Users can potentially see their status as  "top citizen" by the amount of reports  submitted and upvotes received. Top filter buttons are meant to sort and display by week, year, and overall scoreboard for game-ification and community involvement purposes.
- 6. **Citizen Profile** - Users may view their total upvotes and tickets submitted. User's can upload a profile picture. From here users can also navigate to view all your reports submitted which contains ticket information. These individual tickets can also navigate the user to the Report Map where it was placed.
+1. **Landing Page**
+2. **Log In/Register**
+3. **Report Map View**
+4. **Add New Report**
+5. **Top Citizens**
+6. **Citizen Profile**
 
   ### Citizen Usage
+ 1. **Landing Page** -  This is an initial splash page which shows options to log in or register as a new user.
 
+ 2. **Log In/Register** - Users can log in on a mobile device to access the mobile features. Users can also register as a new user by clicking the register link, and entering a username password, and zip code in the registration form.
+
+ 3. **Report Map View** - By clicking on the map pin icon in the bottom nav bar, users can see all citizen reports in a google map view that centers on user geo-location. In this view, the users can zoom in and out via the map, and click on any of the color-coded report pins to view a details card of the report that will pop up on top of the map. Users can up-vote a report as well. Up-voting lets other users and admins know that the community agrees an issue is important.
+
+ 4. **Add New Report** -  By clicking on the large '+' icon in the bottom nav bar, users can submit a new report. 
+  - Step One (Create New Report): Users can click and drag in the map view to set the precise location of the issue. Clicking the "Confirm Issue Location" button will navigate users to step two.
+  - Step Two (Choose Category): Users can now choose from an icon list, the category the issue falls under. Clicking on the icon will reveal the category in text underneath it. Once the correct category is chosen, users can click on the "Next" button which will take them to step three.
+  - Step Three (Submit Report Form): Users can now choose a specific issue based on the category selected in step two by clicking the "Choose Issue" drop down and selecting an option. Users can then add an optional description of the issue to give admins more details about the problem at hand. Users have the option to submit a report anonymously, as well as attach a photo of the issue. Clicking the "submit" button send the report to Civicly admins, and navigates users to a success page, where they can view the status of their reports.
+
+ 5. **Top Citizens** -  Users can potentially see their status as  "top citizen" by the amount of reports  submitted and upvotes received. Top filter buttons are meant to sort and display by week, year, and overall scoreboard for game-ification and community involvement purposes.
+ 
+ 6. **Citizen Profile** - Users may view their total upvotes and tickets submitted. User's can upload a profile picture. From here users can also navigate to view all your reports submitted which contains ticket information. These individual tickets can also navigate the user to the Report Map where it was placed.
 
 ## Developer Notes
 
