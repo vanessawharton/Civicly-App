@@ -2,7 +2,7 @@ import { useState } from "react"
 import storage from '../../../firebaseConfig';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Resizer from "react-image-file-resizer";
-import { Button, Input, Divider, Typography, RaisedButton } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 
@@ -91,17 +91,6 @@ export default function UploadForm ({ newReport, setNewReport }) {
             </Button>
             <br />
             <Divider />
-            {/* <Button 
-                onClick={handleResize} 
-                variant='contained'
-                sx={{mt: 2, mr: 1, borderRadius: 5, backgroundColor: 'lightgray', color: 'black' }}
-                >
-                Upload Photo
-            </Button> */}
-            {/* <Typography 
-                sx={{ mt: 2, mr: 1 }}>
-                    {percent} % uploaded
-            </Typography> */}
         </>
     )
 }

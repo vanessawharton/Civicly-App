@@ -22,7 +22,7 @@ export default function AdminLoginForm() {
                     password: password,
                 },
             });
-            history.pushState('/admin/dashboard');
+            history.push('/admin/dashboard');
         } else {
             dispatch({ type: 'LOGIN_INPUT_ERROR' });
         }
