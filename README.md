@@ -1,15 +1,15 @@
 
   
 
-![REPO SIZE](https://img.shields.io/github/repo-size/Civicly-Client-Project/Civicly-Client-Project?style=flat-square)
+![REPO SIZE](https://img.shields.io/github/repo-size/vanessawharton/Civicly-Client-Project?style=flat-square)
 
   
 
-![TOP_LANGUAGE](https://img.shields.io/github/languages/top/Civicly-Client-Project/Civicly-Client-Project?style=flat-square)
+![TOP_LANGUAGE](https://img.shields.io/github/languages/top/vanessawharton/Civicly-Client-Project?style=flat-square)
 
   
 
-![FORKS](https://img.shields.io/github/forks/Civicly-Client-Project/Civicly-Client-Project?style=social)
+![FORKS](https://img.shields.io/github/forks/vanessawharton/Civicly-Client-Project?style=social)
 
 # Civicly
 
@@ -171,7 +171,7 @@ $ ~ npm run client
 5. Choosing the status 'Closed', will signify to the citizen that this report has been addressed, dispatched and corrected. This action will eliminate the report from the citizen map view as well.
 
 
-### Mobile *(Citizen)*
+## Mobile *(Citizen)*
 
  1. **Landing Page** -  This is an initial splash page which shows options to log in or register as a new user.
  2. **Log In/Register** - Users can log in on a mobile device to access the mobile features. 
@@ -180,7 +180,7 @@ $ ~ npm run client
  5. **Top Citizens** -  Users can potentially see their status as  "top citizen" by the amount of reports  submitted and upvotes received. Top filter buttons are meant to sort and display by week, year, and overall scoreboard for game-ification and community involvement purposes.
  6. **Citizen Profile** - Users may view their total upvotes and tickets submitted. User's can upload a profile picture. From here users can also navigate to view all your reports submitted which contains ticket information. These individual tickets can also navigate the user to the Report Map where it was placed.
 
-## Citizen Usage
+  ### Citizen Usage
 
 
 ## Developer Notes
