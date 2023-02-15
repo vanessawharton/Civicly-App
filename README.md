@@ -1,15 +1,15 @@
 
   
 
-![REPO SIZE](https://img.shields.io/github/repo-size/vanessawharton/Civicly-Client-Project?style=flat-square)
+![REPO SIZE](https://img.shields.io/github/repo-size/vanessawharton/Civicly-App?style=flat-square)
 
   
 
-![TOP_LANGUAGE](https://img.shields.io/github/languages/top/vanessawharton/Civicly-Client-Project?style=flat-square)
+![TOP_LANGUAGE](https://img.shields.io/github/languages/top/vanessawharton/Civicly-App?style=flat-square)
 
   
 
-![FORKS](https://img.shields.io/github/forks/vanessawharton/Civicly-Client-Project?style=social)
+![FORKS](https://img.shields.io/github/forks/vanessawharton/Civicly-App?style=social)
 
 # Civicly
 
@@ -165,6 +165,7 @@ $ ~ npm run client
 
   * Add New Report
   <img src="https://user-images.githubusercontent.com/111813443/219012167-e006fb78-0e5d-4493-8a46-691dad7acc28.mov">
+
 
   * Top Citizens Page
 
