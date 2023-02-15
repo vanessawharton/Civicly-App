@@ -17,7 +17,6 @@ export default function IssueFormView({ newReport, setNewReport, anon, setAnon, 
     const handleToggle = () => {
         setAnon(!anon)
     }
-    console.log(category);
 
     return(
         <Container component="main" maxWidth="xs">

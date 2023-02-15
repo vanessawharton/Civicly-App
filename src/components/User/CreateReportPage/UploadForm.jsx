@@ -29,7 +29,6 @@ export default function UploadForm ({ newReport, setNewReport }) {
     const handleResize = async (file) => {
         try {
             const resizedFile = await resizeFile(file)
-            await console.log(resizedFile)
             await handleUpload(resizedFile)
         } catch (error) {
             console.log(error);
@@ -69,7 +68,6 @@ export default function UploadForm ({ newReport, setNewReport }) {
                 // download url
                 getDownloadURL(uploadTask.snapshot.ref).then((url) => {
                     setNewReport({...newReport, imageUrl: url})
-                    console.log(newReport);
                 });
                 }
         ); 
