@@ -138,6 +138,44 @@ Navigate to http://localhost:3000 if the run client script doesn't automatically
 $ ~ npm run client
 ```
 
+### Deployment
+We are currently running our application on [Heroku](https://www.heroku.com/)-- directions for deployment below are based on using this tool and assume it has been installed prior to following the steps below.
+
+#### Create a Heroku project
+
+From your terminal, navigate into your project directory. Note that your project must be setup as a git repository for these commands to work.
+
+Run the following commands from within your project folder.
+
+1. `heroku create`
+2. Login in if prompted -- it might ask to open a browser
+3. Type `git remote -v` to ensure it added successfully. You should see a remote called `heroku`
+
+Make sure your PORT is configured correctly as:
+
+```JavaScript
+const PORT = process.env.PORT || 5000;
+```
+
+This will allow heroku to tell your app which port to listen on.
+
+Next, commit your changes and push them to Heroku:
+
+```
+git add .
+git commit -m "MESSAGE"
+git push heroku main
+```
+
+Lastly, open terminal and type `heroku open` as a shortcut to open your website in a browser.
+
+
+#### Heroku Deployment Resources
+
+More detailed instructions can be found here: 
+
+- [https://devcenter.heroku.com/articles/git](https://devcenter.heroku.com/articles/git)
+
 
 ## Built With:
 
