@@ -151,7 +151,16 @@ $ ~ npm run client
 
 ## Screen Shots
 
-  ![]
+  ![Landing Page](https://user-images.githubusercontent.com/111813443/219004293-571f1b6f-d054-4ad0-b48a-d82648783e61.png)
+  ![Home Page](https://user-images.githubusercontent.com/111813443/219003189-db69981f-053e-430e-85a3-441a23a2d9d9.png)
+  ![Reports Map Page](https://user-images.githubusercontent.com/111813443/219005594-42389330-96ff-4e35-89f1-d9dfbed05030.png)
+  ![Add New Report- Step One: Location](https://user-images.githubusercontent.com/111813443/219003308-c81d286e-31ad-43ae-b0a1-c97dd119c107.png)
+  ![Add New Report- Step Two: Category](https://user-images.githubusercontent.com/111813443/219003323-7a9eb9f9-81a6-4e81-8c59-20b7b3667d56.png)
+  ![Add New Report- Step Three: Details](https://user-images.githubusercontent.com/111813443/219003346-a446b4a9-a8ff-4869-9fc3-da37873000de.png)
+  ![Top Citizens Page](https://user-images.githubusercontent.com/111813443/219003355-ad480768-6efc-4942-806d-008cfdd0ae8a.png)
+  ![User Profile Page](https://user-images.githubusercontent.com/111813443/219005572-e022e260-7858-4af6-b53a-202d080623d5.png)
+  ![Admin Dashboard](https://user-images.githubusercontent.com/111813443/219004791-f3cfc55e-e34e-4e89-a2d1-ef06ac47da8d.png)
+  ![Admin- Report Details](https://user-images.githubusercontent.com/111813443/219004805-60b01dd0-d47b-48d5-a318-e4ef02b5a31d.png)
 
 ## Usage
 
@@ -191,11 +200,11 @@ $ ~ npm run client
 ## Authors & Acknowledgement
 
 This app was built by:
- Dylan Roets (https://github.com/dylanroets)
- Vanessa Wharton (https://github.com/vanessawharton)
- Andrew Carey (https://github.com/arcarey)
- Jared Lindquist (https://github.com/jared-lindquist) 
- and Paul Norling (https://github.com/PaulNorling)
+ [Dylan Roets](https://github.com/dylanroets)
+ [Vanessa Wharton](https://github.com/vanessawharton)
+ [Andrew Carey](https://github.com/arcarey)
+ [Jared Lindquist](https://github.com/jared-lindquist) 
+ and [Paul Norling](https://github.com/PaulNorling)
 
 Thanks to [Firebase](https://firebase.google.com/) and [Google Maps](https://maps.google.com/) whose APIs supplied image upload and mapping capabilities for multiple parts of this application.
 
