@@ -83,11 +83,8 @@ export default function Header() {
     }, []);
 
     useEffect(() => {
-        console.log('yesification details are:', notificationDetail);
 
     }, [notificationDetail]);
-
-    console.log("whhhhaaa", !notifications.filter(notification => notification.is_hidden === false).length === 0);
 
     return (
         <div>

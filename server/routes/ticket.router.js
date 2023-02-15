@@ -20,7 +20,7 @@ router.get('/user/:id', rejectUnauthenticated, (req, res) => {
 
     pool.query(query, [req.user.id])
         .then(result => {
-            console.log('GET user_id tickets!!', result.rows)
+            // console.log('GET user_id tickets!!', result.rows)
             res.send(result.rows);
         })
         .catch(err => {
@@ -88,7 +88,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 //post route for inserting into notifications table when status is updated
 router.post('/notifications', rejectUnauthenticated, (req, res) => {
-    console.log('this is req.body in router.post /notifications', req.body);
+    // console.log('this is req.body in router.post /notifications', req.body);
     const queryVals = [
         req.body.user_id,
         req.body.id,
@@ -114,13 +114,12 @@ router.post('/notifications', rejectUnauthenticated, (req, res) => {
  * PUT ticket route 
  */
 router.put('/upvote', rejectUnauthenticated, (req, res) => {
-    console.log('upvote router', req.body.location.upvotes + 1)
+    // console.log('upvote router', req.body.location.upvotes + 1)
     const query = `UPDATE "Ticket"
     SET "upvotes" = $1
     WHERE "id" = $2`;
     pool.query(query, [req.body.location.upvotes + 1, req.body.location.id])
         .then(() => {
-            console.log('listing updated!');
             res.sendStatus(200);
         })
         .catch((error) => {
@@ -130,13 +129,12 @@ router.put('/upvote', rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/downvote', rejectUnauthenticated, (req, res) => {
-    console.log('downvote router', req.body.location.upvotes - 1)
+    // console.log('downvote router', req.body.location.upvotes - 1)
     const query = `UPDATE "Ticket"
     SET "upvotes" = $1
     WHERE "id" = $2`;
     pool.query(query, [req.body.location.upvotes - 1, req.body.location.id])
         .then(() => {
-            console.log('listing updated!');
             res.sendStatus(200);
         })
         .catch((error) => {
@@ -186,7 +184,6 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
                 }
 
             });
-            console.log(returnTickets);
             res.send(returnTickets);
         }).catch((error) => {
             console.log('Error getting all tickets', error);
@@ -195,7 +192,7 @@ router.get('/alltickets', rejectUnauthenticated, (req, res) => {
 });
 // 
 router.put('/statusupdate', rejectUnauthenticated, (req, res) => {
-    console.log('in ticket.router PUT', req.body.status);
+    // console.log('in ticket.router PUT', req.body.status);
 
     let queryParams = [req.body.status, req.body.ticket_id]
 

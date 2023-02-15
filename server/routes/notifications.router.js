@@ -16,7 +16,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
     pool.query(query, [req.user.id])
         .then(result => {
-            console.log('GET NOTIFICATIONS  ', result.rows)
             res.send(result.rows);
         })
         .catch(err => {
@@ -31,7 +30,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  * POST notifications route
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
-    console.log('this is req.body in router.post /notifications', req.body);
     const queryVals = [
         req.body.user_id,
         req.body.ticket_id,
@@ -57,7 +55,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
  * PUT notifications route 
  */
 router.put('/hidenotification', rejectUnauthenticated, (req, res) => {
-    console.log('in notification.router PUT', req.body.status);
 
     let queryParams = [req.body.is_hidden, req.body.id]
 
