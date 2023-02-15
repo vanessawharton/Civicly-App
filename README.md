@@ -205,8 +205,8 @@ $ ~ npm run client
 
  1. **Landing Page** -  This is an initial splash page which shows options to log in or register as a new user.
  2. **Log In/Register** - Users can log in on a mobile device to access the mobile features. 
- 3. **Report Map View** - 
- 4. **Add New Report** -  
+ 3. **Report Map View** - Users can browse all of the the reports on map or scroll through nearby reports at the bottom of the view.
+ 4. **Add New Report** - After Clicking the + on the bottom of the page Users can mark a location of a report, select a category, choose a sub category, add a description and add a photo.  Upon submission the report will be visable to all users. 
  5. **Top Citizens** -  Users can potentially see their status as  "top citizen" by the amount of reports  submitted and upvotes received. Top filter buttons are meant to sort and display by week, year, and overall scoreboard for game-ification and community involvement purposes.
  6. **Citizen Profile** - Users may view their total upvotes and tickets submitted. User's can upload a profile picture. From here users can also navigate to view all your reports submitted which contains ticket information. These individual tickets can also navigate the user to the Report Map where it was placed.
 
@@ -215,8 +215,10 @@ $ ~ npm run client
 
 ## Developer Notes
 
-#### Mapping location
-  
+#### Mapping
+  1. **Admin Detail Page**  - This shows the location of a specific report.
+  2. **Report Map View** - Map view of all of the reports.
+  3. **New Report Location** - For marking specific location of a report.
 
 ## Authors & Acknowledgement
 
