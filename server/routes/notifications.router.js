@@ -74,12 +74,4 @@ router.put('/hidenotification', rejectUnauthenticated, (req, res) => {
         })
 });
 
-/**
- * DELETE notifications route
- */
-router.delete('/', rejectUnauthenticated, (req, res) => {
-
-
-});
-
 module.exports = router;

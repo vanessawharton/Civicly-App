@@ -33,28 +33,11 @@ export default function AdminDashBoardPage() {
 
     const tickets = useSelector((store) => store.ticket);
 
-    //just a placeholder dispatch here, we can change if it makes more sense
-    //grabs all reports from store/reducer(however we end up hooking things up)
+    //useEffect to Fetch all tickets from DB on page load
     useEffect(() => {
         // window.scrollTo(0, 0)
         dispatch({ type: 'FETCH_ALL_TICKETS' })
     }, []);
-
-
-    const handleNeedsReview = () => {
-        console.log('needs review button clicked');
-        //what do we want this button to do?
-    };
-
-    const handleReportSearch = () => {
-        console.log('report search button clicked');
-        //what do we want this to do?
-    };
-
-    const handleReporting = () => {
-        console.log('reporting button clicked');
-        //what does this button do?
-    };
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -80,39 +63,6 @@ export default function AdminDashBoardPage() {
                     display="flex"
                     justifyContent="center"
                 >
-                    {/* <Grid item xs={2} sm={3} md={3}
-                        display="flex"
-                        justifyContent="center"
-                        justify="center"
-                        alignItems="center">
-                        <Button style={{ color: "black", backgroundColor: "#bcf5bc" }}
-                            variant="contained"
-                            onClick={handleNeedsReview}
-                        >Needs Review
-                        </Button>
-                    </Grid>
-                    <Grid item xs={2} sm={3} md={3}
-                        display="flex"
-                        justifyContent="center"
-                        justify="center"
-                        alignItems="center">
-                        <Button style={{ color: "black", backgroundColor: "#ea80fc" }}
-                            variant="contained"
-                            onClick={handleReportSearch}
-                        >Report Search
-                        </Button>
-                    </Grid>
-                    <Grid item xs={2} sm={3} md={3}
-                        display="flex"
-                        justifyContent="center"
-                        justify="center"
-                        alignItems="center">
-                        <Button style={{ color: "black", backgroundColor: "#ffa07a" }}
-                            variant="contained"
-                            onClick={handleReporting}
-                        >Reporting
-                        </Button>
-                    </Grid> */}
                     <Grid>
                         <br />
                         <Grid item xs={12}
@@ -241,7 +191,6 @@ export default function AdminDashBoardPage() {
                             fullWidth
                             variant="standard"
                         />
-                        {/* <img>need to include user image here</img> */}
                     </DialogContent>
                     <DialogActions>
                         <Button style={{ backgroundColor: "#5A5A5A" }}

@@ -22,26 +22,6 @@ function* postAdmin() {
     }
 }
 
-// Admin PUT
-function* editAdmin() {
-    try {
-        
-    } catch (error) {
-        console.log('Admin PUT request failed', error);
-    }
-}
-
-// Admin DELETE
-function* deleteAdmin() {
-    try {
-        
-    } catch (error) {
-        console.log('Admin DELETE request failed', error);
-    }
-}
-
-
-
 
 function* adminSaga() {
     yield takeLatest('FETCH_ADMIN', fetchAdmin);
