@@ -27,8 +27,6 @@ export default function AdminDataTable({ theme }) {
     const [submittedBy, setSubmittedBy] = useState('');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
-    const [license, setLicense] = useState('');
-    const [lastStatusUpdate, setLastStatusUpdate] = useState('');
     const [internalComments, setInternalComments] = useState('');
     const [image, setImage] = useState('');
     const [open, setOpen] = useState(false);
@@ -37,6 +35,8 @@ export default function AdminDataTable({ theme }) {
     const [upvotes, setUpvotes] = useState('');
     // const [ticketDetails, setTicketDetails] = useState();
 
+    //This stores the ticket values that we send in the dispatch to
+    //insert a new notification.
     const ticketDetails = {
         ticket_id: id,
         comments: description,
@@ -47,9 +47,10 @@ export default function AdminDataTable({ theme }) {
 
     useEffect(() => {
         // console.log('ticket details are:', ticketDetails)
-
+        console.log('tickets are:', tickets)
     }, [ticketDetails]);
 
+    //Sets the column header labels and styling
     const columns = [
         { field: 'id', headerName: 'Report #', headerAlign: 'center', width: 100 },
         { field: 'status', headerName: 'Status', headerAlign: 'center', width: 100 },
@@ -62,6 +63,8 @@ export default function AdminDataTable({ theme }) {
         { field: 'description', headerName: 'Details', headerAlign: 'center', width: 265 }
     ];
 
+    //This function sets our state variables for the report row that was clicked on
+    //in the data grid
     const handleDetails = (ticket) => {
         console.log('report clicked', ticket);
         setId(ticket.row.id);
@@ -84,11 +87,14 @@ export default function AdminDataTable({ theme }) {
     }
 
     const handleUpdateStatus = () => {
-        console.log('UpdateStatus button clicked');
+        // console.log('UpdateStatus button clicked');
         setStatusOpen(true);
     }
 
     const handleSendStatusUpdate = () => {
+        //This function sends dispatches changing the status value in 
+        //the ticket table, and creates a new notification in the 
+        //notification table
         dispatch({ type: 'UPDATE_TICKET_STATUS', payload: ticketDetails })
         dispatch({ type: 'SEND_NOTIFICATION', payload: ticketDetails })
         Swal.fire({
@@ -124,10 +130,15 @@ export default function AdminDataTable({ theme }) {
                 rowsPerPageOptions={[10]}
             />
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Report Details</DialogTitle><Button edge="end" position="fixed" style={{ backgroundColor: "#bf0000" }}
+                <DialogTitle>Report Details</DialogTitle>
+                <Button
+                    edge="end"
+                    position="fixed"
+                    style={{ backgroundColor: "#bf0000" }}
                     variant="contained"
                     onClick={handleUpdateStatus}
-                >Update Status</Button>
+                >Update Status
+                </Button>
                 <DialogContent display="flex"
                 >
                     <TextField
@@ -245,7 +256,6 @@ export default function AdminDataTable({ theme }) {
             </Dialog>
             <Dialog
                 open={statusOpen}
-                // onClose={handleStatusClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
@@ -265,7 +275,6 @@ export default function AdminDataTable({ theme }) {
                             onChange={(e) => {
                                 console.log('Status updated to: ', e.target.value)
                                 setStatus(e.target.value)
-                                // dispatch({ type: 'UPDATE_TICKET_STATUS', payload: e.target.value })
                             }}
                         >
                             <InputLabel id="Status Update">Update Status</InputLabel>
