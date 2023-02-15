@@ -151,7 +151,7 @@ $ ~ npm run client
 
 ## Screen Shots
 
-  ![Landing Page](https://user-images.githubusercontent.com/111813443/219004293-571f1b6f-d054-4ad0-b48a-d82648783e61.png)
+  <img src="https://user-images.githubusercontent.com/111813443/219004293-571f1b6f-d054-4ad0-b48a-d82648783e61.png" width="100">
   ![Home Page](https://user-images.githubusercontent.com/111813443/219003189-db69981f-053e-430e-85a3-441a23a2d9d9.png)
   ![Reports Map Page](https://user-images.githubusercontent.com/111813443/219005594-42389330-96ff-4e35-89f1-d9dfbed05030.png)
   ![Add New Report- Step One: Location](https://user-images.githubusercontent.com/111813443/219003308-c81d286e-31ad-43ae-b0a1-c97dd119c107.png)
@@ -200,11 +200,11 @@ $ ~ npm run client
 ## Authors & Acknowledgement
 
 This app was built by:
- [Dylan Roets](https://github.com/dylanroets)
- [Vanessa Wharton](https://github.com/vanessawharton)
- [Andrew Carey](https://github.com/arcarey)
- [Jared Lindquist](https://github.com/jared-lindquist) 
- and [Paul Norling](https://github.com/PaulNorling)
+ [Dylan Roets](https://github.com/dylanroets), 
+ [Vanessa Wharton](https://github.com/vanessawharton), 
+ [Andrew Carey](https://github.com/arcarey), 
+ [Jared Lindquist](https://github.com/jared-lindquist),  
+ and [Paul Norling](https://github.com/PaulNorling).
 
 Thanks to [Firebase](https://firebase.google.com/) and [Google Maps](https://maps.google.com/) whose APIs supplied image upload and mapping capabilities for multiple parts of this application.
 
