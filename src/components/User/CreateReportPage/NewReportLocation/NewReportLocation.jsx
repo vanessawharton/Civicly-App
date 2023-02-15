@@ -1,6 +1,6 @@
 import React from "react";
-import { GoogleMap, MarkerF, useLoadScript, refs, Data, dataF  } from "@react-google-maps/api";
-import { useState, View, Image } from "react";
+import { GoogleMap } from "@react-google-maps/api";
+import { useState } from "react";
 import './NewReportMap.css'
 import { useEffect } from "react";
 import marker from './target-svgrepo-com.svg'
@@ -12,7 +12,6 @@ export default function NewReportLocation({newReport, setNewReport}) {
     const [latitude, setLatitude] = useState(44.961002);
     const [longitude, setLongitude] = useState(-93.163103);
     const [center, setCenter] = useState({lat: latitude, lng: longitude});
-    const [target, setTarget] = useState(null)
     
 
     useEffect (() => {
@@ -31,7 +30,6 @@ export default function NewReportLocation({newReport, setNewReport}) {
         })
     }
 
-    // if (!isLoaded) return <div>Loading...</div>
     return (
         <>
             <Map
@@ -54,7 +52,6 @@ function Map (props) {
     const handleCenterChanged = () => {
     if (mapref) {
       const newCenter = mapref.getCenter();
-    //   console.log(newCenter?.lat(), newCenter?.lng());
       props.setNewReport({...props.newReport, latitude: newCenter?.lat(), longitude: newCenter?.lng()})
     }
   };

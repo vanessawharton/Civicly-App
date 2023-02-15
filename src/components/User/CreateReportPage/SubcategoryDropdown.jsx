@@ -1,7 +1,6 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import SearchIcon from '@mui/icons-material/Search';
 import Paper from '@mui/material/Paper';
 
 export default function SubcategoryDropdown({subcategories, newReport, setNewReport, category}) {

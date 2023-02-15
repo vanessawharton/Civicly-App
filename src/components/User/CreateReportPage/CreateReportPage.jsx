@@ -79,9 +79,6 @@ export default function CreateReportPage() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleReset = () => {
-        setActiveStep(0);
-    };
 
     
     const handleSubmit = () => {
@@ -190,20 +187,7 @@ export default function CreateReportPage() {
                                         >
                                             <ConfirmationView />
                                         </Dialog>
-                                        {/* <Button
-                                            disabled={index === 0}
-                                            onClick={index === steps.length - 1 ? {handleReset} : {handleBack}}
-                                            sx={{ mt: 2, mr: 1 }}
-                                        >
-                                            {index === steps.length - 1 ? 'Reset' : 'Back'}
-                                        </Button>
-                                        <Button
-                                            variant="contained"
-                                            onClick={index === steps.length - 1 ? {handleSubmit} : {handleNext}}
-                                            sx={{ mt: 2, mr: 1 }}
-                                        >
-                                            {index === steps.length - 1 ? 'Submit' : 'Continue'}
-                                        </Button> */}
+
                                     </div>
                                 </Box>
                             </StepContent>
@@ -212,15 +196,7 @@ export default function CreateReportPage() {
                 </Stepper>
                 {activeStep === steps.length && (
                     <Paper square elevation={0} sx={{ p: 3 }}>
-                        {/* <Typography>Submit Report!</Typography>
-                        <Button onClick={handleReset} sx={{ mt: 2, mr: 2 }}>
-                            Reset
-                        </Button>
-                        <Button
-                            variant='contained'
-                            onClick={handleSubmit}
-                            sx={{ mt: 1, mr: 1 }}
-                        >Submit</Button> */}
+
                     </Paper>
                 )}
             </Box>

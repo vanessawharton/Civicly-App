@@ -1,15 +1,13 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-// import { ListItem, ListItemText, Switch, Button } from '@mui/material';
 import UploadForm from './UploadForm';
 import SubcategoryDropdown from './SubcategoryDropdown';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { Divider, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 
 export default function IssueFormView({ newReport, setNewReport, anon, setAnon, subcategories, category }) {
