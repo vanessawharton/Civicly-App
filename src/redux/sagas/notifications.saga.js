@@ -24,7 +24,7 @@ function* postNotifications() {
 }
 
 function* sendNotification(action) {
-    console.log('in sendNotification', action.payload);
+    // console.log('in sendNotification', action.payload);
     try {
         yield axios.post('/api/notifications', action.payload)
 
@@ -35,7 +35,7 @@ function* sendNotification(action) {
 
 // Notifications PUT
 function* hideNotification(action) {
-    console.log('in hideNotification', action.payload);
+    // console.log('in hideNotification', action.payload);
     try {
         yield axios.put('/api/notifications/hidenotification', action.payload)
         yield put({type: 'FETCH_NOTIFICATIONS'})
