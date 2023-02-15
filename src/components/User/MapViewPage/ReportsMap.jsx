@@ -30,7 +30,7 @@ function ReportsMap(){
     dispatch({type: 'FETCH_ALL_TICKETS'});
     !activeMarkerTriggerTicket && userPosition()
   }, []);
-
+  //recenter map over user position
   const userPosition = () => {
     navigator.geolocation.getCurrentPosition(position => {
       setLatitude(position.coords.latitude);
@@ -38,7 +38,7 @@ function ReportsMap(){
       setFocus(12);
     });
   };
-
+  //set active marker when referencing from my reports
   const handleMapLoad = map => {
     setMapRef(map);
     if (activeMarkerTriggerTicket) {
@@ -47,7 +47,7 @@ function ReportsMap(){
       dispatch({type: 'UNSET_ACTIVE_MARKER'})
     }
   };
-
+  //reset map center collect inbounds markers
   const handleCenterChanged = () => {
     
     if (mapref) {
@@ -65,7 +65,7 @@ function ReportsMap(){
       dispatch({type: 'SET_INBOUNDSMARKERS', payload: showTickets});
       }
   };
-
+  //open clicked marker infowindow recenter map over it
   const handleActiveMarker = (marker) => {
     setLatitude(+marker.latitude);
     setLongitude(+marker.longitude);
@@ -75,7 +75,7 @@ function ReportsMap(){
     }
       setActiveMarker(marker.id);
   };
-
+  //updutate upvote count
   const handleUpVote =(location) => {
     setUpvoteSelected(!upvoteSelected)
     if(upvoteSelected == false){
@@ -85,12 +85,12 @@ function ReportsMap(){
       dispatch({type: 'DOWNVOTE', payload: {location: location}})
     } 
   } 
-
+  //close infowindow
   const onCloseClick = () => {
     setActiveMarker(null)
     setUpvoteSelected(false)
   }
-
+  //remove preset map controls
   const defaultMapOptions = {
     fullscreenControl: false,
     mapTypeControl: false,
@@ -110,10 +110,11 @@ function ReportsMap(){
           onClick={() => onCloseClick()}
           options={defaultMapOptions}
         >
+        {/* display markers */}
         {tickets.map(location => {
 
           let color;
-          
+          //assign marker colors to specific categories
           switch(location.category) {
             case '8':
               color='/images/yellow-dot.png'
@@ -155,6 +156,7 @@ function ReportsMap(){
                 options={{icon: `${color}`}}
               >
               {activeMarker === location.id ? (
+                //infowindow content
                 <InfoWindowF onCloseClick={onCloseClick}>
                   <div>
                     <Typography sx={{fontSize: 14, fontWeight: 700, mb: 1, textAlign: "center"}}>

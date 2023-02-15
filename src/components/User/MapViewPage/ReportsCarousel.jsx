@@ -4,6 +4,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Card, CardMedia, Box, Typography } from '@mui/material';
 
+
 const responsive = {
     tablet: {
         breakpoint: { max: 1024, min: 464 },
@@ -18,7 +19,7 @@ const responsive = {
 };
 
 function ReportCarousel({handleActiveMarker}) {
-
+    //Reports with bounds of map
     const reports = useSelector((store) => store.inboundsMarkers);
 
     return (
@@ -41,7 +42,9 @@ function ReportCarousel({handleActiveMarker}) {
             containerClass="carousel-container"
             itemClass="carousel-item-padding-40-px"
         >   
+        {/* Carousel content */}
         {reports.map(report => {
+            //Carousel card content
         return (
         <div key={report.id} onClick={() => handleActiveMarker(report)} >
             <Card sx={{m: .5}}>
