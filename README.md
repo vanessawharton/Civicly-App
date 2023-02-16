@@ -65,7 +65,8 @@ If you would like to see a draft of the database structure created during scopin
 
   
 
-- Keys for Google Map API's
+- Key for Google Map API's
+  **Google-Maps-Javascript-Api-Key**
 
   
 
@@ -266,8 +267,11 @@ More detailed instructions can be found here:
 
 ## Developer Notes
 
-#### Mapping
-  -React Google Maps Api is used for the Admin Detail, Report Map, and New Report Location.  MarkerF is used for creating pins on the map.  InfoWindowF is used for displaying report deatails when clicking a pin. 
+## Mapping
+    -React Google Maps API powers the map for Admin Detail, Report Map, and New Report Location.  
+  Report Map pins are color coded by category.  Markers within map boundries can be viewed in a carousel at the bottom of the Reports Map page.  Info Window is used for marker detail view.  Geolocation centers the map over user exact latitude and longitude, map boundries then recenters over selected markers.   
+
+  Google-Maps-Javascript-Api-Key Required.
 
 ## Authors & Acknowledgement
 
