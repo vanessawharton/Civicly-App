@@ -55,6 +55,7 @@ function ReportsMap(){
       const center = mapref.getCenter();
       setLatitude(center.lat());
       setLongitude(center.lng());
+      //This checks to see if the markes are within the 4 corners of the map
       const showTickets = tickets.filter(ticket => {
       return(
         ticket.latitude < bounds?.Ya.hi && 

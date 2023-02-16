@@ -1,3 +1,4 @@
+//
 const inboundsMarkers = (state = [], action) => {
     switch (action.type) {
         case 'SET_INBOUNDSMARKERS':
